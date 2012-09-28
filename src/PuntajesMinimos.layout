@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Release" />
+	<File name="Calificacion.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="129" topLine="0" />
+	</File>
+	<File name="Calificacion.h" open="0" top="0" tabpos="8">
+		<Cursor position="1713" topLine="0" />
+	</File>
+	<File name="CalificacionDAO.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="14758" topLine="339" />
+	</File>
+	<File name="CalificacionDAO.h" open="0" top="0" tabpos="7">
+		<Cursor position="102" topLine="0" />
+	</File>
+	<File name="ConfBDMain.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="45" />
+	</File>
+	<File name="DAO.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="308" topLine="5" />
+	</File>
+	<File name="DAO.h" open="0" top="0" tabpos="10">
+		<Cursor position="252" topLine="0" />
+	</File>
+	<File name="Equivalencia.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="231" topLine="0" />
+	</File>
+	<File name="Equivalencia.h" open="0" top="0" tabpos="9">
+		<Cursor position="70" topLine="0" />
+	</File>
+	<File name="EquivalenciaDAO.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="349" topLine="6" />
+	</File>
+	<File name="EquivalenciaDAO.h" open="1" top="1" tabpos="10">
+		<Cursor position="116" topLine="0" />
+	</File>
+	<File name="EstudianteDAO.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="19164" topLine="421" />
+	</File>
+	<File name="EstudianteDAO.h" open="1" top="0" tabpos="6">
+		<Cursor position="1078" topLine="0" />
+	</File>
+	<File name="GUIFrame.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="48" />
+	</File>
+	<File name="GUIFrame.h" open="1" top="0" tabpos="2">
+		<Cursor position="1828" topLine="77" />
+	</File>
+	<File name="LeeYaml.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1558" topLine="0" />
+	</File>
+	<File name="LeeYaml.h" open="0" top="0" tabpos="0">
+		<Cursor position="216" topLine="0" />
+	</File>
+	<File name="LeerCSV.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="545" topLine="14" />
+	</File>
+	<File name="LeerCSV.h" open="1" top="0" tabpos="8">
+		<Cursor position="250" topLine="0" />
+	</File>
+	<File name="PG.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1135" topLine="49" />
+	</File>
+	<File name="PG.h" open="1" top="0" tabpos="9">
+		<Cursor position="46" topLine="2" />
+	</File>
+	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="554" topLine="0" />
+	</File>
+	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="10536" topLine="381" />
+	</File>
+	<File name="PuntajesMinimosMain.h" open="1" top="0" tabpos="3">
+		<Cursor position="1486" topLine="38" />
+	</File>
+	<File name="admisionesunivalle.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="460" topLine="0" />
+	</File>
+	<File name="admisionesunivalle.h" open="1" top="0" tabpos="7">
+		<Cursor position="1487" topLine="13" />
+	</File>
+	<File name="algoritmogenetico.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="1006" topLine="72" />
+	</File>
+	<File name="algoritmogenetico.h" open="0" top="0" tabpos="9">
+		<Cursor position="2163" topLine="22" />
+	</File>
+	<File name="fenotipo.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="fenotipo.h" open="0" top="0" tabpos="7">
+		<Cursor position="0" topLine="8" />
+	</File>
+	<File name="fenotipoipmpais.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="659" topLine="17" />
+	</File>
+	<File name="fenotipoipmpais.h" open="0" top="0" tabpos="9">
+		<Cursor position="1774" topLine="42" />
+	</File>
+	<File name="matematicas.h" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="199" />
+	</File>
+</CodeBlocks_layout_file>

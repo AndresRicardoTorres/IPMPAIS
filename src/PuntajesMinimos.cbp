@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PuntajesMinimos" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/PuntajesMinimos" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="/usr/include/postgresql" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lpq" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="`wx-config --cflags`" />
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add option="`wx-config --libs`" />
+		</Linker>
+		<Unit filename="Calificacion.cpp" />
+		<Unit filename="Calificacion.h" />
+		<Unit filename="CalificacionDAO.cpp" />
+		<Unit filename="CalificacionDAO.h" />
+		<Unit filename="ConfBDMain.cpp" />
+		<Unit filename="ConfBDMain.h" />
+		<Unit filename="DAO.cpp" />
+		<Unit filename="DAO.h" />
+		<Unit filename="DialogoAsignaturas.cpp" />
+		<Unit filename="DialogoAsignaturas.h" />
+		<Unit filename="DialogoAsignaturasMain.cpp" />
+		<Unit filename="DialogoAsignaturasMain.h" />
+		<Unit filename="Equivalencia.cpp" />
+		<Unit filename="Equivalencia.h" />
+		<Unit filename="EquivalenciaDAO.cpp" />
+		<Unit filename="EquivalenciaDAO.h" />
+		<Unit filename="EstudianteDAO.cpp" />
+		<Unit filename="EstudianteDAO.h" />
+		<Unit filename="GUIDialog.cpp" />
+		<Unit filename="GUIDialog.h" />
+		<Unit filename="GUIDialogoAsignaturas.cpp" />
+		<Unit filename="GUIDialogoAsignaturas.h" />
+		<Unit filename="GUIFrame.cpp" />
+		<Unit filename="GUIFrame.h" />
+		<Unit filename="LeeYaml.cpp" />
+		<Unit filename="LeeYaml.h" />
+		<Unit filename="LeerCSV.cpp" />
+		<Unit filename="LeerCSV.h" />
+		<Unit filename="PG.cpp" />
+		<Unit filename="PG.h" />
+		<Unit filename="PuntajesMinimosApp.cpp" />
+		<Unit filename="PuntajesMinimosApp.h" />
+		<Unit filename="PuntajesMinimosMain.cpp" />
+		<Unit filename="PuntajesMinimosMain.h" />
+		<Unit filename="WxWizFrame.fbp" />
+		<Unit filename="admisionesunivalle.cpp" />
+		<Unit filename="admisionesunivalle.h" />
+		<Unit filename="algoritmogenetico.cpp" />
+		<Unit filename="algoritmogenetico.h" />
+		<Unit filename="cromosoma.cpp" />
+		<Unit filename="cromosoma.h" />
+		<Unit filename="fenotipo.cpp" />
+		<Unit filename="fenotipo.h" />
+		<Unit filename="fenotipoipmpais.cpp" />
+		<Unit filename="fenotipoipmpais.h" />
+		<Unit filename="gen.cpp" />
+		<Unit filename="gen.h" />
+		<Unit filename="leerconfiguracion.cpp" />
+		<Unit filename="leerconfiguracion.h" />
+		<Unit filename="matematicas.cpp" />
+		<Unit filename="matematicas.h" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
