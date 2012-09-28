@@ -2086,3 +2086,241 @@
 
 1329065081 /usr/lib/x86_64-linux-gnu/wx/include/base-unicode-release-2.8/wx/setup.h
 
+1336072893 source:/home/andresrtm/IPMPAIS/src/Calificacion.cpp
+	"Calificacion.h"
+
+1336072518 /home/andresrtm/IPMPAIS/src/Calificacion.h
+
+1336949409 source:/home/andresrtm/IPMPAIS/src/CalificacionDAO.cpp
+	"CalificacionDAO.h"
+
+1336441077 /home/andresrtm/IPMPAIS/src/CalificacionDAO.h
+	<vector>
+	<string>
+	<map>
+	"Calificacion.h"
+	"EquivalenciaDAO.h"
+	"LeerCSV.h"
+	"DAO.h"
+
+1335755819 /home/andresrtm/IPMPAIS/src/EquivalenciaDAO.h
+	<vector>
+	"Equivalencia.h"
+	"PG.h"
+	<wx/gauge.h>
+	"LeeYaml.h"
+	"DAO.h"
+
+1335755455 /home/andresrtm/IPMPAIS/src/Equivalencia.h
+
+1336453284 /home/andresrtm/IPMPAIS/src/PG.h
+	<vector>
+	<libpq-fe.h>
+	<cstdlib>
+	<iostream>
+	<cstring>
+
+1336933515 /home/andresrtm/IPMPAIS/src/LeeYaml.h
+	<iostream>
+	<list>
+	<sstream>
+	<fstream>
+	<string>
+	<cstring>
+
+1335723975 /home/andresrtm/IPMPAIS/src/DAO.h
+	<string>
+	<ctype.h>
+
+1336441093 /home/andresrtm/IPMPAIS/src/LeerCSV.h
+	<iostream>
+	<sstream>
+	<fstream>
+	<string>
+	<list>
+	<vector>
+
+1329268124 source:/home/andresrtm/IPMPAIS/src/ConfBDMain.cpp
+	"wx_pch.h"
+	"ConfBDMain.h"
+	<iostream>
+
+1329267667 /home/andresrtm/IPMPAIS/src/ConfBDMain.h
+	"GUIDialog.h"
+	"leerconfiguracion.h"
+
+1329263937 /home/andresrtm/IPMPAIS/src/GUIDialog.h
+	<wx/string.h>
+	<wx/stattext.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/textctrl.h>
+	<wx/button.h>
+	<wx/sizer.h>
+	<wx/dialog.h>
+
+1329261176 /home/andresrtm/IPMPAIS/src/leerconfiguracion.h
+	<string>
+	<fstream>
+	<iostream>
+	<stdlib.h>
+	<sstream>
+
+1335723989 source:/home/andresrtm/IPMPAIS/src/DAO.cpp
+	"DAO.h"
+
+1331686790 source:/home/andresrtm/IPMPAIS/src/DialogoAsignaturas.cpp
+	"DialogoAsignaturas.h"
+
+1331686790 /home/andresrtm/IPMPAIS/src/DialogoAsignaturas.h
+	"GUIDialogoAsignaturas.h"
+
+1331686706 /home/andresrtm/IPMPAIS/src/GUIDialogoAsignaturas.h
+	<wx/string.h>
+	<wx/stattext.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/checklst.h>
+	<wx/button.h>
+	<wx/sizer.h>
+	<wx/dialog.h>
+
+1331686704 source:/home/andresrtm/IPMPAIS/src/DialogoAsignaturasMain.cpp
+	"DialogoAsignaturasMain.h"
+
+1331686704 /home/andresrtm/IPMPAIS/src/DialogoAsignaturasMain.h
+	"GUIDialogoAsignaturas.h"
+
+1335755486 source:/home/andresrtm/IPMPAIS/src/Equivalencia.cpp
+	"Equivalencia.h"
+
+1335755965 source:/home/andresrtm/IPMPAIS/src/EquivalenciaDAO.cpp
+	"EquivalenciaDAO.h"
+
+1346879674 source:/home/andresrtm/IPMPAIS/src/EstudianteDAO.cpp
+	"EstudianteDAO.h"
+
+1337200479 /home/andresrtm/IPMPAIS/src/EstudianteDAO.h
+	"DAO.h"
+	"PG.h"
+	"LeerCSV.h"
+	<wx/gauge.h>
+	"Calificacion.h"
+	"CalificacionDAO.h"
+	"admisionesunivalle.h"
+
+1337200426 /home/andresrtm/IPMPAIS/src/admisionesunivalle.h
+	<vector>
+	<queue>
+	"EstudianteDAO.h"
+	<iostream>
+
+1329263937 source:/home/andresrtm/IPMPAIS/src/GUIDialog.cpp
+	"wx/wxprec.h"
+	<wx/wx.h>
+	"GUIDialog.h"
+
+1331686706 source:/home/andresrtm/IPMPAIS/src/GUIDialogoAsignaturas.cpp
+	"GUIDialogoAsignaturas.h"
+
+1335745826 source:/home/andresrtm/IPMPAIS/src/LeeYaml.cpp
+	"LeeYaml.h"
+
+1335720017 source:/home/andresrtm/IPMPAIS/src/LeerCSV.cpp
+	"LeerCSV.h"
+
+1336457942 source:/home/andresrtm/IPMPAIS/src/PG.cpp
+	"PG.h"
+
+1333313061 source:/home/andresrtm/IPMPAIS/src/PuntajesMinimosApp.cpp
+	"wx_pch.h"
+	"PuntajesMinimosApp.h"
+	"PuntajesMinimosMain.h"
+
+1329065296 /home/andresrtm/IPMPAIS/src/PuntajesMinimosApp.h
+	<wx/app.h>
+	<wx/dcclient.h>
+
+1346878388 /home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.h
+	"PuntajesMinimosApp.h"
+	"algoritmogenetico.h"
+	"fenotipoipmpais.h"
+	"admisionesunivalle.h"
+	"ConfBDMain.h"
+	"DialogoAsignaturas.h"
+	"Calificacion.h"
+	"GUIFrame.h"
+	"LeerCSV.h"
+	"LeeYaml.h"
+	"EquivalenciaDAO.h"
+	"CalificacionDAO.h"
+	"EstudianteDAO.h"
+	<wx/wfstream.h>
+	<wx/msgdlg.h>
+	<wx/wx.h>
+	<iostream>
+	<sstream>
+	<fstream>
+	<string>
+	<list>
+	<openssl/sha.h>
+	<iomanip>
+	<ctime>
+
+1331467688 /home/andresrtm/IPMPAIS/src/algoritmogenetico.h
+	"cromosoma.h"
+	"fenotipo.h"
+
+1331432024 /home/andresrtm/IPMPAIS/src/cromosoma.h
+	"matematicas.h"
+	"gen.h"
+
+1331428427 /home/andresrtm/IPMPAIS/src/matematicas.h
+	<time.h>
+	<stdlib.h>
+	<math.h>
+
+1331266456 /home/andresrtm/IPMPAIS/src/gen.h
+	"matematicas.h"
+
+1331433984 /home/andresrtm/IPMPAIS/src/fenotipo.h
+	"cromosoma.h"
+
+1331433984 /home/andresrtm/IPMPAIS/src/fenotipoipmpais.h
+	"admisionesunivalle.h"
+	"fenotipo.h"
+	<string.h>
+	<map>
+	<vector>
+
+1348862452 /home/andresrtm/IPMPAIS/src/GUIFrame.h
+	<wx/string.h>
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/icon.h>
+	<wx/menu.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/statusbr.h>
+	<wx/button.h>
+	<wx/gauge.h>
+	<wx/sizer.h>
+	<wx/statbox.h>
+	<wx/panel.h>
+	<wx/radiobox.h>
+	<wx/stattext.h>
+	<wx/textctrl.h>
+	<wx/notebook.h>
+	<wx/frame.h>
+
+1348862452 source:/home/andresrtm/IPMPAIS/src/GUIFrame.cpp
+	"wx/wxprec.h"
+	<wx/wx.h>
+	"GUIFrame.h"
+

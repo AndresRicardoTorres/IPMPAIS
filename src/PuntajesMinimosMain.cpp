@@ -326,7 +326,7 @@ void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
 #include <math.h>
 void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
 
-    bool soloCalcularPonderaciones = true;  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica) */
+    bool soloCalcularPonderaciones = true;  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica)
 
     AdmisionesUnivalle admisionesUnivalle(getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final);
 

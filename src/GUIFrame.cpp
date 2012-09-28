@@ -187,6 +187,9 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxStaticBoxSizer* sbSizer8;
 	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Puntajes minimos y ponderacion recomendada") ), wxVERTICAL );
 	
+	boton_buscar = new wxButton( panel_resultados, wxID_ANY, wxT("Buscar ..."), wxDefaultPosition, wxDefaultSize, 0 );
+	sbSizer8->Add( boton_buscar, 0, wxALIGN_LEFT|wxALL, 5 );
+	
 	wxGridSizer* gSizer3;
 	gSizer3 = new wxGridSizer( 8, 3, 0, 0 );
 	
@@ -274,8 +277,8 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	sbSizer8->Add( gSizer3, 1, wxEXPAND, 5 );
 	
-	boton_buscar = new wxButton( panel_resultados, wxID_ANY, wxT("Buscar ..."), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer8->Add( boton_buscar, 0, wxALIGN_RIGHT|wxALL, 5 );
+	boton_guardarCSV = new wxButton( panel_resultados, wxID_ANY, wxT("Guardar ..."), wxDefaultPosition, wxDefaultSize, 0 );
+	sbSizer8->Add( boton_guardarCSV, 0, wxALL, 5 );
 	
 	panel_resultados->SetSizer( sbSizer8 );
 	panel_resultados->Layout();
@@ -304,6 +307,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	button_guardar_datos->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::OnButtonClickGuardarDatos ), NULL, this );
 	panel_grafico->Connect( wxEVT_PAINT, wxPaintEventHandler( GUIFrame::OnPaint ), NULL, this );
 	boton_buscar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
+	boton_guardarCSV->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
 }
 
 GUIFrame::~GUIFrame()
@@ -325,4 +329,5 @@ GUIFrame::~GUIFrame()
 	button_guardar_datos->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::OnButtonClickGuardarDatos ), NULL, this );
 	panel_grafico->Disconnect( wxEVT_PAINT, wxPaintEventHandler( GUIFrame::OnPaint ), NULL, this );
 	boton_buscar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
+	boton_guardarCSV->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
 }

@@ -72,6 +72,7 @@ class GUIFrame : public wxFrame
 		wxButton* button_guardar_datos;
 		wxPanel* panel_grafico;
 		wxPanel* panel_resultados;
+		wxButton* boton_buscar;
 		wxStaticText* input_vacio;
 		wxStaticText* input_lenguaje11;
 		wxStaticText* input_lenguaje111;
@@ -96,7 +97,7 @@ class GUIFrame : public wxFrame
 		wxStaticText* input_fisica;
 		wxTextCtrl* inputPuntajeFisica;
 		wxTextCtrl* inputPonderacionFisica;
-		wxButton* boton_buscar;
+		wxButton* boton_guardarCSV;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
