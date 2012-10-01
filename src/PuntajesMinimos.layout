@@ -41,10 +41,10 @@
 		<Cursor position="989" topLine="8" />
 	</File>
 	<File name="GUIFrame.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="9905" topLine="181" />
+		<Cursor position="15092" topLine="268" />
 	</File>
 	<File name="GUIFrame.h" open="1" top="0" tabpos="5">
-		<Cursor position="4373" topLine="99" />
+		<Cursor position="3113" topLine="78" />
 	</File>
 	<File name="LeeYaml.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1558" topLine="0" />
@@ -68,7 +68,7 @@
 		<Cursor position="554" topLine="0" />
 	</File>
 	<File name="PuntajesMinimosMain.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="11946" topLine="331" />
+		<Cursor position="12126" topLine="337" />
 	</File>
 	<File name="PuntajesMinimosMain.h" open="1" top="0" tabpos="4">
 		<Cursor position="2546" topLine="66" />

@@ -36,6 +36,7 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
     srand(time(0));  // Initialize random number generator.
     un_numero_aleatorio = rand();
 #endif
+    grilla_puntajes_minimos->Show(false);
 }
 
 const char* PuntajesMinimosFrame::getInformacionConexion(){
@@ -344,6 +345,12 @@ void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
  void PuntajesMinimosFrame::mostar_puntajes_minimos( wxCommandEvent& event ){
 ///TODO: mosttar o ocultar inputs
     bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();
+
+    if(soloCalcularPonderaciones)
+        grilla_puntajes_minimos->Show(false);
+    else
+        grilla_puntajes_minimos->Show(true);
+
  }
 
 // 2012-09-28: Función alterada por Angel, para no tener en cuenta PuntajesMinimos(=0) y para repetir

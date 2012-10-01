@@ -77,6 +77,7 @@ class GUIFrame : public wxFrame
 		wxStaticText* label_cantidad;
 		wxCheckBox* check_mostrar_puntajes_minimos;
 		wxButton* boton_buscar;
+		wxGridSizer* grilla_valores;
 		wxStaticText* input_vacio;
 		wxStaticText* input_lenguaje11;
 		wxStaticText* input_lenguaje111;
@@ -104,6 +105,10 @@ class GUIFrame : public wxFrame
 		wxStaticText* m_staticText13;
 		wxTextCtrl* m_textCtrl18;
 		wxTextCtrl* m_textCtrl19;
+		wxGridSizer* grilla_puntajes_minimos;
+		wxButton* m_button10;
+		wxButton* m_button111;
+		wxStaticText* m_staticText15;
 		wxButton* boton_guardarCSV;
 		
 		// Virtual event handlers, overide them in your derived class
