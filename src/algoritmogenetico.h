@@ -1,9 +1,9 @@
 /*
   Archivo: algoritmogenetico.h
   Licencia: GNU-GPL
-  Fecha creacion: 8 de marzo de 2012
+  Fecha creacion: 28 de septiembre de 2012
   Fecha ultima modificacion:  8 de marzo de 2012
-  Version: 0.1
+  Version: 0.2
   Copyright: (C) 2012 by Angel Garcia Baños
   Email: angel.garcia@correounivalle.edu.co
   EVALAB (EISC - Universidad del Valle, Cali, Colombia)
@@ -46,19 +46,20 @@ class AlgoritmoGenetico
     ~AlgoritmoGenetico();
     /** Ejecuta el proceso de optimización del algoritmo genético y devuelve el mejor Cromosoma. Esta función se puede ejecutar
       varias veces sucesivas.
+      @param aptitudDelMejor. Devuelve en esta variable la aptitud del mejor cromosoma (referencia a una variable, valor de salida).
       @param numeroDeGeneraciones. Por defecto 10000
       @param probabilidadDeCrucePromedio. Por defecto 40 (o sea, 40%)
       @param probabilidadDeCruceUniforme. Por defecto 40 (o sea, 40%). La suma de ambas probabilidades no debe superar 100% (aunque no pasa nada malo si ello ocurre).
       @param desviacionTipicaDeLaMutacion. Por defecto, 1.
       @return el mejor Cromosoma.
     */
-    const Cromosoma *ejecutar(int numeroDeGeneraciones=10000, int probabilidadDeCrucePromedio=40, int probabilidadDeCruceUniforme=40, double desviacionTipicaDeLaMutacion=1);
+    const Cromosoma *ejecutar(double &aptitudDelMejor, int numeroDeGeneraciones=10000, int probabilidadDeCrucePromedio=40, int probabilidadDeCruceUniforme=40, double desviacionTipicaDeLaMutacion=1);
 
   protected:
     void seleccion(int &indiceUnCromosoma, int &indiceOtroCromosoma) const;
     Cromosoma *reproduccion(const Cromosoma *unCromosoma, const Cromosoma *otroCromosoma, int probabilidadDeCrucePromedio, int probabilidadDeCruceUniforme, double desviacionTipicaDeLaMutacion) const;
     void sustitucion(Cromosoma *hijo);
-    const Cromosoma *elMejor() const;
+    const Cromosoma *elMejor(double &aptitudMayor) const;
     Cromosoma *operator [](int indice);
 
   private:

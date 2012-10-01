@@ -36,7 +36,7 @@ AlgoritmoGenetico::~AlgoritmoGenetico()
 }
 
 
-const Cromosoma *AlgoritmoGenetico::ejecutar(int numeroDeGeneraciones, int probabilidadDeCrucePromedio, int probabilidadDeCruceUniforme, double desviacionTipicaDeLaMutacion)
+const Cromosoma *AlgoritmoGenetico::ejecutar(double &aptitudDelMejor, int numeroDeGeneraciones, int probabilidadDeCrucePromedio, int probabilidadDeCruceUniforme, double desviacionTipicaDeLaMutacion)
 {
   while(numeroDeGeneraciones-- > 0)
   {
@@ -46,7 +46,9 @@ const Cromosoma *AlgoritmoGenetico::ejecutar(int numeroDeGeneraciones, int proba
     Cromosoma *hijo = reproduccion(cromosomas[indiceUnCromosoma], cromosomas[indiceOtroCromosoma], probabilidadDeCrucePromedio, probabilidadDeCruceUniforme, desviacionTipicaDeLaMutacion);
     sustitucion(hijo);
   }
-  return elMejor();
+
+  const Cromosoma *elMejorCromosoma = elMejor(aptitudDelMejor);
+  return elMejorCromosoma;
 }
 
 
@@ -119,10 +121,10 @@ void AlgoritmoGenetico::sustitucion(Cromosoma *hijo)
 }
 
 
-const Cromosoma *AlgoritmoGenetico::elMejor() const
+const Cromosoma *AlgoritmoGenetico::elMejor(double &aptitudMayor) const
 {
-// Buscar el mejor Cromosoma:
-  double aptitudMayor = 0;
+  // Buscar el mejor Cromosoma:
+  aptitudMayor = 0;
   bool hayAptitudMayor = false;
   int indiceCromosomaMejor = 0;
   for(int cualCromosoma = 0; cualCromosoma < cuantosCromosomas; cualCromosoma++)

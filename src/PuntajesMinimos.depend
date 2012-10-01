@@ -2271,7 +2271,7 @@
 	<iomanip>
 	<ctime>
 
-1331467688 /home/andresrtm/IPMPAIS/src/algoritmogenetico.h
+1348863298 /home/andresrtm/IPMPAIS/src/algoritmogenetico.h
 	"cromosoma.h"
 	"fenotipo.h"
 
@@ -2290,14 +2290,14 @@
 1331433984 /home/andresrtm/IPMPAIS/src/fenotipo.h
 	"cromosoma.h"
 
-1331433984 /home/andresrtm/IPMPAIS/src/fenotipoipmpais.h
+1348863298 /home/andresrtm/IPMPAIS/src/fenotipoipmpais.h
 	"admisionesunivalle.h"
 	"fenotipo.h"
 	<string.h>
 	<map>
 	<vector>
 
-1348862452 /home/andresrtm/IPMPAIS/src/GUIFrame.h
+1348864609 /home/andresrtm/IPMPAIS/src/GUIFrame.h
 	<wx/string.h>
 	<wx/bitmap.h>
 	<wx/image.h>
@@ -2319,8 +2319,38 @@
 	<wx/notebook.h>
 	<wx/frame.h>
 
-1348862452 source:/home/andresrtm/IPMPAIS/src/GUIFrame.cpp
+1348863578 source:/home/andresrtm/IPMPAIS/src/GUIFrame.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"
+
+1337200021 source:/home/andresrtm/IPMPAIS/src/admisionesunivalle.cpp
+	"admisionesunivalle.h"
+
+1348863298 source:/home/andresrtm/IPMPAIS/src/algoritmogenetico.cpp
+	"algoritmogenetico.h"
+
+1331432032 source:/home/andresrtm/IPMPAIS/src/cromosoma.cpp
+	"cromosoma.h"
+
+1331432267 source:/home/andresrtm/IPMPAIS/src/fenotipo.cpp
+	"fenotipo.h"
+
+1348863298 source:/home/andresrtm/IPMPAIS/src/fenotipoipmpais.cpp
+	"fenotipoipmpais.h"
+	<iostream>
+
+1331428539 source:/home/andresrtm/IPMPAIS/src/gen.cpp
+	"gen.h"
+
+1329263460 source:/home/andresrtm/IPMPAIS/src/leerconfiguracion.cpp
+	"leerconfiguracion.h"
+
+1331428425 source:/home/andresrtm/IPMPAIS/src/matematicas.cpp
+	"matematicas.h"
+
+1348863743 source:/home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.cpp
+	"wx_pch.h"
+	"PuntajesMinimosMain.h"
+	<math.h>
 

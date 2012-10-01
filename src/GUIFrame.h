@@ -69,6 +69,7 @@ class GUIFrame : public wxFrame
 		wxTextCtrl* input_fecha_hasta;
 		wxTextCtrl* m_textCtrl31;
 		wxButton* button_seleccionar_asignaturas;
+		wxPanel* m_panel5;
 		wxButton* button_guardar_datos;
 		wxPanel* panel_grafico;
 		wxPanel* panel_resultados;
@@ -97,6 +98,9 @@ class GUIFrame : public wxFrame
 		wxStaticText* input_fisica;
 		wxTextCtrl* inputPuntajeFisica;
 		wxTextCtrl* inputPonderacionFisica;
+		wxStaticText* m_staticText13;
+		wxTextCtrl* m_textCtrl18;
+		wxTextCtrl* m_textCtrl19;
 		wxButton* boton_guardarCSV;
 		
 		// Virtual event handlers, overide them in your derived class

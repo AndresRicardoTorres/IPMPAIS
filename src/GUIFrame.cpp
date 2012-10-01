@@ -172,6 +172,9 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	bSizer3->Add( sbSizer14, 0, wxALL|wxEXPAND, 5 );
 	
+	m_panel5 = new wxPanel( panel_filtros, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	bSizer3->Add( m_panel5, 1, wxEXPAND | wxALL, 5 );
+	
 	button_guardar_datos = new wxButton( panel_filtros, wxID_ANY, wxT("Guardar datos aplicando filtos ..."), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer3->Add( button_guardar_datos, 0, wxALIGN_RIGHT|wxALL, 5 );
 	
@@ -185,23 +188,23 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_notebook1->AddPage( panel_grafico, wxT("Grafico"), false );
 	panel_resultados = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxStaticBoxSizer* sbSizer8;
-	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Puntajes minimos y ponderacion recomendada") ), wxVERTICAL );
+	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Ponderaciones recomendadas") ), wxVERTICAL );
 	
 	boton_buscar = new wxButton( panel_resultados, wxID_ANY, wxT("Buscar ..."), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer8->Add( boton_buscar, 0, wxALIGN_LEFT|wxALL, 5 );
 	
 	wxGridSizer* gSizer3;
-	gSizer3 = new wxGridSizer( 8, 3, 0, 0 );
+	gSizer3 = new wxGridSizer( 9, 3, 0, 0 );
 	
 	input_vacio = new wxStaticText( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	input_vacio->Wrap( -1 );
 	gSizer3->Add( input_vacio, 0, wxALL, 5 );
 	
-	input_lenguaje11 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Puntajes minimo"), wxDefaultPosition, wxDefaultSize, 0 );
+	input_lenguaje11 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Valor medio"), wxDefaultPosition, wxDefaultSize, 0 );
 	input_lenguaje11->Wrap( -1 );
 	gSizer3->Add( input_lenguaje11, 0, wxALL, 5 );
 	
-	input_lenguaje111 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Ponderacion"), wxDefaultPosition, wxDefaultSize, 0 );
+	input_lenguaje111 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Desviación típica"), wxDefaultPosition, wxDefaultSize, 0 );
 	input_lenguaje111->Wrap( -1 );
 	gSizer3->Add( input_lenguaje111, 0, wxALL, 5 );
 	
@@ -274,6 +277,16 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	inputPonderacionFisica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	gSizer3->Add( inputPonderacionFisica, 0, wxALL, 5 );
+	
+	m_staticText13 = new wxStaticText( panel_resultados, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText13->Wrap( -1 );
+	gSizer3->Add( m_staticText13, 0, wxALIGN_RIGHT|wxALL, 5 );
+	
+	m_textCtrl18 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	gSizer3->Add( m_textCtrl18, 0, wxALL, 5 );
+	
+	m_textCtrl19 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	gSizer3->Add( m_textCtrl19, 0, wxALL, 5 );
 	
 	sbSizer8->Add( gSizer3, 1, wxEXPAND, 5 );
 	
