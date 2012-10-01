@@ -190,6 +190,13 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxStaticBoxSizer* sbSizer8;
 	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Ponderaciones recomendadas") ), wxVERTICAL );
 	
+	label_cantidad = new wxStaticText( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	label_cantidad->Wrap( -1 );
+	sbSizer8->Add( label_cantidad, 0, wxALL, 5 );
+	
+	m_checkBox1 = new wxCheckBox( panel_resultados, wxID_ANY, wxT("Check Me!"), wxDefaultPosition, wxDefaultSize, 0 );
+	sbSizer8->Add( m_checkBox1, 0, wxALL, 5 );
+	
 	boton_buscar = new wxButton( panel_resultados, wxID_ANY, wxT("Buscar ..."), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer8->Add( boton_buscar, 0, wxALIGN_LEFT|wxALL, 5 );
 	

@@ -64,6 +64,7 @@ class PuntajesMinimosFrame: public GUIFrame
         int filtro_completitud_datos;
         int filtro_fecha_inicio;
         int filtro_fecha_final;
+        int cantidad_estudiantes_filtrados;
         std::string listadoAsignaturas;
 
 

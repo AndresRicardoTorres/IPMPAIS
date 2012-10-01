@@ -2245,7 +2245,7 @@
 	<wx/app.h>
 	<wx/dcclient.h>
 
-1346878388 /home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.h
+1349109546 /home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.h
 	"PuntajesMinimosApp.h"
 	"algoritmogenetico.h"
 	"fenotipoipmpais.h"
@@ -2297,7 +2297,7 @@
 	<map>
 	<vector>
 
-1348864609 /home/andresrtm/IPMPAIS/src/GUIFrame.h
+1349110648 /home/andresrtm/IPMPAIS/src/GUIFrame.h
 	<wx/string.h>
 	<wx/bitmap.h>
 	<wx/image.h>
@@ -2316,10 +2316,11 @@
 	<wx/radiobox.h>
 	<wx/stattext.h>
 	<wx/textctrl.h>
+	<wx/checkbox.h>
 	<wx/notebook.h>
 	<wx/frame.h>
 
-1348863578 source:/home/andresrtm/IPMPAIS/src/GUIFrame.cpp
+1348864609 source:/home/andresrtm/IPMPAIS/src/GUIFrame.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"
@@ -2349,7 +2350,7 @@
 1331428425 source:/home/andresrtm/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
 
-1348863743 source:/home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.cpp
+1349110529 source:/home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>

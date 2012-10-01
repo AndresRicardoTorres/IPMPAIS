@@ -58,6 +58,11 @@ bool PuntajesMinimosFrame::checkDB(){
     else
     statusBar->SetStatusText(_("No conectado con la base de datos !"), 1);
 #endif
+
+    ///Consulto cuantos estudiantes hay actualmente para tener actualizado al usuario
+    EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
+    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
+    cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
     return hayBD;
 }
 

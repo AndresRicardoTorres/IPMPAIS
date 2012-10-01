@@ -44,7 +44,7 @@
 		<Cursor position="0" topLine="48" />
 	</File>
 	<File name="GUIFrame.h" open="0" top="0" tabpos="2">
-		<Cursor position="1828" topLine="40" />
+		<Cursor position="1828" topLine="49" />
 	</File>
 	<File name="LeeYaml.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1558" topLine="0" />
@@ -67,11 +67,11 @@
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="15936" topLine="276" />
+	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="17682" topLine="353" />
 	</File>
-	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="3">
-		<Cursor position="1486" topLine="38" />
+	<File name="PuntajesMinimosMain.h" open="1" top="1" tabpos="4">
+		<Cursor position="1336" topLine="47" />
 	</File>
 	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="460" topLine="0" />
