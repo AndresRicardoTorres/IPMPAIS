@@ -40,11 +40,11 @@
 	<File name="EstudianteDAO.h" open="1" top="0" tabpos="2">
 		<Cursor position="989" topLine="8" />
 	</File>
-	<File name="GUIFrame.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="0" topLine="48" />
+	<File name="GUIFrame.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="9905" topLine="181" />
 	</File>
-	<File name="GUIFrame.h" open="0" top="0" tabpos="2">
-		<Cursor position="1828" topLine="49" />
+	<File name="GUIFrame.h" open="1" top="0" tabpos="5">
+		<Cursor position="4373" topLine="99" />
 	</File>
 	<File name="LeeYaml.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1558" topLine="0" />
@@ -67,11 +67,11 @@
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="17682" topLine="353" />
+	<File name="PuntajesMinimosMain.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="11946" topLine="331" />
 	</File>
-	<File name="PuntajesMinimosMain.h" open="1" top="1" tabpos="4">
-		<Cursor position="1336" topLine="47" />
+	<File name="PuntajesMinimosMain.h" open="1" top="0" tabpos="4">
+		<Cursor position="2546" topLine="66" />
 	</File>
 	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="460" topLine="0" />

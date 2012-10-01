@@ -75,7 +75,7 @@ class GUIFrame : public wxFrame
 		wxPanel* panel_grafico;
 		wxPanel* panel_resultados;
 		wxStaticText* label_cantidad;
-		wxCheckBox* m_checkBox1;
+		wxCheckBox* check_mostrar_puntajes_minimos;
 		wxButton* boton_buscar;
 		wxStaticText* input_vacio;
 		wxStaticText* input_lenguaje11;
@@ -122,6 +122,7 @@ class GUIFrame : public wxFrame
 		virtual void OnButtonSeleccionarAsignaturas( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonClickGuardarDatos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnPaint( wxPaintEvent& event ) { event.Skip(); }
+		virtual void mostar_puntajes_minimos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void BotonBuscar( wxCommandEvent& event ) { event.Skip(); }
 		
 	

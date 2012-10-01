@@ -63,6 +63,8 @@ bool PuntajesMinimosFrame::checkDB(){
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
     listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
     cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
+    label_cantidad->SetLabel(wxString::Format(wxT("Total de la muestra : %i estudiantes"),cantidad_estudiantes_filtrados));
+
     return hayBD;
 }
 
@@ -339,14 +341,19 @@ void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
 }
 
 
+ void PuntajesMinimosFrame::mostar_puntajes_minimos( wxCommandEvent& event ){
+///TODO: mosttar o ocultar inputs
+    bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();
+ }
 
 // 2012-09-28: Función alterada por Angel, para no tener en cuenta PuntajesMinimos(=0) y para repetir
 // varias veces el AG, obteniendo el promedio y la desviación típica de las ponderaciones.
 #include <math.h>
 void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
-  // ?? Imprimir en GUI el número de estudiantes despues del filtro
+  // ?? Imprimir en GUI el número de estudiantes despues del filtro -> ver metodo foco_panel()
 
-    bool soloCalcularPonderaciones = true;  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica) */
+
+    bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica) */
 
     AdmisionesUnivalle admisionesUnivalle(getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final);
 

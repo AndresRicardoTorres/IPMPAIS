@@ -1795,10 +1795,10 @@
                                             <property name="font"></property>
                                             <property name="hidden">0</property>
                                             <property name="id">wxID_ANY</property>
-                                            <property name="label">Check Me!</property>
+                                            <property name="label">Mostrar puntajes minimos</property>
                                             <property name="maximum_size"></property>
                                             <property name="minimum_size"></property>
-                                            <property name="name">m_checkBox1</property>
+                                            <property name="name">check_mostrar_puntajes_minimos</property>
                                             <property name="permission">protected</property>
                                             <property name="pos"></property>
                                             <property name="size"></property>
@@ -1813,7 +1813,7 @@
                                             <property name="window_name"></property>
                                             <property name="window_style"></property>
                                             <event name="OnChar"></event>
-                                            <event name="OnCheckBox"></event>
+                                            <event name="OnCheckBox">mostar_puntajes_minimos</event>
                                             <event name="OnEnterWindow"></event>
                                             <event name="OnEraseBackground"></event>
                                             <event name="OnKeyDown"></event>

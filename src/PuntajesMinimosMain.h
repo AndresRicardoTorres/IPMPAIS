@@ -85,6 +85,7 @@ class PuntajesMinimosFrame: public GUIFrame
 		virtual void OnRadioBoxFiltroCompletitud( wxCommandEvent& event );
 		virtual void BotonBuscar( wxCommandEvent& event );
 		const char* getInformacionConexion();
+		virtual void mostar_puntajes_minimos( wxCommandEvent& event );
 		bool checkDB();
 		void informar(const char* mensaje);
 		bool comprobarConexionBD();
