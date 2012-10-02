@@ -435,7 +435,7 @@ listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio
         ss << " AND año <= " << fecha_final;
 
     ss << " ORDER BY promedio DESC";
-
+    //std::cout<<" getListaEstudiantesOrdenadaPorPromedio => "<<ss.str()<<std::endl;
     ResultadoConsulta *resultado = objPg->select(ss.str().c_str());
 
     listaCSV *listadoCodigoEstudiantes = new listaCSV;

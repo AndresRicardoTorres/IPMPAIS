@@ -26,6 +26,7 @@
 #include <wx/radiobox.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
+#include <wx/valgen.h>
 #include <wx/checkbox.h>
 #include <wx/notebook.h>
 #include <wx/frame.h>
@@ -75,40 +76,54 @@ class GUIFrame : public wxFrame
 		wxPanel* panel_grafico;
 		wxPanel* panel_resultados;
 		wxStaticText* label_cantidad;
+		wxStaticText* m_staticText16;
+		wxTextCtrl* input_numero_iteraciones;
 		wxCheckBox* check_mostrar_puntajes_minimos;
 		wxButton* boton_buscar;
 		wxGridSizer* grilla_valores;
 		wxStaticText* input_vacio;
-		wxStaticText* input_lenguaje11;
-		wxStaticText* input_lenguaje111;
+		wxStaticText* input_peso;
+		wxStaticText* input_d_peso;
+		wxStaticText* input_puntaje;
+		wxStaticText* input_d_puntaje;
 		wxStaticText* input_lenguaje;
 		wxTextCtrl* inputPuntajeLenguaje;
+		wxTextCtrl* inputDPuntajeLenguaje;
 		wxTextCtrl* inputPonderacionLenguaje;
+		wxTextCtrl* inputDPonderacionLenguaje;
 		wxStaticText* input_matematica;
 		wxTextCtrl* inputPuntajeMatematica;
+		wxTextCtrl* inputDPuntajeMatematica;
 		wxTextCtrl* inputPonderacionMatematica;
+		wxTextCtrl* inputDPonderacionMatematica;
 		wxStaticText* input_ciencias_sociales;
 		wxTextCtrl* inputPuntajeSociales;
+		wxTextCtrl* inputDPuntajeSociales;
 		wxTextCtrl* inputPonderacionSociales;
+		wxTextCtrl* inputDPonderacionSociales;
 		wxStaticText* input_filosofia;
 		wxTextCtrl* inputPuntajeFilosofia;
+		wxTextCtrl* inputDPuntajeFilosofia;
 		wxTextCtrl* inputPonderacionFilosofia;
+		wxTextCtrl* inputDPonderacionFilosofia;
 		wxStaticText* input_biologia;
 		wxTextCtrl* inputPuntajeBiologia;
+		wxTextCtrl* inputDPuntajeBiologia;
 		wxTextCtrl* inputPonderacionBiologia;
+		wxTextCtrl* inputDPonderacionBiologia;
 		wxStaticText* input_quimica;
 		wxTextCtrl* inputPuntajeQuimica;
+		wxTextCtrl* inputDPuntajeQuimica;
 		wxTextCtrl* inputPonderacionQuimica;
+		wxTextCtrl* inputDPonderacionQuimica;
 		wxStaticText* input_fisica;
 		wxTextCtrl* inputPuntajeFisica;
+		wxTextCtrl* inputDPuntajeFisica;
 		wxTextCtrl* inputPonderacionFisica;
+		wxTextCtrl* inputDPonderacionFisica;
 		wxStaticText* m_staticText13;
-		wxTextCtrl* m_textCtrl18;
-		wxTextCtrl* m_textCtrl19;
-		wxGridSizer* grilla_puntajes_minimos;
-		wxButton* m_button10;
-		wxButton* m_button111;
-		wxStaticText* m_staticText15;
+		wxTextCtrl* inputPromedio;
+		wxTextCtrl* inputDesviacionPromedio;
 		wxButton* boton_guardarCSV;
 		
 		// Virtual event handlers, overide them in your derived class

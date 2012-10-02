@@ -86,9 +86,11 @@ class PuntajesMinimosFrame: public GUIFrame
 		virtual void BotonBuscar( wxCommandEvent& event );
 		const char* getInformacionConexion();
 		virtual void mostar_puntajes_minimos( wxCommandEvent& event );
+
 		bool checkDB();
 		void informar(const char* mensaje);
 		bool comprobarConexionBD();
+		void actualizarCantidadMuestra();
 
 		virtual void actualizarFiltroFechaInicio( wxCommandEvent& event );
 		virtual void actualizarFiltroFechaFin( wxCommandEvent& event );

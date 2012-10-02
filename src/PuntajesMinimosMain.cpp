@@ -36,7 +36,7 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
     srand(time(0));  // Initialize random number generator.
     un_numero_aleatorio = rand();
 #endif
-    grilla_puntajes_minimos->Show(false);
+    //grilla_puntajes_minimos->Show(false);
 }
 
 const char* PuntajesMinimosFrame::getInformacionConexion(){
@@ -59,13 +59,7 @@ bool PuntajesMinimosFrame::checkDB(){
     else
     statusBar->SetStatusText(_("No conectado con la base de datos !"), 1);
 #endif
-
-    ///Consulto cuantos estudiantes hay actualmente para tener actualizado al usuario
-    EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
-    cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
-    label_cantidad->SetLabel(wxString::Format(wxT("Total de la muestra : %i estudiantes"),cantidad_estudiantes_filtrados));
-
+    actualizarCantidadMuestra();
     return hayBD;
 }
 
@@ -316,40 +310,39 @@ void PuntajesMinimosFrame::OnRadioBoxFiltroCompletitud( wxCommandEvent& event ){
     filtro_completitud_datos = radioBox_filtro_completitud->GetSelection();
 }
 
+void PuntajesMinimosFrame::actualizarCantidadMuestra(){
+   ///Consulto cuantos estudiantes hay actualmente para tener actualizado al usuario
+    EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
+    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
+    cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
+    label_cantidad->SetLabel(wxString::Format(wxT("Total de la muestra : %i estudiantes"),cantidad_estudiantes_filtrados));
+    wxString cantidad = wxString::Format(wxT("%i"),listadoCodigoEstudiantes->size());
+    statusBar->SetStatusText(cantidad+_(" estudiantes selecionados"), 0);
+}
+
 void PuntajesMinimosFrame::actualizarFiltroFechaInicio( wxCommandEvent& event )
 {
     filtro_fecha_inicio = wxAtoi(input_fecha_desde->GetValue());
-
-    EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
-
-    wxString cantidad = wxString::Format(wxT("%i"),listadoCodigoEstudiantes->size());
-    statusBar->SetStatusText(cantidad+_(" estudiantes selecionados"), 0);
-
-
+    actualizarCantidadMuestra();
 }
 
 void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
 {
     filtro_fecha_final = wxAtoi(input_fecha_hasta->GetValue());
-
-    EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
-
-    wxString cantidad = wxString::Format(wxT("%i"),listadoCodigoEstudiantes->size());
-    statusBar->SetStatusText(cantidad+_(" estudiantes selecionados"), 0);
+    actualizarCantidadMuestra();
 
 }
 
 
  void PuntajesMinimosFrame::mostar_puntajes_minimos( wxCommandEvent& event ){
 ///TODO: mosttar o ocultar inputs
-    bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();
-
+//    bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();
+/*
     if(soloCalcularPonderaciones)
         grilla_puntajes_minimos->Show(false);
     else
         grilla_puntajes_minimos->Show(true);
+        */
 
  }
 
@@ -357,8 +350,9 @@ void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
 // varias veces el AG, obteniendo el promedio y la desviación típica de las ponderaciones.
 #include <math.h>
 void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
-  // ?? Imprimir en GUI el número de estudiantes despues del filtro -> ver metodo foco_panel()
-
+  // ?? Imprimir en GUI el número de estudiantes despues del filtro
+    if(!comprobarConexionBD())
+        return;
 
     bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica) */
 
@@ -381,7 +375,8 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
         listaEgresadosOrdenada[i] = stringIt.c_str();
     }
 
-    int veces=5;  // ??? Obtener este valor de la GUI */
+    int veces=wxAtoi(input_numero_iteraciones->GetValue());  // ??? Obtener este valor de la GUI */
+
     double vectorPuntajesMinimos[veces][cuantosComponentesExamenIngreso];
     double vectorPonderaciones[veces][cuantosComponentesExamenIngreso];
     double vectorAptitudes[veces];
@@ -441,6 +436,23 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
     if(not soloCalcularPonderaciones)
     {
       /* ??? Imprimir en GUI puntajesMinimosPromedio y puntajesMinimosDesviacionTipica */
+
+        inputPonderacionLenguaje->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[0]));
+        inputPonderacionMatematica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[1]));
+        inputPonderacionSociales->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[2]));
+        inputPonderacionFilosofia->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[3]));
+        inputPonderacionBiologia->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[4]));
+        inputPonderacionQuimica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[5]));
+        inputPonderacionFisica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[6]));
+
+        inputDPonderacionLenguaje->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[0]));
+        inputDPonderacionMatematica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[1]));
+        inputDPonderacionSociales->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[2]));
+        inputDPonderacionFilosofia->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[3]));
+        inputDPonderacionBiologia->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[4]));
+        inputDPonderacionQuimica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[5]));
+        inputDPonderacionFisica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[6]));
+
     }
 
     inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
@@ -451,11 +463,14 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
     inputPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[5]));
     inputPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[6]));
 
-    inputPonderacionLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[0]));
-    inputPonderacionMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[1]));
-    inputPonderacionSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[2]));
-    inputPonderacionFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[3]));
-    inputPonderacionBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[4]));
-    inputPonderacionQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[5]));
-    inputPonderacionFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[6]));
+    inputDPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[0]));
+    inputDPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[1]));
+    inputDPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[2]));
+    inputDPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[3]));
+    inputDPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[4]));
+    inputDPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[5]));
+    inputDPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[6]));
+
+    inputPromedio->SetValue(wxString::Format(wxT("%f"),aptitudPromedio));
+    inputDesviacionPromedio->SetValue(wxString::Format(wxT("%f"),aptitudDesviacionTipica));
 }

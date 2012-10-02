@@ -194,28 +194,45 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	label_cantidad->Wrap( -1 );
 	sbSizer8->Add( label_cantidad, 0, wxALL, 5 );
 	
+	wxGridSizer* gSizer51;
+	gSizer51 = new wxGridSizer( 1, 2, 0, 0 );
+	
+	m_staticText16 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Numero de iteraciones : "), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText16->Wrap( -1 );
+	gSizer51->Add( m_staticText16, 0, wxALL, 5 );
+	
+	input_numero_iteraciones = new wxTextCtrl( panel_resultados, wxID_ANY, wxT("5"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
+	gSizer51->Add( input_numero_iteraciones, 0, wxALL, 5 );
+	
+	sbSizer8->Add( gSizer51, 0, 0, 5 );
+	
 	check_mostrar_puntajes_minimos = new wxCheckBox( panel_resultados, wxID_ANY, wxT("Mostrar puntajes minimos"), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer8->Add( check_mostrar_puntajes_minimos, 0, wxALL, 5 );
 	
 	boton_buscar = new wxButton( panel_resultados, wxID_ANY, wxT("Buscar ..."), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer8->Add( boton_buscar, 0, wxALIGN_LEFT|wxALL, 5 );
 	
-	wxGridSizer* gSizer5;
-	gSizer5 = new wxGridSizer( 1, 2, 0, 0 );
-	
-	grilla_valores = new wxGridSizer( 9, 3, 0, 0 );
+	grilla_valores = new wxGridSizer( 9, 5, 2, 0 );
 	
 	input_vacio = new wxStaticText( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	input_vacio->Wrap( -1 );
 	grilla_valores->Add( input_vacio, 0, wxALL, 5 );
 	
-	input_lenguaje11 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Valor medio"), wxDefaultPosition, wxDefaultSize, 0 );
-	input_lenguaje11->Wrap( -1 );
-	grilla_valores->Add( input_lenguaje11, 0, wxALL, 5 );
+	input_peso = new wxStaticText( panel_resultados, wxID_ANY, wxT("Valor medio peso"), wxDefaultPosition, wxDefaultSize, 0 );
+	input_peso->Wrap( -1 );
+	grilla_valores->Add( input_peso, 0, wxALL, 5 );
 	
-	input_lenguaje111 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Desviación típica"), wxDefaultPosition, wxDefaultSize, 0 );
-	input_lenguaje111->Wrap( -1 );
-	grilla_valores->Add( input_lenguaje111, 0, wxALL, 5 );
+	input_d_peso = new wxStaticText( panel_resultados, wxID_ANY, wxT("Desviación típica"), wxDefaultPosition, wxDefaultSize, 0 );
+	input_d_peso->Wrap( -1 );
+	grilla_valores->Add( input_d_peso, 0, wxALL, 5 );
+	
+	input_puntaje = new wxStaticText( panel_resultados, wxID_ANY, wxT("Valor medio puntaje"), wxDefaultPosition, wxDefaultSize, 0 );
+	input_puntaje->Wrap( -1 );
+	grilla_valores->Add( input_puntaje, 0, wxALL, 5 );
+	
+	input_d_puntaje = new wxStaticText( panel_resultados, wxID_ANY, wxT("Desviación típica"), wxDefaultPosition, wxDefaultSize, 0 );
+	input_d_puntaje->Wrap( -1 );
+	grilla_valores->Add( input_d_puntaje, 0, wxALL, 5 );
 	
 	input_lenguaje = new wxStaticText( panel_resultados, wxID_ANY, wxT("Lenguaje : "), wxDefaultPosition, wxDefaultSize, 0 );
 	input_lenguaje->Wrap( -1 );
@@ -224,8 +241,14 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	inputPuntajeLenguaje = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPuntajeLenguaje, 0, wxALL, 5 );
 	
+	inputDPuntajeLenguaje = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPuntajeLenguaje, 0, wxALL, 5 );
+	
 	inputPonderacionLenguaje = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPonderacionLenguaje, 0, wxALL, 5 );
+	
+	inputDPonderacionLenguaje = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPonderacionLenguaje, 0, wxALL, 5 );
 	
 	input_matematica = new wxStaticText( panel_resultados, wxID_ANY, wxT("Matemática : "), wxDefaultPosition, wxDefaultSize, 0 );
 	input_matematica->Wrap( -1 );
@@ -234,8 +257,14 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	inputPuntajeMatematica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPuntajeMatematica, 0, wxALL, 5 );
 	
+	inputDPuntajeMatematica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPuntajeMatematica, 0, wxALL, 5 );
+	
 	inputPonderacionMatematica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPonderacionMatematica, 0, wxALL, 5 );
+	
+	inputDPonderacionMatematica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPonderacionMatematica, 0, wxALL, 5 );
 	
 	input_ciencias_sociales = new wxStaticText( panel_resultados, wxID_ANY, wxT("Ciencias sociales : "), wxDefaultPosition, wxDefaultSize, 0 );
 	input_ciencias_sociales->Wrap( -1 );
@@ -244,8 +273,14 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	inputPuntajeSociales = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPuntajeSociales, 0, wxALL, 5 );
 	
+	inputDPuntajeSociales = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPuntajeSociales, 0, wxALL, 5 );
+	
 	inputPonderacionSociales = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPonderacionSociales, 0, wxALL, 5 );
+	
+	inputDPonderacionSociales = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPonderacionSociales, 0, wxALL, 5 );
 	
 	input_filosofia = new wxStaticText( panel_resultados, wxID_ANY, wxT("Filosofía :"), wxDefaultPosition, wxDefaultSize, 0 );
 	input_filosofia->Wrap( -1 );
@@ -254,8 +289,14 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	inputPuntajeFilosofia = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPuntajeFilosofia, 0, wxALL, 5 );
 	
+	inputDPuntajeFilosofia = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPuntajeFilosofia, 0, wxALL, 5 );
+	
 	inputPonderacionFilosofia = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPonderacionFilosofia, 0, wxALL, 5 );
+	
+	inputDPonderacionFilosofia = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPonderacionFilosofia, 0, wxALL, 5 );
 	
 	input_biologia = new wxStaticText( panel_resultados, wxID_ANY, wxT("Biología : "), wxDefaultPosition, wxDefaultSize, 0 );
 	input_biologia->Wrap( -1 );
@@ -264,8 +305,14 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	inputPuntajeBiologia = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPuntajeBiologia, 0, wxALL, 5 );
 	
+	inputDPuntajeBiologia = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPuntajeBiologia, 0, wxALL, 5 );
+	
 	inputPonderacionBiologia = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPonderacionBiologia, 0, wxALL, 5 );
+	
+	inputDPonderacionBiologia = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPonderacionBiologia, 0, wxALL, 5 );
 	
 	input_quimica = new wxStaticText( panel_resultados, wxID_ANY, wxT("Química : "), wxDefaultPosition, wxDefaultSize, 0 );
 	input_quimica->Wrap( -1 );
@@ -274,8 +321,14 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	inputPuntajeQuimica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPuntajeQuimica, 0, wxALL, 5 );
 	
+	inputDPuntajeQuimica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPuntajeQuimica, 0, wxALL, 5 );
+	
 	inputPonderacionQuimica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPonderacionQuimica, 0, wxALL, 5 );
+	
+	inputDPonderacionQuimica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPonderacionQuimica, 0, wxALL, 5 );
 	
 	input_fisica = new wxStaticText( panel_resultados, wxID_ANY, wxT("Física : "), wxDefaultPosition, wxDefaultSize, 0 );
 	input_fisica->Wrap( -1 );
@@ -284,36 +337,26 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	inputPuntajeFisica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPuntajeFisica, 0, wxALL, 5 );
 	
+	inputDPuntajeFisica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPuntajeFisica, 0, wxALL, 5 );
+	
 	inputPonderacionFisica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
 	grilla_valores->Add( inputPonderacionFisica, 0, wxALL, 5 );
 	
-	m_staticText13 = new wxStaticText( panel_resultados, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
+	inputDPonderacionFisica = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDPonderacionFisica, 0, wxALL, 5 );
+	
+	m_staticText13 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Promedio : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText13->Wrap( -1 );
 	grilla_valores->Add( m_staticText13, 0, wxALIGN_RIGHT|wxALL, 5 );
 	
-	m_textCtrl18 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	grilla_valores->Add( m_textCtrl18, 0, wxALL, 5 );
+	inputPromedio = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputPromedio, 0, wxALL, 5 );
 	
-	m_textCtrl19 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	grilla_valores->Add( m_textCtrl19, 0, wxALL, 5 );
+	inputDesviacionPromedio = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
+	grilla_valores->Add( inputDesviacionPromedio, 0, wxALL, 5 );
 	
-	gSizer5->Add( grilla_valores, 1, wxALIGN_RIGHT|wxEXPAND|wxSHAPED, 5 );
-	
-	grilla_puntajes_minimos = new wxGridSizer( 3, 3, 0, 0 );
-	
-	m_button10 = new wxButton( panel_resultados, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0 );
-	grilla_puntajes_minimos->Add( m_button10, 0, wxALL, 5 );
-	
-	m_button111 = new wxButton( panel_resultados, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0 );
-	grilla_puntajes_minimos->Add( m_button111, 0, wxALL, 5 );
-	
-	m_staticText15 = new wxStaticText( panel_resultados, wxID_ANY, wxT("MyLabel"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText15->Wrap( -1 );
-	grilla_puntajes_minimos->Add( m_staticText15, 0, wxALL, 5 );
-	
-	gSizer5->Add( grilla_puntajes_minimos, 1, wxALIGN_LEFT|wxSHAPED, 5 );
-	
-	sbSizer8->Add( gSizer5, 1, wxEXPAND, 5 );
+	sbSizer8->Add( grilla_valores, 1, wxALIGN_RIGHT|wxEXPAND, 5 );
 	
 	boton_guardarCSV = new wxButton( panel_resultados, wxID_ANY, wxT("Guardar ..."), wxDefaultPosition, wxDefaultSize, 0 );
 	sbSizer8->Add( boton_guardarCSV, 0, wxALL, 5 );

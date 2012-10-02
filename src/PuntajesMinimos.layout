@@ -34,8 +34,8 @@
 	<File name="EquivalenciaDAO.h" open="0" top="0" tabpos="10">
 		<Cursor position="519" topLine="0" />
 	</File>
-	<File name="EstudianteDAO.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="19164" topLine="421" />
+	<File name="EstudianteDAO.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="19222" topLine="421" />
 	</File>
 	<File name="EstudianteDAO.h" open="1" top="0" tabpos="2">
 		<Cursor position="989" topLine="8" />
@@ -67,8 +67,8 @@
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="12126" topLine="337" />
+	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="13332" topLine="355" />
 	</File>
 	<File name="PuntajesMinimosMain.h" open="1" top="0" tabpos="4">
 		<Cursor position="2546" topLine="66" />

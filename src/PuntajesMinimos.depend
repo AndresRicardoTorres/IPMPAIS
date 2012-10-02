@@ -1597,11 +1597,11 @@
 	<stdlib.h>
 	<sstream>
 
-1345157894 /usr/include/postgresql/libpq-fe.h
+1348553412 /usr/include/postgresql/libpq-fe.h
 	<stdio.h>
 	"postgres_ext.h"
 
-1345157893 /usr/include/postgresql/postgres_ext.h
+1348553412 /usr/include/postgresql/postgres_ext.h
 
 1329067345 /usr/include/wx-2.8/wx/wfstream.h
 	"wx/defs.h"
@@ -2201,7 +2201,7 @@
 1335755965 source:/home/andresrtm/IPMPAIS/src/EquivalenciaDAO.cpp
 	"EquivalenciaDAO.h"
 
-1346879674 source:/home/andresrtm/IPMPAIS/src/EstudianteDAO.cpp
+1349193684 source:/home/andresrtm/IPMPAIS/src/EstudianteDAO.cpp
 	"EstudianteDAO.h"
 
 1337200479 /home/andresrtm/IPMPAIS/src/EstudianteDAO.h
@@ -2245,7 +2245,7 @@
 	<wx/app.h>
 	<wx/dcclient.h>
 
-1349117966 /home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.h
+1349193956 /home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.h
 	"PuntajesMinimosApp.h"
 	"algoritmogenetico.h"
 	"fenotipoipmpais.h"
@@ -2297,7 +2297,7 @@
 	<map>
 	<vector>
 
-1349125973 /home/andresrtm/IPMPAIS/src/GUIFrame.h
+1349192943 /home/andresrtm/IPMPAIS/src/GUIFrame.h
 	<wx/string.h>
 	<wx/bitmap.h>
 	<wx/image.h>
@@ -2316,11 +2316,12 @@
 	<wx/radiobox.h>
 	<wx/stattext.h>
 	<wx/textctrl.h>
+	<wx/valgen.h>
 	<wx/checkbox.h>
 	<wx/notebook.h>
 	<wx/frame.h>
 
-1349125973 source:/home/andresrtm/IPMPAIS/src/GUIFrame.cpp
+1349192943 source:/home/andresrtm/IPMPAIS/src/GUIFrame.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"
@@ -2350,8 +2351,11 @@
 1331428425 source:/home/andresrtm/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
 
-1349125644 source:/home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.cpp
+1349193225 source:/home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>
+
+1329067346 /usr/include/wx-2.8/wx/valgen.h
+	"wx/validate.h"
 
