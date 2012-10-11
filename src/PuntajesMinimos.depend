@@ -1597,11 +1597,11 @@
 	<stdlib.h>
 	<sstream>
 
-1345157894 /usr/include/postgresql/libpq-fe.h
+1348553412 /usr/include/postgresql/libpq-fe.h
 	<stdio.h>
 	"postgres_ext.h"
 
-1345157893 /usr/include/postgresql/postgres_ext.h
+1348553412 /usr/include/postgresql/postgres_ext.h
 
 1329067345 /usr/include/wx-2.8/wx/wfstream.h
 	"wx/defs.h"
@@ -2405,7 +2405,7 @@
 	<string>
 	<ctype.h>
 
-1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/LeerCSV.h
+1349993833 /home/andresrtm/Escritorio/IPMPAIS/src/LeerCSV.h
 	<iostream>
 	<sstream>
 	<fstream>
@@ -2500,12 +2500,12 @@
 1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIDialogoAsignaturas.cpp
 	"GUIDialogoAsignaturas.h"
 
-1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.cpp
+1349999027 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"
 
-1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.h
+1349993697 /home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.h
 	<wx/string.h>
 	<wx/bitmap.h>
 	<wx/image.h>
@@ -2532,7 +2532,7 @@
 1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/LeeYaml.cpp
 	"LeeYaml.h"
 
-1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/LeerCSV.cpp
+1349994119 source:/home/andresrtm/Escritorio/IPMPAIS/src/LeerCSV.cpp
 	"LeerCSV.h"
 
 1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/PG.cpp
@@ -2547,7 +2547,7 @@
 	<wx/app.h>
 	<wx/dcclient.h>
 
-1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.h
+1349995663 /home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.h
 	"PuntajesMinimosApp.h"
 	"algoritmogenetico.h"
 	"fenotipoipmpais.h"
@@ -2623,4 +2623,9 @@
 
 1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
+
+1349999086 source:/home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.cpp
+	"wx_pch.h"
+	"PuntajesMinimosMain.h"
+	<math.h>
 

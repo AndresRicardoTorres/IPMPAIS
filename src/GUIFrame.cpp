@@ -118,7 +118,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	panel_lectura->SetSizer( bSizer2 );
 	panel_lectura->Layout();
 	bSizer2->Fit( panel_lectura );
-	m_notebook1->AddPage( panel_lectura, wxT("Lectura de datos"), true );
+	m_notebook1->AddPage( panel_lectura, wxT("Lectura de datos"), false );
 	panel_filtros = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* bSizer3;
 	bSizer3 = new wxBoxSizer( wxVERTICAL );
@@ -359,12 +359,14 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	sbSizer8->Add( grilla_valores, 1, wxALIGN_RIGHT|wxEXPAND, 5 );
 	
 	boton_guardarCSV = new wxButton( panel_resultados, wxID_ANY, wxT("Guardar ..."), wxDefaultPosition, wxDefaultSize, 0 );
+	boton_guardarCSV->Enable( false );
+	
 	sbSizer8->Add( boton_guardarCSV, 0, wxALL, 5 );
 	
 	panel_resultados->SetSizer( sbSizer8 );
 	panel_resultados->Layout();
 	sbSizer8->Fit( panel_resultados );
-	m_notebook1->AddPage( panel_resultados, wxT("Resultados"), false );
+	m_notebook1->AddPage( panel_resultados, wxT("Resultados"), true );
 	
 	bSizer1->Add( m_notebook1, 1, wxEXPAND | wxALL, 5 );
 	
@@ -389,7 +391,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	panel_grafico->Connect( wxEVT_PAINT, wxPaintEventHandler( GUIFrame::OnPaint ), NULL, this );
 	check_mostrar_puntajes_minimos->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIFrame::mostar_puntajes_minimos ), NULL, this );
 	boton_buscar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
-	boton_guardarCSV->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
+	boton_guardarCSV->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonGuardarResultados ), NULL, this );
 }
 
 GUIFrame::~GUIFrame()
@@ -412,5 +414,5 @@ GUIFrame::~GUIFrame()
 	panel_grafico->Disconnect( wxEVT_PAINT, wxPaintEventHandler( GUIFrame::OnPaint ), NULL, this );
 	check_mostrar_puntajes_minimos->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIFrame::mostar_puntajes_minimos ), NULL, this );
 	boton_buscar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
-	boton_guardarCSV->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
+	boton_guardarCSV->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonGuardarResultados ), NULL, this );
 }

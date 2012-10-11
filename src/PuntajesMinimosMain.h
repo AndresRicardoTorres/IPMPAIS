@@ -66,7 +66,11 @@ class PuntajesMinimosFrame: public GUIFrame
         int filtro_fecha_final;
         int cantidad_estudiantes_filtrados;
         std::string listadoAsignaturas;
-
+        int cuantosComponentesExamenIngreso;
+        double puntajeMinimo_minimo;
+        double puntajeMinimo_maximo; //El maximo que he visto es 116.95
+        double ponderacion_minimo;
+        double ponderacion_maximo;
 
         bool cargarArchivo(int opcion);
         string limpiarString(string str);
@@ -84,6 +88,7 @@ class PuntajesMinimosFrame: public GUIFrame
 		virtual void cargarInformacionECAES( wxCommandEvent& event );
 		virtual void OnRadioBoxFiltroCompletitud( wxCommandEvent& event );
 		virtual void BotonBuscar( wxCommandEvent& event );
+		virtual void BotonGuardarResultados( wxCommandEvent& event );
 		const char* getInformacionConexion();
 		virtual void mostar_puntajes_minimos( wxCommandEvent& event );
 

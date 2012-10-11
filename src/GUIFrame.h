@@ -144,6 +144,7 @@ class GUIFrame : public wxFrame
 		virtual void OnPaint( wxPaintEvent& event ) { event.Skip(); }
 		virtual void mostar_puntajes_minimos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void BotonBuscar( wxCommandEvent& event ) { event.Skip(); }
+		virtual void BotonGuardarResultados( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:

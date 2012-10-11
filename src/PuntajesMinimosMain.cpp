@@ -20,6 +20,13 @@
 PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
     : GUIFrame(frame)
 {
+
+    cuantosComponentesExamenIngreso = 7;
+    puntajeMinimo_minimo =  0;
+    puntajeMinimo_maximo = 120; //El maximo que he visto es 116.95
+    ponderacion_minimo = 0;
+    ponderacion_maximo = 100;
+
     ///Inicializo los dialogos que se utilizaran
     dialogo_configuracion_base_datos = new ConfBDDialog(0L);
     dialogo_asignaturas = new DialogoAsignaturas(0L);
@@ -346,6 +353,104 @@ void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
 
  }
 
+ void PuntajesMinimosFrame::BotonGuardarResultados( wxCommandEvent& event ) {
+    int columnas = 0;
+    bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();
+    wxFileDialog saveFileDialog(this, _("Save CSV file"),  wxT(""), wxT(""),_("CSV files (*.csv)|*.csv"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+
+    if (saveFileDialog.ShowModal() == wxID_CANCEL)
+        return;     // the user changed idea...
+
+    columnas = soloCalcularPonderaciones ? 2 : 4;
+
+    listaCSV lista;
+    lista.push_back("Valor medio peso");
+    lista.push_back("Desviación tipíca");
+    if(not soloCalcularPonderaciones){
+        lista.push_back("Valor medio puntaje");
+        lista.push_back("Desviación tipíca");
+    }
+
+    lista.push_back(std::string(inputPuntajeLenguaje->GetValue().mb_str()));
+    lista.push_back(std::string(inputDPuntajeLenguaje->GetValue().mb_str()));
+    if(not soloCalcularPonderaciones){
+        lista.push_back(std::string(inputPonderacionLenguaje->GetValue().mb_str()));
+        lista.push_back(std::string(inputDPonderacionLenguaje->GetValue().mb_str()));
+    }
+
+    lista.push_back(std::string(inputPuntajeMatematica->GetValue().mb_str()));
+    lista.push_back(std::string(inputDPuntajeMatematica->GetValue().mb_str()));
+    if(not soloCalcularPonderaciones){
+        lista.push_back(std::string(inputPonderacionMatematica->GetValue().mb_str()));
+        lista.push_back(std::string(inputDPonderacionMatematica->GetValue().mb_str()));
+    }
+
+    lista.push_back(std::string(inputPuntajeSociales->GetValue().mb_str()));
+    lista.push_back(std::string(inputDPuntajeSociales->GetValue().mb_str()));
+    if(not soloCalcularPonderaciones){
+        lista.push_back(std::string(inputPonderacionSociales->GetValue().mb_str()));
+        lista.push_back(std::string(inputDPonderacionSociales->GetValue().mb_str()));
+    }
+
+    lista.push_back(std::string(inputPuntajeFilosofia->GetValue().mb_str()));
+    lista.push_back(std::string(inputDPuntajeFilosofia->GetValue().mb_str()));
+    if(not soloCalcularPonderaciones){
+        lista.push_back(std::string(inputPonderacionFilosofia->GetValue().mb_str()));
+        lista.push_back(std::string(inputDPonderacionFilosofia->GetValue().mb_str()));
+    }
+
+    lista.push_back(std::string(inputPuntajeBiologia->GetValue().mb_str()));
+    lista.push_back(std::string(inputDPuntajeBiologia->GetValue().mb_str()));
+    if(not soloCalcularPonderaciones){
+        lista.push_back(std::string(inputPonderacionBiologia->GetValue().mb_str()));
+        lista.push_back(std::string(inputDPonderacionBiologia->GetValue().mb_str()));
+    }
+
+    lista.push_back(std::string(inputPuntajeQuimica->GetValue().mb_str()));
+    lista.push_back(std::string(inputDPuntajeQuimica->GetValue().mb_str()));
+    if(not soloCalcularPonderaciones){
+        lista.push_back(std::string(inputPonderacionQuimica->GetValue().mb_str()));
+        lista.push_back(std::string(inputDPonderacionQuimica->GetValue().mb_str()));
+    }
+
+    lista.push_back(std::string(inputPuntajeFisica->GetValue().mb_str()));
+    lista.push_back(std::string(inputDPuntajeFisica->GetValue().mb_str()));
+    if(not soloCalcularPonderaciones){
+        lista.push_back(std::string(inputPonderacionFisica->GetValue().mb_str()));
+        lista.push_back(std::string(inputDPonderacionFisica->GetValue().mb_str()));
+    }
+
+
+
+    std::stringstream contenido;
+
+    int i =1;
+    for (listaCSV::iterator it = lista.begin(); it != lista.end(); it++,i++){
+        contenido<<(*it);
+        if(0 != i%(columnas))
+            contenido<<",";
+        else
+            contenido<<std::endl;
+    }
+
+
+    contenido<<std::string(inputPromedio->GetValue().mb_str())<<",";
+    contenido<<std::string(inputDesviacionPromedio->GetValue().mb_str())<<std::endl;
+
+    wxFileOutputStream output_stream(saveFileDialog.GetPath());
+    if (!output_stream.IsOk())
+    {
+        return;
+    }else{
+        wxFFile file(saveFileDialog.GetPath(), _T("w"));
+
+        wxString mystring(contenido.str().c_str(), wxConvUTF8);
+        file.Write(mystring);
+        file.Close();
+    }
+
+ }
+
 // 2012-09-28: Función alterada por Angel, para no tener en cuenta PuntajesMinimos(=0) y para repetir
 // varias veces el AG, obteniendo el promedio y la desviación típica de las ponderaciones.
 #include <math.h>
@@ -359,11 +464,6 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
     AdmisionesUnivalle admisionesUnivalle(getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final);
 
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    int cuantosComponentesExamenIngreso = 7;
-    double puntajeMinimo_minimo =  0;
-    double puntajeMinimo_maximo = 120; //El maximo que he visto es 116.95
-    double ponderacion_minimo = 0;
-    double ponderacion_maximo = 100;
 
     listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
     int cuantosEgresados = listadoCodigoEstudiantes->size();
@@ -489,4 +589,6 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
 
     inputPromedio->SetValue(wxString::Format(wxT("%f"),aptitudPromedio));
     inputDesviacionPromedio->SetValue(wxString::Format(wxT("%f"),aptitudDesviacionTipica));
+
+    boton_guardarCSV->Enable(true);
 }
