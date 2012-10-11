@@ -427,6 +427,7 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
     for(int vez=0; vez<veces; vez++)
     {
         aptitudPromedio += vectorAptitudes[vez];
+        std::cout<<"vectorAptitudes "<<vectorAptitudes[vez]<<std::endl;
         aptitudDesviacionTipica += vectorAptitudes[vez] * vectorAptitudes[vez];
     }
     aptitudPromedio /= veces;
@@ -453,6 +454,21 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
         inputDPonderacionQuimica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[5]));
         inputDPonderacionFisica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[6]));
 
+    }
+
+    double suma = 0;
+    for(int i=0; i<cuantosComponentesExamenIngreso; i++)
+    {
+        suma+=ponderacionesPromedio[i];
+
+        //std::cout<<"ponderacionesPromedio "<<ponderacionesPromedio[i]<<std::endl;
+        //std::cout<<"ponderacionesDesviacionTipica "<<ponderacionesDesviacionTipica[i]<<std::endl;
+    }
+
+    for(int i=0; i<cuantosComponentesExamenIngreso; i++)
+    {
+      ponderacionesPromedio[i]=ponderacionesPromedio[i]*100/suma;
+      ponderacionesDesviacionTipica[i]=ponderacionesDesviacionTipica[i]*100/suma;
     }
 
     inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));

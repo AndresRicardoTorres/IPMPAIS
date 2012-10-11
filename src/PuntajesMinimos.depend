@@ -1597,11 +1597,11 @@
 	<stdlib.h>
 	<sstream>
 
-1348553412 /usr/include/postgresql/libpq-fe.h
+1345157894 /usr/include/postgresql/libpq-fe.h
 	<stdio.h>
 	"postgres_ext.h"
 
-1348553412 /usr/include/postgresql/postgres_ext.h
+1345157893 /usr/include/postgresql/postgres_ext.h
 
 1329067345 /usr/include/wx-2.8/wx/wfstream.h
 	"wx/defs.h"
@@ -2358,4 +2358,269 @@
 
 1329067346 /usr/include/wx-2.8/wx/valgen.h
 	"wx/validate.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/Calificacion.cpp
+	"Calificacion.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/Calificacion.h
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/CalificacionDAO.cpp
+	"CalificacionDAO.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/CalificacionDAO.h
+	<vector>
+	<string>
+	<map>
+	"Calificacion.h"
+	"EquivalenciaDAO.h"
+	"LeerCSV.h"
+	"DAO.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/EquivalenciaDAO.h
+	<vector>
+	"Equivalencia.h"
+	"PG.h"
+	<wx/gauge.h>
+	"LeeYaml.h"
+	"DAO.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/Equivalencia.h
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/PG.h
+	<vector>
+	<libpq-fe.h>
+	<cstdlib>
+	<iostream>
+	<cstring>
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/LeeYaml.h
+	<iostream>
+	<list>
+	<sstream>
+	<fstream>
+	<string>
+	<cstring>
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/DAO.h
+	<string>
+	<ctype.h>
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/LeerCSV.h
+	<iostream>
+	<sstream>
+	<fstream>
+	<string>
+	<list>
+	<vector>
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/ConfBDMain.cpp
+	"wx_pch.h"
+	"ConfBDMain.h"
+	<iostream>
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/ConfBDMain.h
+	"GUIDialog.h"
+	"leerconfiguracion.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/GUIDialog.h
+	<wx/string.h>
+	<wx/stattext.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/textctrl.h>
+	<wx/button.h>
+	<wx/sizer.h>
+	<wx/dialog.h>
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/leerconfiguracion.h
+	<string>
+	<fstream>
+	<iostream>
+	<stdlib.h>
+	<sstream>
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/DAO.cpp
+	"DAO.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/DialogoAsignaturas.cpp
+	"DialogoAsignaturas.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/DialogoAsignaturas.h
+	"GUIDialogoAsignaturas.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/GUIDialogoAsignaturas.h
+	<wx/string.h>
+	<wx/stattext.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/checklst.h>
+	<wx/button.h>
+	<wx/sizer.h>
+	<wx/dialog.h>
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/DialogoAsignaturasMain.cpp
+	"DialogoAsignaturasMain.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/DialogoAsignaturasMain.h
+	"GUIDialogoAsignaturas.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/Equivalencia.cpp
+	"Equivalencia.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/EquivalenciaDAO.cpp
+	"EquivalenciaDAO.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.cpp
+	"EstudianteDAO.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.h
+	"DAO.h"
+	"PG.h"
+	"LeerCSV.h"
+	<wx/gauge.h>
+	"Calificacion.h"
+	"CalificacionDAO.h"
+	"admisionesunivalle.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/admisionesunivalle.h
+	<vector>
+	<queue>
+	"EstudianteDAO.h"
+	<iostream>
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIDialog.cpp
+	"wx/wxprec.h"
+	<wx/wx.h>
+	"GUIDialog.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIDialogoAsignaturas.cpp
+	"GUIDialogoAsignaturas.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.cpp
+	"wx/wxprec.h"
+	<wx/wx.h>
+	"GUIFrame.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.h
+	<wx/string.h>
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/icon.h>
+	<wx/menu.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/statusbr.h>
+	<wx/button.h>
+	<wx/gauge.h>
+	<wx/sizer.h>
+	<wx/statbox.h>
+	<wx/panel.h>
+	<wx/radiobox.h>
+	<wx/stattext.h>
+	<wx/textctrl.h>
+	<wx/valgen.h>
+	<wx/checkbox.h>
+	<wx/notebook.h>
+	<wx/frame.h>
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/LeeYaml.cpp
+	"LeeYaml.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/LeerCSV.cpp
+	"LeerCSV.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/PG.cpp
+	"PG.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosApp.cpp
+	"wx_pch.h"
+	"PuntajesMinimosApp.h"
+	"PuntajesMinimosMain.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosApp.h
+	<wx/app.h>
+	<wx/dcclient.h>
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.h
+	"PuntajesMinimosApp.h"
+	"algoritmogenetico.h"
+	"fenotipoipmpais.h"
+	"admisionesunivalle.h"
+	"ConfBDMain.h"
+	"DialogoAsignaturas.h"
+	"Calificacion.h"
+	"GUIFrame.h"
+	"LeerCSV.h"
+	"LeeYaml.h"
+	"EquivalenciaDAO.h"
+	"CalificacionDAO.h"
+	"EstudianteDAO.h"
+	<wx/wfstream.h>
+	<wx/msgdlg.h>
+	<wx/wx.h>
+	<iostream>
+	<sstream>
+	<fstream>
+	<string>
+	<list>
+	<openssl/sha.h>
+	<iomanip>
+	<ctime>
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/algoritmogenetico.h
+	"cromosoma.h"
+	"fenotipo.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/cromosoma.h
+	"matematicas.h"
+	"gen.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/matematicas.h
+	<time.h>
+	<stdlib.h>
+	<math.h>
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/gen.h
+	"matematicas.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/fenotipo.h
+	"cromosoma.h"
+
+1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/fenotipoipmpais.h
+	"admisionesunivalle.h"
+	"fenotipo.h"
+	<string.h>
+	<map>
+	<vector>
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/admisionesunivalle.cpp
+	"admisionesunivalle.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/algoritmogenetico.cpp
+	"algoritmogenetico.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/cromosoma.cpp
+	"cromosoma.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/fenotipo.cpp
+	"fenotipo.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/fenotipoipmpais.cpp
+	"fenotipoipmpais.h"
+	<iostream>
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/gen.cpp
+	"gen.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/leerconfiguracion.cpp
+	"leerconfiguracion.h"
+
+1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/matematicas.cpp
+	"matematicas.h"
 
