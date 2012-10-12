@@ -162,10 +162,12 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	fgSizer1->SetFlexibleDirection( wxBOTH );
 	fgSizer1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_textCtrl31 = new wxTextCtrl( panel_filtros, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 540,-1 ), 0 );
-	fgSizer1->Add( m_textCtrl31, 5, wxALL, 5 );
+	input_asignaturas = new wxTextCtrl( panel_filtros, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 540,-1 ), 0 );
+	fgSizer1->Add( input_asignaturas, 5, wxALL, 5 );
 	
 	button_seleccionar_asignaturas = new wxButton( panel_filtros, wxID_ANY, wxT("Seleccionar Asignaturas ..."), wxDefaultPosition, wxDefaultSize, 0 );
+	button_seleccionar_asignaturas->Hide();
+	
 	fgSizer1->Add( button_seleccionar_asignaturas, 1, wxALL, 5 );
 	
 	sbSizer14->Add( fgSizer1, 1, wxEXPAND, 5 );
@@ -386,8 +388,9 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	radioBox_filtro_completitud->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( GUIFrame::OnRadioBoxFiltroCompletitud ), NULL, this );
 	input_fecha_desde->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaInicio ), NULL, this );
 	input_fecha_hasta->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaFin ), NULL, this );
+	input_asignaturas->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroAsignaturas ), NULL, this );
 	button_seleccionar_asignaturas->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::OnButtonSeleccionarAsignaturas ), NULL, this );
-	button_guardar_datos->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::OnButtonClickGuardarDatos ), NULL, this );
+	button_guardar_datos->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::GuardarDatosCSV ), NULL, this );
 	panel_grafico->Connect( wxEVT_PAINT, wxPaintEventHandler( GUIFrame::OnPaint ), NULL, this );
 	check_mostrar_puntajes_minimos->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIFrame::mostar_puntajes_minimos ), NULL, this );
 	boton_buscar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
@@ -409,8 +412,9 @@ GUIFrame::~GUIFrame()
 	radioBox_filtro_completitud->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( GUIFrame::OnRadioBoxFiltroCompletitud ), NULL, this );
 	input_fecha_desde->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaInicio ), NULL, this );
 	input_fecha_hasta->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaFin ), NULL, this );
+	input_asignaturas->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroAsignaturas ), NULL, this );
 	button_seleccionar_asignaturas->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::OnButtonSeleccionarAsignaturas ), NULL, this );
-	button_guardar_datos->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::OnButtonClickGuardarDatos ), NULL, this );
+	button_guardar_datos->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::GuardarDatosCSV ), NULL, this );
 	panel_grafico->Disconnect( wxEVT_PAINT, wxPaintEventHandler( GUIFrame::OnPaint ), NULL, this );
 	check_mostrar_puntajes_minimos->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIFrame::mostar_puntajes_minimos ), NULL, this );
 	boton_buscar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );

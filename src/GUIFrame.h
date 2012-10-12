@@ -69,7 +69,7 @@ class GUIFrame : public wxFrame
 		wxTextCtrl* input_fecha_desde;
 		wxStaticText* m_staticText2;
 		wxTextCtrl* input_fecha_hasta;
-		wxTextCtrl* m_textCtrl31;
+		wxTextCtrl* input_asignaturas;
 		wxButton* button_seleccionar_asignaturas;
 		wxPanel* m_panel5;
 		wxButton* button_guardar_datos;
@@ -139,8 +139,9 @@ class GUIFrame : public wxFrame
 		virtual void OnRadioBoxFiltroCompletitud( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroFechaInicio( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroFechaFin( wxCommandEvent& event ) { event.Skip(); }
+		virtual void actualizarFiltroAsignaturas( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnButtonSeleccionarAsignaturas( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnButtonClickGuardarDatos( wxCommandEvent& event ) { event.Skip(); }
+		virtual void GuardarDatosCSV( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnPaint( wxPaintEvent& event ) { event.Skip(); }
 		virtual void mostar_puntajes_minimos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void BotonBuscar( wxCommandEvent& event ) { event.Skip(); }

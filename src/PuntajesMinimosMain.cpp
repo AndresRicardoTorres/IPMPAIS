@@ -26,6 +26,7 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
     puntajeMinimo_maximo = 120; //El maximo que he visto es 116.95
     ponderacion_minimo = 0;
     ponderacion_maximo = 100;
+    actualizarInterfaz();
 
     ///Inicializo los dialogos que se utilizaran
     dialogo_configuracion_base_datos = new ConfBDDialog(0L);
@@ -54,9 +55,9 @@ const char* PuntajesMinimosFrame::getInformacionConexion(){
 
 bool PuntajesMinimosFrame::checkDB(){
     const char* BORAR = getInformacionConexion();
-    //std::cout<<"checkDB()46 "<<BORAR<<std::endl;
+
     PG *objPg = new PG(BORAR);
-    //std::cout<<"checkDB()48 "<<BORAR<<std::endl;
+
     bool hayBD = objPg->checkStatus();
 
 #if wxUSE_STATUSBAR
@@ -66,7 +67,12 @@ bool PuntajesMinimosFrame::checkDB(){
     else
     statusBar->SetStatusText(_("No conectado con la base de datos !"), 1);
 #endif
-    actualizarCantidadMuestra();
+
+    if(hayBD){
+        actualizarCantidadMuestra();
+    }
+    boton_buscar->Enable(hayBD);
+    button_guardar_datos->Enable(hayBD);
     return hayBD;
 }
 
@@ -287,13 +293,14 @@ std::cout<<"Inserto todas las notas"<<std::endl;
         informar(respuesta.str().c_str());
 
         ///Calculo los promedios con las califiaciones
+        /*
 std::cout<<"Calculando Promedios"<<std::endl;
 
         objEstudiantes->crearColumnasPromedio();
 
         resultado = objEstudiantes->actualizarPromedio(objCalificaciones->getPromediosDeEstudiantes());
         informar(resultado);
-
+*/
         statusBar->SetStatusText(_("Carga Finalizada"), 0);
     }
 }
@@ -320,7 +327,7 @@ void PuntajesMinimosFrame::OnRadioBoxFiltroCompletitud( wxCommandEvent& event ){
 void PuntajesMinimosFrame::actualizarCantidadMuestra(){
    ///Consulto cuantos estudiantes hay actualmente para tener actualizado al usuario
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
+    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
     cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
     label_cantidad->SetLabel(wxString::Format(wxT("Total de la muestra : %i estudiantes"),cantidad_estudiantes_filtrados));
     wxString cantidad = wxString::Format(wxT("%i"),listadoCodigoEstudiantes->size());
@@ -337,21 +344,87 @@ void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
 {
     filtro_fecha_final = wxAtoi(input_fecha_hasta->GetValue());
     actualizarCantidadMuestra();
-
 }
+
+void PuntajesMinimosFrame::actualizarFiltroAsignaturas( wxCommandEvent& event ) {
+
+    wxString a = input_asignaturas->GetValue();
+    listadoAsignaturas = "";
+    if(a.size() > 0){
+        listadoAsignaturas = "'";
+        a.Replace(_(","),_("','"));
+        listadoAsignaturas += std::string(a.mb_str());
+        listadoAsignaturas +="'";
+    }
+    std::cout<<listadoAsignaturas<<std::endl;
+
+    actualizarCantidadMuestra();
+}
+
+void PuntajesMinimosFrame::actualizarInterfaz(){
+
+    bool soloCalcularPonderaciones = check_mostrar_puntajes_minimos->IsChecked();
+    input_puntaje->Show(soloCalcularPonderaciones);
+    input_d_puntaje->Show(soloCalcularPonderaciones);
+    inputPonderacionLenguaje->Show(soloCalcularPonderaciones);
+    inputDPonderacionLenguaje->Show(soloCalcularPonderaciones);
+    inputPonderacionMatematica->Show(soloCalcularPonderaciones);
+    inputDPonderacionMatematica->Show(soloCalcularPonderaciones);
+    inputPonderacionSociales->Show(soloCalcularPonderaciones);
+    inputDPonderacionSociales->Show(soloCalcularPonderaciones);
+    inputPonderacionFisica->Show(soloCalcularPonderaciones);
+    inputDPonderacionFisica->Show(soloCalcularPonderaciones);
+    inputPonderacionFilosofia->Show(soloCalcularPonderaciones);
+    inputDPonderacionFilosofia->Show(soloCalcularPonderaciones);
+    inputPonderacionBiologia->Show(soloCalcularPonderaciones);
+    inputDPonderacionBiologia->Show(soloCalcularPonderaciones);
+    inputPonderacionQuimica->Show(soloCalcularPonderaciones);
+    inputDPonderacionQuimica->Show(soloCalcularPonderaciones);
+    inputPonderacionFisica->Show(soloCalcularPonderaciones);
+    inputDPonderacionFisica->Show(soloCalcularPonderaciones);
+
+ }
 
 
  void PuntajesMinimosFrame::mostar_puntajes_minimos( wxCommandEvent& event ){
-///TODO: mosttar o ocultar inputs
-//    bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();
-/*
-    if(soloCalcularPonderaciones)
-        grilla_puntajes_minimos->Show(false);
-    else
-        grilla_puntajes_minimos->Show(true);
-        */
-
+    actualizarInterfaz();
  }
+
+void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
+    wxFileDialog saveFileDialog(this, _("Save CSV file"),  wxT(""), wxT(""),_("CSV files (*.csv)|*.csv"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+
+    if (saveFileDialog.ShowModal() == wxID_CANCEL)
+        return;     // the user changed idea...
+
+    EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
+    ResultadoConsulta* resultado = objEstudiantes->selectAll("*",filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
+
+    std::stringstream contenido;
+    for(unsigned int i=0;i<resultado->size();i++)
+    {
+        ResultadoFila unaFila= resultado->at(i);
+        for(unsigned int j=0;j<unaFila.size();j++){
+            contenido<<unaFila.at(j);
+            if(j<unaFila.size()-1)
+                contenido<<",";
+        }
+        contenido<<std::endl;
+    }
+
+
+
+    wxFileOutputStream output_stream(saveFileDialog.GetPath());
+    if (!output_stream.IsOk())
+    {
+        return;
+    }else{
+        wxFFile file(saveFileDialog.GetPath(), _T("w"));
+
+        wxString mystring(contenido.str().c_str(), wxConvUTF8);
+        file.Write(mystring);
+        file.Close();
+    }
+}
 
  void PuntajesMinimosFrame::BotonGuardarResultados( wxCommandEvent& event ) {
     int columnas = 0;
@@ -461,11 +534,11 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
 
     bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica) */
 
-    AdmisionesUnivalle admisionesUnivalle(getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final);
+    AdmisionesUnivalle admisionesUnivalle(getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
 
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
 
-    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final);
+    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
     int cuantosEgresados = listadoCodigoEstudiantes->size();
     const char **listaEgresadosOrdenada = new const char*[cuantosEgresados];
     int i=0;

@@ -420,23 +420,9 @@ std::string EstudianteDAO::insertarPuntajesECAES(encabezadoCSV encabezados,datos
     return sstm.str();
 }
 
-listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final)
+listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
 {
-    PG *objPg = new PG(conexion.c_str());
-    std::stringstream ss;
-    ///El where de esta consulta debe ser el mismo de el del metodo getPuntajesICFES(), para que sea la misma cantidad de gente
-
-    ss << "SELECT codigo FROM estudiante WHERE promedio is not null AND promedio > 0 AND len is not null AND mat is not null AND cis is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL ";
-
-    if(fecha_inicio > 0)
-        ss << " AND año >= " << fecha_inicio;
-
-    if(fecha_final > 0)
-        ss << " AND año <= " << fecha_final;
-
-    ss << " ORDER BY promedio DESC";
-    //std::cout<<" getListaEstudiantesOrdenadaPorPromedio => "<<ss.str()<<std::endl;
-    ResultadoConsulta *resultado = objPg->select(ss.str().c_str());
+    ResultadoConsulta *resultado = selectAll("*",fecha_inicio,fecha_final,listadoAsignaturas);
 
     listaCSV *listadoCodigoEstudiantes = new listaCSV;
     for(unsigned int i=0;i<resultado->size();i++)
@@ -445,17 +431,27 @@ listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio
         listadoCodigoEstudiantes->push_back(unaFila.at(0));
     }
 
-    delete objPg;
     delete resultado;
     return listadoCodigoEstudiantes;
 }
 
-puntajesICFES * EstudianteDAO::getPuntajesICFES(int fecha_inicio,int fecha_final)
+puntajesICFES * EstudianteDAO::getPuntajesICFES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
 {
+    return selectAll("codigo,len,mat,cis,fil,bio,qui,fis",fecha_inicio,fecha_final,listadoAsignaturas);
+}
+
+ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inicio,int fecha_final,std::string listadoAsignaturas){
+
     PG *objPg = new PG(conexion.c_str());
+
     std::stringstream ss;
-///El where de esta consulta debe ser el mismo de el del metodo getListaEstudiantesOrdenadaPorPromedio(), para que sea la misma cantidad de gente
-    ss << "SELECT codigo,len,mat,cis,fil,bio,qui,fis FROM estudiante WHERE promedio is not null AND promedio > 0 AND len is not null AND mat is not null AND cis is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL ";
+    ss << "SELECT subconsulta.promedio,* FROM estudiante JOIN ( SELECT codigo_estudiante,SUM(calificacion_numerica*creditos)/SUM(creditos) as promedio FROM calificacion WHERE creditos!= 0 ";
+
+    if(listadoAsignaturas.size()>0)
+        ss<<"AND codigo_asignatura IN("<<listadoAsignaturas<<")";
+
+    ss << "GROUP BY codigo_estudiante ) as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND cis is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL ";
+
 
     if(fecha_inicio > 0)
         ss << "AND año >= " << fecha_inicio;
@@ -463,28 +459,11 @@ puntajesICFES * EstudianteDAO::getPuntajesICFES(int fecha_inicio,int fecha_final
     if(fecha_final > 0)
         ss << " AND año <= " << fecha_final;
 
-    ss << " ORDER BY promedio DESC";
+    ss << " ORDER BY subconsulta.promedio DESC";
 
     ResultadoConsulta *resultado = objPg->select(ss.str().c_str());
-    /*
-    puntajesICFES listaPuntajes;
-    for(unsigned int i=0;i<resultado->size();i++)
-    {
-        ResultadoFila unaFila= resultado->at(i);
-        std::vector<std::string> unVector;
-        unVector.push_back(unaFila.at(0));
-        unVector.push_back(unaFila.at(1));
-        unVector.push_back(unaFila.at(2));
-        unVector.push_back(unaFila.at(3));
-        unVector.push_back(unaFila.at(4));
-        unVector.push_back(unaFila.at(5));
-        unVector.push_back(unaFila.at(6));
-        unVector.push_back(unaFila.at(7));
-        listaPuntajes.push_back(unVector);
-    }
-*/
+
     delete objPg;
     return resultado;
 }
 
-//

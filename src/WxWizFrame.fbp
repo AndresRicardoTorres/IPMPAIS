@@ -1402,7 +1402,7 @@
                                                             <property name="maximum_size"></property>
                                                             <property name="maxlength">0</property>
                                                             <property name="minimum_size"></property>
-                                                            <property name="name">m_textCtrl31</property>
+                                                            <property name="name">input_asignaturas</property>
                                                             <property name="permission">protected</property>
                                                             <property name="pos"></property>
                                                             <property name="size">540,-1</property>
@@ -1439,7 +1439,7 @@
                                                             <event name="OnRightUp"></event>
                                                             <event name="OnSetFocus"></event>
                                                             <event name="OnSize"></event>
-                                                            <event name="OnText"></event>
+                                                            <event name="OnText">actualizarFiltroAsignaturas</event>
                                                             <event name="OnTextEnter"></event>
                                                             <event name="OnTextMaxLen"></event>
                                                             <event name="OnTextURL"></event>
@@ -1457,7 +1457,7 @@
                                                             <property name="enabled">1</property>
                                                             <property name="fg"></property>
                                                             <property name="font"></property>
-                                                            <property name="hidden">0</property>
+                                                            <property name="hidden">1</property>
                                                             <property name="id">wxID_ANY</property>
                                                             <property name="label">Seleccionar Asignaturas ...</property>
                                                             <property name="maximum_size"></property>
@@ -1588,7 +1588,7 @@
                                             <property name="window_extra_style"></property>
                                             <property name="window_name"></property>
                                             <property name="window_style"></property>
-                                            <event name="OnButtonClick">OnButtonClickGuardarDatos</event>
+                                            <event name="OnButtonClick">GuardarDatosCSV</event>
                                             <event name="OnChar"></event>
                                             <event name="OnEnterWindow"></event>
                                             <event name="OnEraseBackground"></event>
@@ -1974,7 +1974,7 @@
                                             <property name="bg"></property>
                                             <property name="context_help"></property>
                                             <property name="default">0</property>
-                                            <property name="enabled">1</property>
+                                            <property name="enabled">0</property>
                                             <property name="fg"></property>
                                             <property name="font"></property>
                                             <property name="hidden">0</property>

@@ -2474,10 +2474,10 @@
 1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/EquivalenciaDAO.cpp
 	"EquivalenciaDAO.h"
 
-1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.cpp
+1350003273 source:/home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.cpp
 	"EstudianteDAO.h"
 
-1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.h
+1350003264 /home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.h
 	"DAO.h"
 	"PG.h"
 	"LeerCSV.h"
@@ -2486,7 +2486,7 @@
 	"CalificacionDAO.h"
 	"admisionesunivalle.h"
 
-1349992332 /home/andresrtm/Escritorio/IPMPAIS/src/admisionesunivalle.h
+1350002913 /home/andresrtm/Escritorio/IPMPAIS/src/admisionesunivalle.h
 	<vector>
 	<queue>
 	"EstudianteDAO.h"
@@ -2500,12 +2500,12 @@
 1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIDialogoAsignaturas.cpp
 	"GUIDialogoAsignaturas.h"
 
-1349999027 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.cpp
+1350003727 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"
 
-1349993697 /home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.h
+1350002085 /home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.h
 	<wx/string.h>
 	<wx/bitmap.h>
 	<wx/image.h>
@@ -2547,7 +2547,7 @@
 	<wx/app.h>
 	<wx/dcclient.h>
 
-1349995663 /home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.h
+1350003798 /home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.h
 	"PuntajesMinimosApp.h"
 	"algoritmogenetico.h"
 	"fenotipoipmpais.h"
@@ -2599,7 +2599,7 @@
 	<map>
 	<vector>
 
-1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/admisionesunivalle.cpp
+1350002909 source:/home/andresrtm/Escritorio/IPMPAIS/src/admisionesunivalle.cpp
 	"admisionesunivalle.h"
 
 1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/algoritmogenetico.cpp
@@ -2624,7 +2624,7 @@
 1349992332 source:/home/andresrtm/Escritorio/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
 
-1349999086 source:/home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.cpp
+1350003988 source:/home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>

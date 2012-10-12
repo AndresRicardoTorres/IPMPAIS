@@ -89,6 +89,7 @@ class PuntajesMinimosFrame: public GUIFrame
 		virtual void OnRadioBoxFiltroCompletitud( wxCommandEvent& event );
 		virtual void BotonBuscar( wxCommandEvent& event );
 		virtual void BotonGuardarResultados( wxCommandEvent& event );
+		virtual void GuardarDatosCSV( wxCommandEvent& event );
 		const char* getInformacionConexion();
 		virtual void mostar_puntajes_minimos( wxCommandEvent& event );
 
@@ -99,6 +100,8 @@ class PuntajesMinimosFrame: public GUIFrame
 
 		virtual void actualizarFiltroFechaInicio( wxCommandEvent& event );
 		virtual void actualizarFiltroFechaFin( wxCommandEvent& event );
+		virtual void actualizarFiltroAsignaturas( wxCommandEvent& event );
+		void actualizarInterfaz();
 
 };
 

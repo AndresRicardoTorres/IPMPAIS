@@ -49,7 +49,7 @@ typedef std::vector<std::vector <const char*> > puntajesICFES;
 class AdmisionesUnivalle
 {
   public:
-    AdmisionesUnivalle(const char* conn,int filtro_anno_inicio,int filtro_anno_final);
+    AdmisionesUnivalle(const char* conn,int filtro_anno_inicio,int filtro_anno_final,std::string listadoAsignaturas);
     ~AdmisionesUnivalle();
     const VectorEstudiantes *ordenarEstudiantesAdmisionesSegunPuntajesMinimosYPonderaciones(double puntajesMinimos[], double ponderaciones[]);
     private:

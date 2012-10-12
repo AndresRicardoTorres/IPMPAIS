@@ -9,9 +9,9 @@
 
 #include "admisionesunivalle.h"
 
-AdmisionesUnivalle::AdmisionesUnivalle(const char* conn,int filtro_anno_inicio,int filtro_anno_final){
+AdmisionesUnivalle::AdmisionesUnivalle(const char* conn,int filtro_anno_inicio,int filtro_anno_final,std::string listadoAsignaturas){
     EstudianteDAO *objEstudiantes = new EstudianteDAO(conn);
-    resultadosICFES = objEstudiantes->getPuntajesICFES(filtro_anno_inicio,filtro_anno_final);
+    resultadosICFES = objEstudiantes->getPuntajesICFES(filtro_anno_inicio,filtro_anno_final,listadoAsignaturas);
     delete objEstudiantes;
 }
 
