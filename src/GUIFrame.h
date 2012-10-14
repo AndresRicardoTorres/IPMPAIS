@@ -26,8 +26,8 @@
 #include <wx/radiobox.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
-#include <wx/valgen.h>
 #include <wx/checkbox.h>
+#include <wx/valgen.h>
 #include <wx/notebook.h>
 #include <wx/frame.h>
 
@@ -75,10 +75,11 @@ class GUIFrame : public wxFrame
 		wxButton* button_guardar_datos;
 		wxPanel* panel_grafico;
 		wxPanel* panel_resultados;
+		wxRadioBox* radio_comparacion;
 		wxStaticText* label_cantidad;
+		wxCheckBox* check_mostrar_puntajes_minimos;
 		wxStaticText* m_staticText16;
 		wxTextCtrl* input_numero_iteraciones;
-		wxCheckBox* check_mostrar_puntajes_minimos;
 		wxButton* boton_buscar;
 		wxGridSizer* grilla_valores;
 		wxStaticText* input_vacio;

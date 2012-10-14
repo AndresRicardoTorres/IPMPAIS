@@ -127,6 +127,8 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	int radioBox_filtro_completitudNChoices = sizeof( radioBox_filtro_completitudChoices ) / sizeof( wxString );
 	radioBox_filtro_completitud = new wxRadioBox( panel_filtros, wxID_ANY, wxT("Completitud de los datos"), wxDefaultPosition, wxDefaultSize, radioBox_filtro_completitudNChoices, radioBox_filtro_completitudChoices, 1, wxRA_SPECIFY_COLS );
 	radioBox_filtro_completitud->SetSelection( 0 );
+	radioBox_filtro_completitud->Enable( false );
+	
 	bSizer3->Add( radioBox_filtro_completitud, 0, wxALL|wxEXPAND, 10 );
 	
 	wxStaticBoxSizer* sbSizer12;
@@ -183,7 +185,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	panel_filtros->SetSizer( bSizer3 );
 	panel_filtros->Layout();
 	bSizer3->Fit( panel_filtros );
-	m_notebook1->AddPage( panel_filtros, wxT("Filtros de información"), false );
+	m_notebook1->AddPage( panel_filtros, wxT("Filtros de información"), true );
 	panel_grafico = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	panel_grafico->Hide();
 	
@@ -192,9 +194,20 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	wxStaticBoxSizer* sbSizer8;
 	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Ponderaciones recomendadas") ), wxVERTICAL );
 	
+	wxString radio_comparacionChoices[] = { wxT("ICFES con asignaturas"), wxT("ICFES con ECAES"), wxT("asignaturas con ECAES") };
+	int radio_comparacionNChoices = sizeof( radio_comparacionChoices ) / sizeof( wxString );
+	radio_comparacion = new wxRadioBox( panel_resultados, wxID_ANY, wxT("Comparar ..."), wxDefaultPosition, wxDefaultSize, radio_comparacionNChoices, radio_comparacionChoices, 1, wxRA_SPECIFY_ROWS );
+	radio_comparacion->SetSelection( 0 );
+	radio_comparacion->Enable( false );
+	
+	sbSizer8->Add( radio_comparacion, 0, wxALL, 5 );
+	
 	label_cantidad = new wxStaticText( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	label_cantidad->Wrap( -1 );
 	sbSizer8->Add( label_cantidad, 0, wxALL, 5 );
+	
+	check_mostrar_puntajes_minimos = new wxCheckBox( panel_resultados, wxID_ANY, wxT("Mostrar puntajes minimos"), wxDefaultPosition, wxDefaultSize, 0 );
+	sbSizer8->Add( check_mostrar_puntajes_minimos, 0, wxALL, 5 );
 	
 	wxGridSizer* gSizer51;
 	gSizer51 = new wxGridSizer( 1, 2, 0, 0 );
@@ -208,10 +221,9 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	sbSizer8->Add( gSizer51, 0, 0, 5 );
 	
-	check_mostrar_puntajes_minimos = new wxCheckBox( panel_resultados, wxID_ANY, wxT("Mostrar puntajes minimos"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer8->Add( check_mostrar_puntajes_minimos, 0, wxALL, 5 );
-	
 	boton_buscar = new wxButton( panel_resultados, wxID_ANY, wxT("Buscar ..."), wxDefaultPosition, wxDefaultSize, 0 );
+	boton_buscar->Enable( false );
+	
 	sbSizer8->Add( boton_buscar, 0, wxALIGN_LEFT|wxALL, 5 );
 	
 	grilla_valores = new wxGridSizer( 9, 5, 2, 0 );
@@ -368,7 +380,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	panel_resultados->SetSizer( sbSizer8 );
 	panel_resultados->Layout();
 	sbSizer8->Fit( panel_resultados );
-	m_notebook1->AddPage( panel_resultados, wxT("Resultados"), true );
+	m_notebook1->AddPage( panel_resultados, wxT("Resultados"), false );
 	
 	bSizer1->Add( m_notebook1, 1, wxEXPAND | wxALL, 5 );
 	
