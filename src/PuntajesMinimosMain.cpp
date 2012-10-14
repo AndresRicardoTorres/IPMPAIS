@@ -291,16 +291,6 @@ std::cout<<"Inserto todas las notas"<<std::endl;
             respuesta <<", "<<incorrectas<<" incorrectos";
 
         informar(respuesta.str().c_str());
-
-        ///Calculo los promedios con las califiaciones
-        /*
-std::cout<<"Calculando Promedios"<<std::endl;
-
-        objEstudiantes->crearColumnasPromedio();
-
-        resultado = objEstudiantes->actualizarPromedio(objCalificaciones->getPromediosDeEstudiantes());
-        informar(resultado);
-*/
         statusBar->SetStatusText(_("Carga Finalizada"), 0);
     }
 }

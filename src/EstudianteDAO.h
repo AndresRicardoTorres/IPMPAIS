@@ -20,7 +20,6 @@ class EstudianteDAO: protected DAO
         const char* insertar(encabezadoCSV encabezado,datosCSV data,wxGauge *barraProgreso);
         const char* insertarICFES(encabezadoCSV encabezados,datosCSV datosIn,wxGauge *barraProgreso);
         void crearColumnasAsignaturas(std::string codigo_asignatura);
-        void crearColumnasPromedio();
         bool actualizar(Calificacion* unaCalificacion);
         const char * actualizarPromedio(PromediosDeEstudiantes *listadoPromedios);
         std::string insertarPuntajesECAES(encabezadoCSV encabezados,datosCSV datosIn,wxGauge *barraProgreso);

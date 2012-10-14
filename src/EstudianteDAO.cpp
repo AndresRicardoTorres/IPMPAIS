@@ -214,18 +214,6 @@ void EstudianteDAO::crearColumnasAsignaturas(std::string codigo_asignatura)
     delete objPg;
 }
 
-void EstudianteDAO::crearColumnasPromedio()
-{
-    std::string sql;
-    PG *objPg = new PG(conexion.c_str());
-
-    sql = "ALTER TABLE estudiante DROP COLUMN promedio;";
-    objPg->query(sql.c_str());
-    sql = "ALTER TABLE estudiante ADD COLUMN promedio real;";
-    objPg->query(sql.c_str());
-
-    delete objPg;
-}
 
 bool EstudianteDAO::actualizar(Calificacion* unaCalificacion)
 {
@@ -292,33 +280,6 @@ bool EstudianteDAO::actualizar(Calificacion* unaCalificacion)
     delete objPg;
     return  exito;
 
-}
-
-const char * EstudianteDAO::actualizarPromedio(PromediosDeEstudiantes* listadoPromedios)
-{
-    PG *objPg = new PG(conexion.c_str());
-
-    int afectadas = 0, correctas = 0, erroneos = 0,i=0;
-    std::stringstream sql;
-    for (PromediosDeEstudiantes::iterator it = listadoPromedios->begin(); it != listadoPromedios->end(); it++,i++){
-        sql << "UPDATE estudiante SET promedio = " << (*it).second << " WHERE codigo = '" << (*it).first << "'";
-        afectadas = objPg->update(sql.str().c_str());
-        if(0==afectadas){
-            std::cout<<i<<" "<<sql.str().c_str()<<std::endl;
-            erroneos++;
-        }else{
-            correctas++;
-        }
-        sql.str(std::string());
-    }
-
-    std::stringstream sstm;
-    sstm << "Se promediaron " << correctas <<" estudiantes";
-    if(erroneos>0)
-        sstm <<", "<<erroneos<<" incorrectos";
-
-    delete objPg;
-    return  sstm.str().c_str();
 }
 
 std::string EstudianteDAO::insertarPuntajesECAES(encabezadoCSV encabezados,datosCSV datosIn,wxGauge *barraProgreso)

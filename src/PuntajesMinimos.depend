@@ -2474,10 +2474,10 @@
 1350232166 source:/home/andresrtm/Escritorio/IPMPAIS/src/EquivalenciaDAO.cpp
 	"EquivalenciaDAO.h"
 
-1350232166 source:/home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.cpp
+1350234317 source:/home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.cpp
 	"EstudianteDAO.h"
 
-1350232166 /home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.h
+1350234300 /home/andresrtm/Escritorio/IPMPAIS/src/EstudianteDAO.h
 	"DAO.h"
 	"PG.h"
 	"LeerCSV.h"
@@ -2500,7 +2500,7 @@
 1350232166 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIDialogoAsignaturas.cpp
 	"GUIDialogoAsignaturas.h"
 
-1350233851 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.cpp
+1350233948 source:/home/andresrtm/Escritorio/IPMPAIS/src/GUIFrame.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"
@@ -2624,7 +2624,7 @@
 1350232166 source:/home/andresrtm/Escritorio/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
 
-1350232166 source:/home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.cpp
+1350234358 source:/home/andresrtm/Escritorio/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>
