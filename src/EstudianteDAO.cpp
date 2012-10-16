@@ -398,7 +398,7 @@ listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio
 
 puntajesICFES * EstudianteDAO::getPuntajesICFES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
 {
-    return selectAll("codigo,len,mat,cis,fil,bio,qui,fis",fecha_inicio,fecha_final,listadoAsignaturas);
+    return selectAll("codigo,len,mat,fil,bio,qui,fis, CASE WHEN cis IS NULL THEN (geo+his)/2 ELSE cis END as cis",fecha_inicio,fecha_final,listadoAsignaturas);
 }
 
 ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inicio,int fecha_final,std::string listadoAsignaturas){
@@ -406,12 +406,15 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
     PG *objPg = new PG(conexion.c_str());
 
     std::stringstream ss;
-    ss << "SELECT subconsulta.promedio,* FROM estudiante JOIN ( SELECT codigo_estudiante,SUM(calificacion_numerica*creditos)/SUM(creditos) as promedio FROM calificacion WHERE creditos!= 0 ";
+    if(columnas.size() <= 0)
+       columnas = "subconsulta.promedio,*";
+
+    ss << "SELECT " << columnas <<" FROM estudiante JOIN ( SELECT codigo_estudiante,SUM(calificacion_numerica*creditos)/SUM(creditos) as promedio FROM calificacion WHERE creditos!= 0 ";
 
     if(listadoAsignaturas.size()>0)
         ss<<"AND codigo_asignatura IN("<<listadoAsignaturas<<")";
 
-    ss << "GROUP BY codigo_estudiante ) as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND cis is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL ";
+    ss << "GROUP BY codigo_estudiante ) as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL AND (cis IS NOT NULL OR (his IS NOT NULL AND geo IS NOT NULL))";
 
 
     if(fecha_inicio > 0)
@@ -421,7 +424,7 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
         ss << " AND año <= " << fecha_final;
 
     ss << " ORDER BY subconsulta.promedio DESC";
-
+std::cout<<ss.str()<<std::endl;
     ResultadoConsulta *resultado = objPg->select(ss.str().c_str());
 
     delete objPg;
