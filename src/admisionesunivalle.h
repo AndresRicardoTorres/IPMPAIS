@@ -1,9 +1,9 @@
 /*
   Archivo: admisionesunivalle.h
   Licencia: GNU-GPL
-  Fecha creacion: 8 de marzo de 2012
+  Fecha creacion: 21 de octubre de 2012
   Fecha ultima modificacion:  10 de marzo de 2012
-  Version: 0.1
+  Version: 0.2
   Copyright: (C) 2012 by Angel Garcia Baños
   Email: angel.garcia@correounivalle.edu.co
   EVALAB (EISC - Universidad del Valle, Cali, Colombia)
@@ -30,6 +30,7 @@
 #include "EstudianteDAO.h"
 
 #include <iostream>
+#include <cstdio>
 
 
 class miComparador
@@ -43,6 +44,19 @@ public:
   }
 };
 
+// 2012-10-21: Modificado por Angel
+class miComparador2
+{
+public:
+  miComparador2(){}
+
+  bool operator() (const std::pair<unsigned int,double>& lhs,const std::pair<unsigned int,double>& rhs) const
+  {
+    return lhs.second<rhs.second;
+  }
+};
+
+
 typedef std::vector<const char*> VectorEstudiantes;
 typedef std::vector<std::vector <const char*> > puntajesICFES;
 
@@ -55,8 +69,6 @@ class AdmisionesUnivalle
     private:
         std::string conexion;
         puntajesICFES *resultadosICFES;
-
-
 };
 
 #else
