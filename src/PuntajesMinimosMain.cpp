@@ -341,13 +341,17 @@ void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
 void PuntajesMinimosFrame::actualizarFiltroAsignaturas( wxCommandEvent& event ) {
 
     wxString a = input_asignaturas->GetValue();
+    a = a.Trim();
+    a = a.Trim(false);
     listadoAsignaturas = "";
     if(a.size() > 0){
         listadoAsignaturas = "'";
+        a.Replace(_(" "),_(""));
         a.Replace(_(","),_("','"));
         listadoAsignaturas += std::string(a.mb_str());
         listadoAsignaturas +="'";
     }
+
     std::cout<<listadoAsignaturas<<std::endl;
 
     actualizarCantidadMuestra();
@@ -392,6 +396,10 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
     ResultadoConsulta* resultado = objEstudiantes->selectAll("*",filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
 
     std::stringstream contenido;
+
+    contenido << objEstudiantes->obtenerNombreColumnas()<<std::endl;
+
+
     for(unsigned int i=0;i<resultado->size();i++)
     {
         ResultadoFila unaFila= resultado->at(i);
@@ -532,6 +540,8 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
 
     listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
     int cuantosEgresados = listadoCodigoEstudiantes->size();
+    std::cout << ">> " << cuantosEgresados << std::endl;
+
     const char **listaEgresadosOrdenada = new const char*[cuantosEgresados];
     int i=0;
     for (listaCSV::iterator it = listadoCodigoEstudiantes->begin(); it != listadoCodigoEstudiantes->end(); it++,i++)

@@ -26,6 +26,7 @@ class EstudianteDAO: protected DAO
         listaCSV* getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final,std::string listadoAsignaturas);
         puntajesICFES* getPuntajesICFES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas);
         ResultadoConsulta* selectAll(std::string columnas,int fecha_inicio,int fecha_final,std::string listadoAsignaturas);
+        std::string obtenerNombreColumnas();
     protected:
     private:
         std::string conexion;

@@ -383,7 +383,7 @@ std::string EstudianteDAO::insertarPuntajesECAES(encabezadoCSV encabezados,datos
 
 listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
 {
-    ResultadoConsulta *resultado = selectAll("*",fecha_inicio,fecha_final,listadoAsignaturas);
+    ResultadoConsulta *resultado = selectAll("codigo",fecha_inicio,fecha_final,listadoAsignaturas);
 
     listaCSV *listadoCodigoEstudiantes = new listaCSV;
     for(unsigned int i=0;i<resultado->size();i++)
@@ -409,12 +409,22 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
     if(columnas.size() <= 0)
        columnas = "subconsulta.promedio,*";
 
-    ss << "SELECT " << columnas <<" FROM estudiante JOIN ( SELECT codigo_estudiante,SUM(calificacion_numerica*creditos)/SUM(creditos) as promedio FROM calificacion WHERE creditos!= 0 ";
+    ss << "SELECT " << columnas <<" FROM estudiante JOIN (  SELECT codigo_estudiante,promedio FROM  (SELECT count(codigo_asignatura) as cantidad,codigo_estudiante,SUM(calificacion_numerica*creditos)/SUM(creditos) as promedio FROM calificacion WHERE creditos!= 0 ";
 
     if(listadoAsignaturas.size()>0)
-        ss<<"AND codigo_asignatura IN("<<listadoAsignaturas<<")";
+        ss<<" AND codigo_asignatura IN("<<listadoAsignaturas<<")";
 
-    ss << "GROUP BY codigo_estudiante ) as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL AND (cis IS NOT NULL OR (his IS NOT NULL AND geo IS NOT NULL))";
+    ss << " GROUP BY codigo_estudiante ) as a ";
+
+    if(listadoAsignaturas.size()>0){
+        int cantidadComas = 1;
+        for(unsigned int i=0;i<listadoAsignaturas.size();i++)
+            if(listadoAsignaturas[i] == ',')
+                cantidadComas++;
+        ss<<" WHERE  cantidad = "<<cantidadComas;
+    }
+
+    ss<<") as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL AND (cis IS NOT NULL OR (his IS NOT NULL AND geo IS NOT NULL))";
 
 
     if(fecha_inicio > 0)
@@ -429,5 +439,22 @@ std::cout<<ss.str()<<std::endl;
 
     delete objPg;
     return resultado;
+}
+
+std::string EstudianteDAO::obtenerNombreColumnas(){
+    PG *objPg = new PG(conexion.c_str());
+    std::stringstream ss;
+    ResultadoConsulta *resultado = objPg->select("SELECT column_name FROM information_schema.columns WHERE table_name = 'estudiante' ORDER BY ordinal_position;");
+
+    for(unsigned int i=0;i<resultado->size();i++)
+    {
+        ResultadoFila unaFila= resultado->at(i);
+        ss<<unaFila.at(0);
+        if(i<resultado->size()-1)
+            ss<<",";
+    }
+
+    delete objPg;
+    return ss.str();
 }
 

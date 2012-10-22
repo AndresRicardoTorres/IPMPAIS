@@ -2201,10 +2201,10 @@
 1350877380 source:/home/andresrtm/IPMPAIS/src/EquivalenciaDAO.cpp
 	"EquivalenciaDAO.h"
 
-1350877380 source:/home/andresrtm/IPMPAIS/src/EstudianteDAO.cpp
+1350882727 source:/home/andresrtm/IPMPAIS/src/EstudianteDAO.cpp
 	"EstudianteDAO.h"
 
-1350877380 /home/andresrtm/IPMPAIS/src/EstudianteDAO.h
+1350882661 /home/andresrtm/IPMPAIS/src/EstudianteDAO.h
 	"DAO.h"
 	"PG.h"
 	"LeerCSV.h"
@@ -2353,7 +2353,7 @@
 1350877380 source:/home/andresrtm/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
 
-1350878280 source:/home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.cpp
+1350882460 source:/home/andresrtm/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>
