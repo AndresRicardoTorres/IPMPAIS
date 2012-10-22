@@ -17,11 +17,15 @@
 
 #include "PuntajesMinimosApp.h"
 #include "PuntajesMinimosMain.h"
+#include "matematicas.h"
 
 IMPLEMENT_APP(PuntajesMinimosApp);
 
 bool PuntajesMinimosApp::OnInit()
 {
+    // 2012-10-21: Angel
+    ///Inicializo el numero aleatorio para la encriptacion
+    Matematicas::crear();  // Initialize random number generator.
     PuntajesMinimosFrame* frame = new PuntajesMinimosFrame(0L);
 
     frame->Show();

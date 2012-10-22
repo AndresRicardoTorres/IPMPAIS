@@ -41,8 +41,10 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
 
 #if CODIGOS_ENCRIPTADOS
     ///Inicializo el numero aleatorio para la encriptacion
-    srand(time(0));  // Initialize random number generator.
+    // 2012-10-21: Angel. Aquí no viene el srand() sino en DialogoAsignaturasMain()
+    // 2012-10-21: Andres Ricardo. lo coloco en PuntajesMinimosApp que es el programa principal
     un_numero_aleatorio = rand();
+
 #endif
     //grilla_puntajes_minimos->Show(false);
 }
