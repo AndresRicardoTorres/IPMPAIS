@@ -7,8 +7,8 @@
 	<File name="Calificacion.h" open="0" top="0" tabpos="8">
 		<Cursor position="1713" topLine="0" />
 	</File>
-	<File name="CalificacionDAO.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="4738" topLine="108" />
+	<File name="CalificacionDAO.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="4585" topLine="108" />
 	</File>
 	<File name="CalificacionDAO.h" open="0" top="0" tabpos="7">
 		<Cursor position="102" topLine="0" />
@@ -31,19 +31,19 @@
 	<File name="EquivalenciaDAO.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="349" topLine="6" />
 	</File>
-	<File name="EquivalenciaDAO.h" open="0" top="0" tabpos="10">
-		<Cursor position="519" topLine="0" />
+	<File name="EquivalenciaDAO.h" open="0" top="0" tabpos="9">
+		<Cursor position="547" topLine="0" />
 	</File>
-	<File name="EstudianteDAO.cpp" open="1" top="0" tabpos="3">
+	<File name="EstudianteDAO.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="17054" topLine="364" />
 	</File>
-	<File name="EstudianteDAO.h" open="1" top="0" tabpos="2">
+	<File name="EstudianteDAO.h" open="0" top="0" tabpos="2">
 		<Cursor position="701" topLine="0" />
 	</File>
-	<File name="GUIFrame.cpp" open="1" top="0" tabpos="6">
+	<File name="GUIFrame.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="15092" topLine="261" />
 	</File>
-	<File name="GUIFrame.h" open="1" top="0" tabpos="5">
+	<File name="GUIFrame.h" open="0" top="0" tabpos="5">
 		<Cursor position="3113" topLine="67" />
 	</File>
 	<File name="LeeYaml.cpp" open="0" top="0" tabpos="0">
@@ -61,16 +61,16 @@
 	<File name="PG.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="1135" topLine="49" />
 	</File>
-	<File name="PG.h" open="0" top="0" tabpos="9">
-		<Cursor position="46" topLine="2" />
+	<File name="PG.h" open="0" top="0" tabpos="8">
+		<Cursor position="46" topLine="0" />
 	</File>
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="9188" topLine="261" />
+	<File name="PuntajesMinimosMain.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="25558" topLine="184" />
 	</File>
-	<File name="PuntajesMinimosMain.h" open="1" top="0" tabpos="4">
+	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="4">
 		<Cursor position="2546" topLine="66" />
 	</File>
 	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="4">

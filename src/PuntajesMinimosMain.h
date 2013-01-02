@@ -24,7 +24,7 @@
 #include "Calificacion.h"
 #include "GUIFrame.h"
 #include "LeerCSV.h"
-#include "LeeYaml.h"
+//#include "LeeYaml.h"
 
 #include "EquivalenciaDAO.h"
 #include "CalificacionDAO.h"
@@ -72,7 +72,7 @@ class PuntajesMinimosFrame: public GUIFrame
         double ponderacion_minimo;
         double ponderacion_maximo;
 
-        bool cargarArchivo(int opcion);
+        bool cargarArchivo();
         string limpiarString(string str);
         string encriptar(string in);
 

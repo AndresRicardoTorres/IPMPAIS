@@ -26,10 +26,39 @@ VectorEquivalencias* EquivalenciaDAO::getEquivalencias()
     return equivalencias;
 }
 
-const char* EquivalenciaDAO::insertar(listaDeListas anteriores,listaDeListas nuevas,wxGauge *barraProgreso)
+const char* EquivalenciaDAO::insertar(listaCSV encabezados,datosCSV datosIn,wxGauge *barraProgreso)
 {
+     datosCSV anteriores;
+    datosCSV nuevas;
+    listaCSV tmp;
+    int columna_nuevas=-1,columna_anteriores=-1,i=0,j=0;
+
+    for (encabezadoCSV::iterator it = encabezados.begin(); it != encabezados.end(); it++,i++){
+        std::string stringIt =  *it;
+        stringIt = limpiarString(stringIt);
+        if(stringIt.find("actual") == 0)columna_nuevas=i;
+        if(stringIt.find("antigua") == 0)columna_anteriores=i;
+    }
+
+    for (datosCSV::iterator it = datosIn.begin(); it != datosIn.end(); it++,i++){
+        j=0;
+        for (listaCSV::iterator it2 = it->begin(); it2 != it->end(); it2++,j++){
+            tmp.clear();
+            tmp.push_back(*it2);
+            if(j == columna_nuevas)
+            {
+                nuevas.push_back(tmp);
+            }
+            if(j == columna_anteriores)
+            {
+                anteriores.push_back(tmp);
+            }
+        }
+    }
+
     PG *objPG = new PG(conexion.c_str());
-    int afectadas = 0,correctas = 0,erroneos = 0,i = 1;
+    int afectadas = 0,correctas = 0,erroneos = 0;
+    i = 1;
     std::string antigua,nueva,sql;
     std::stringstream sstm;
 

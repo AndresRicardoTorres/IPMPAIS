@@ -95,22 +95,12 @@ bool PuntajesMinimosFrame::comprobarConexionBD()
     return true;
 }
 
-bool PuntajesMinimosFrame::cargarArchivo(int opcion){
+bool PuntajesMinimosFrame::cargarArchivo(){
+
     if(!comprobarConexionBD())
         return false;
-    wxString titulo,tipoArchivo;
-    switch(opcion){
-        case 1:
-            titulo = _("Abrir archivo .CSV");
-            tipoArchivo = _("Archivo de valores separados por comas (*.csv)|*.csv");
-        break;
-        case 2:
-            titulo = _("Abrir archivo .YAML");
-            tipoArchivo = _("*.yaml");
-        break;
-    }
 
-    wxFileDialog openFileDialog(this,titulo, wxT(""), wxT(""),tipoArchivo, wxFD_OPEN|wxFD_FILE_MUST_EXIST);
+    wxFileDialog openFileDialog(this,_("Abrir archivo .CSV"), wxT(""), wxT(""), _("Archivo de valores separados por comas (*.csv)|*.csv"), wxFD_OPEN|wxFD_FILE_MUST_EXIST);
 
     if (openFileDialog.ShowModal() == wxID_CANCEL) return false;     // the user changed idea...
     wxFileInputStream input_stream(openFileDialog.GetPath());
@@ -157,7 +147,7 @@ void PuntajesMinimosFrame::OnBDConfig(wxCommandEvent &event)
 
 void PuntajesMinimosFrame::cargarInformacionAdmisiones( wxCommandEvent& event )
 {
-    if(cargarArchivo(1)){
+    if(cargarArchivo()){
         statusBar->SetStatusText(_("Leyendo archivo de admisiones ...."), 0);
         ///Leo el archivo
         LeerCSV *objLectorCSV = new LeerCSV(filename);
@@ -174,7 +164,7 @@ void PuntajesMinimosFrame::cargarInformacionAdmisiones( wxCommandEvent& event )
 
 void PuntajesMinimosFrame::CagarPuntajesICFES( wxCommandEvent& event )
 {
-    if(cargarArchivo(1)){
+    if(cargarArchivo()){
         statusBar->SetStatusText(_("Leyendo archivo de puntajes del ICFES ...."), 0);
         ///Leo el archivo
         LeerCSV *objLectorCSV = new LeerCSV(filename);
@@ -189,19 +179,19 @@ void PuntajesMinimosFrame::CagarPuntajesICFES( wxCommandEvent& event )
 
 void PuntajesMinimosFrame::cargarInformacionEquivalencias( wxCommandEvent& event )
 {
-    ///2 por que es un archivo YAML
-     if(cargarArchivo(2)){
+
+     if(cargarArchivo()){
         statusBar->SetStatusText(_("Leyendo archivo de equivalencias ...."), 0);
         ///Leo el archivo
-        LeeYaml *objLector = new LeeYaml(filename);
+        LeerCSV *objLectorCSV = new LeerCSV(filename);
 
-        list<list<string> > anteriores=objLector->getAnteriores();
-        list<list<string> > nuevas=objLector->getNuevas();
+        encabezadoCSV encabezados = objLectorCSV->leerEncabezado();
+        datosCSV datosIn = objLectorCSV->leerDatos();
 
         EquivalenciaDAO *objEquivalencias = new EquivalenciaDAO(getInformacionConexion());
         objEquivalencias->crearTablas();
 
-        const char* resultado = objEquivalencias->insertar(anteriores,nuevas,progresoEquivalencias);
+        const char* resultado = objEquivalencias->insertar(encabezados,datosIn,progresoEquivalencias);
         informar(resultado);
     }
 }
@@ -217,7 +207,7 @@ void PuntajesMinimosFrame::informar(const char* mensaje)
 
 void PuntajesMinimosFrame::cargarInformacionRegistroAcademico( wxCommandEvent& event )
 {
-    if(cargarArchivo(1)){
+    if(cargarArchivo()){
         const char* resultado;
         wxString wxResultado;
         EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
@@ -299,7 +289,7 @@ std::cout<<"Inserto todas las notas"<<std::endl;
 
 void PuntajesMinimosFrame::cargarInformacionECAES( wxCommandEvent& event )
 {
-    if(cargarArchivo(1)){
+    if(cargarArchivo()){
         statusBar->SetStatusText(_("Leyendo archivo de ECAES ...."), 0);
         LeerCSV *objLectorCSV = new LeerCSV(filename);
         listaCSV encabezados = objLectorCSV->leerEncabezado();
