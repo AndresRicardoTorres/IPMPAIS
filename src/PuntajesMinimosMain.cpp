@@ -30,7 +30,6 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
 
     ///Inicializo los dialogos que se utilizaran
     dialogo_configuracion_base_datos = new ConfBDDialog(0L);
-    dialogo_asignaturas = new DialogoAsignaturas(0L);
     ///Inicializo los filtros de la aplicacion
     filtro_completitud_datos = 1;
     filtro_fecha_inicio = 0;
@@ -82,7 +81,6 @@ PuntajesMinimosFrame::~PuntajesMinimosFrame()
 {
     ///Elimino los dialogos que cree
     delete dialogo_configuracion_base_datos;
-    delete dialogo_asignaturas;
 }
 
 bool PuntajesMinimosFrame::comprobarConexionBD()

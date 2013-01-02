@@ -3093,13 +3093,12 @@
 	<wx/app.h>
 	<wx/dcclient.h>
 
-1357165766 /home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.h
+1357168402 /home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.h
 	"PuntajesMinimosApp.h"
 	"algoritmogenetico.h"
 	"fenotipoipmpais.h"
 	"admisionesunivalle.h"
 	"ConfBDMain.h"
-	"DialogoAsignaturas.h"
 	"Calificacion.h"
 	"GUIFrame.h"
 	"LeerCSV.h"

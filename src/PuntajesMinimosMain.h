@@ -20,11 +20,9 @@
 #include "admisionesunivalle.h"
 
 #include "ConfBDMain.h"
-#include "DialogoAsignaturas.h"
 #include "Calificacion.h"
 #include "GUIFrame.h"
 #include "LeerCSV.h"
-//#include "LeeYaml.h"
 
 #include "EquivalenciaDAO.h"
 #include "CalificacionDAO.h"
@@ -56,8 +54,6 @@ class PuntajesMinimosFrame: public GUIFrame
     private:
 
         ConfBDDialog* dialogo_configuracion_base_datos;
-        DialogoAsignaturas* dialogo_asignaturas;
-
 
         char filename[1024];
         int un_numero_aleatorio;
