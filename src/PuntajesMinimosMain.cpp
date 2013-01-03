@@ -673,7 +673,17 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
       ponderacionesDesviacionTipica[i]=ponderacionesDesviacionTipica[i]*100/suma;
     }
     if(ECAESoRegistro){
-        inputPuntajeCompetencia1->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
+        inputPuntajeComponente1->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
+        inputPuntajeComponente2->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[1]));
+        inputPuntajeComponente3->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[2]));
+        inputPuntajeComponente4->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[3]));
+        inputPuntajeComponente5->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[4]));
+        inputPuntajeComponente6->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[5]));
+        inputPuntajeComponente7->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[6]));
+
+        inputPuntajeCompetencia1->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[7]));
+        inputPuntajeCompetencia2->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[8]));
+        inputPuntajeCompetencia3->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[9]));
 
     }else{
         inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
