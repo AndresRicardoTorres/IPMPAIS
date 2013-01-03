@@ -45,9 +45,8 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
     un_numero_aleatorio = rand();
 
 #endif
-    //grilla_puntajes_minimos->Show(false);
-
-    //grilla_ecaes->Show(false);
+    wxCommandEvent CE;
+    OnRadioBoxComparar(CE);
 }
 
 const char* PuntajesMinimosFrame::getInformacionConexion(){
@@ -338,7 +337,21 @@ void PuntajesMinimosFrame::actualizarFiltroAsignaturas( wxCommandEvent& event ) 
 
 void PuntajesMinimosFrame::actualizarInterfaz(){
 
+    int opcion = radio_comparacion->GetSelection();
+    switch(opcion){
+        case 0:
+            grilla_ecaes->Show(false);
+            grilla_valores->Show(true);
+        break;
+        default:
+            grilla_ecaes->Show(true);
+            grilla_valores->Show(false);
+        break;
+    }
+
     bool soloCalcularPonderaciones = check_mostrar_puntajes_minimos->IsChecked();
+    if(opcion != 0) soloCalcularPonderaciones=false;
+    ///Se actualizan inputs de la grilla de asignaturas
     input_puntaje->Show(soloCalcularPonderaciones);
     input_d_puntaje->Show(soloCalcularPonderaciones);
     inputPonderacionLenguaje->Show(soloCalcularPonderaciones);
@@ -358,6 +371,37 @@ void PuntajesMinimosFrame::actualizarInterfaz(){
     inputPonderacionFisica->Show(soloCalcularPonderaciones);
     inputDPonderacionFisica->Show(soloCalcularPonderaciones);
 
+
+    soloCalcularPonderaciones = check_mostrar_puntajes_minimos->IsChecked();
+    if(opcion == 0) soloCalcularPonderaciones=false;
+    ///Se actualizan inputs de la grilla del ECAES
+    input_puntaje1->Show(soloCalcularPonderaciones);
+    input_d_puntaje1->Show(soloCalcularPonderaciones);
+    inputPonderacionComponente1->Show(soloCalcularPonderaciones);
+    inputDPonderacionComponente1->Show(soloCalcularPonderaciones);
+    inputPonderacionComponente2->Show(soloCalcularPonderaciones);
+    inputDPonderacionComponente2->Show(soloCalcularPonderaciones);
+    inputPonderacionComponente3->Show(soloCalcularPonderaciones);
+    inputDPonderacionComponente3->Show(soloCalcularPonderaciones);
+    inputPonderacionComponente4->Show(soloCalcularPonderaciones);
+    inputDPonderacionComponente4->Show(soloCalcularPonderaciones);
+    inputPonderacionComponente5->Show(soloCalcularPonderaciones);
+    inputDPonderacionComponente5->Show(soloCalcularPonderaciones);
+    inputPonderacionComponente6->Show(soloCalcularPonderaciones);
+    inputDPonderacionComponente6->Show(soloCalcularPonderaciones);
+    inputPonderacionComponente7->Show(soloCalcularPonderaciones);
+    inputDPonderacionComponente7->Show(soloCalcularPonderaciones);
+
+    inputPonderacionCompetencia1->Show(soloCalcularPonderaciones);
+    inputDPonderacionCompetencia1->Show(soloCalcularPonderaciones);
+    inputPonderacionCompetencia2->Show(soloCalcularPonderaciones);
+    inputDPonderacionCompetencia2->Show(soloCalcularPonderaciones);
+    inputPonderacionCompetencia3->Show(soloCalcularPonderaciones);
+    inputDPonderacionCompetencia3->Show(soloCalcularPonderaciones);
+
+    grilla_ecaes->RecalcSizes();
+    grilla_valores->RecalcSizes();
+    box_resultados->RecalcSizes();
  }
 
 
@@ -366,8 +410,7 @@ void PuntajesMinimosFrame::actualizarInterfaz(){
  }
 
  void PuntajesMinimosFrame::OnRadioBoxComparar( wxCommandEvent& event ){
-    int  i = radio_comparacion->GetSelection();
-    std::cout <<"i"<<i<<std::endl;
+    actualizarInterfaz();
  }
 
 void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
