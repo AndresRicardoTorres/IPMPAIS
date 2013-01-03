@@ -420,7 +420,7 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
         return;     // the user changed idea...
 
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    ResultadoConsulta* resultado = objEstudiantes->selectAll("*",filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
+    ResultadoConsulta* resultado = objEstudiantes->selectAll("*",filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas,true);
 
     std::stringstream contenido;
 
@@ -560,8 +560,8 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
         return;
 
     bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica) */
-
-    AdmisionesUnivalle admisionesUnivalle(getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
+    bool ECAESoRegistro = radio_comparacion->GetSelection() != 0;
+    AdmisionesUnivalle admisionesUnivalle(ECAESoRegistro,getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
 
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
 
@@ -672,25 +672,28 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
       ponderacionesPromedio[i]=ponderacionesPromedio[i]*100/suma;
       ponderacionesDesviacionTipica[i]=ponderacionesDesviacionTipica[i]*100/suma;
     }
+    if(ECAESoRegistro){
+        inputPuntajeCompetencia1->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
 
-    inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
-    inputPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[1]));
-    inputPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[2]));
-    inputPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[3]));
-    inputPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[4]));
-    inputPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[5]));
-    inputPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[6]));
+    }else{
+        inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
+        inputPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[1]));
+        inputPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[2]));
+        inputPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[3]));
+        inputPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[4]));
+        inputPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[5]));
+        inputPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[6]));
 
-    inputDPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[0]));
-    inputDPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[1]));
-    inputDPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[2]));
-    inputDPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[3]));
-    inputDPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[4]));
-    inputDPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[5]));
-    inputDPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[6]));
+        inputDPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[0]));
+        inputDPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[1]));
+        inputDPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[2]));
+        inputDPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[3]));
+        inputDPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[4]));
+        inputDPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[5]));
+        inputDPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[6]));
 
-    inputPromedio->SetValue(wxString::Format(wxT("%f"),aptitudPromedio));
-    inputDesviacionPromedio->SetValue(wxString::Format(wxT("%f"),aptitudDesviacionTipica));
-
+        inputPromedio->SetValue(wxString::Format(wxT("%f"),aptitudPromedio));
+        inputDesviacionPromedio->SetValue(wxString::Format(wxT("%f"),aptitudDesviacionTipica));
+    }
     boton_guardarCSV->Enable(true);
 }

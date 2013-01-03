@@ -10,17 +10,26 @@
 
 #include "admisionesunivalle.h"
 
-AdmisionesUnivalle::AdmisionesUnivalle(const char* conn,int filtro_anno_inicio,int filtro_anno_final,std::string listadoAsignaturas)
+AdmisionesUnivalle::AdmisionesUnivalle(bool ECAESoRegistro,const char* conn,int filtro_anno_inicio,int filtro_anno_final,std::string listadoAsignaturas)
 {
+    unsigned int limite = 0;
   EstudianteDAO *objEstudiantes = new EstudianteDAO(conn);
-  resultadosICFES = objEstudiantes->getPuntajesICFES(filtro_anno_inicio,filtro_anno_final,listadoAsignaturas);
+  if(ECAESoRegistro)
+  {
+      limite=10;
+    resultadosICFES = objEstudiantes->getPuntajesECAES(filtro_anno_inicio,filtro_anno_final,listadoAsignaturas);
+  }else{
+      limite=7;
+    resultadosICFES = objEstudiantes->getPuntajesICFES(filtro_anno_inicio,filtro_anno_final,listadoAsignaturas);
+  }
+
   delete objEstudiantes;
 
 // 2012-10-21: Modificado por Angel
   std::vector<std::pair<unsigned int,double> > vectorTemporal;  // indiceEnResultadosICFES, puntajeDeUnaComponenteICFES
   setlocale(LC_ALL,"C"); ///Para el separador decimal
 
-  for(unsigned int j=0;j<7;j++)
+  for(unsigned int j=0;j<limite;j++)
   {
     for(unsigned int i=0; i<resultadosICFES->size(); i++)
     {

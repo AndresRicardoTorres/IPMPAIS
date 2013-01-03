@@ -383,7 +383,7 @@ std::string EstudianteDAO::insertarPuntajesECAES(encabezadoCSV encabezados,datos
 
 listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
 {
-    ResultadoConsulta *resultado = selectAll("codigo",fecha_inicio,fecha_final,listadoAsignaturas);
+    ResultadoConsulta *resultado = selectAll("codigo",fecha_inicio,fecha_final,listadoAsignaturas,true);
 
     listaCSV *listadoCodigoEstudiantes = new listaCSV;
     for(unsigned int i=0;i<resultado->size();i++)
@@ -398,10 +398,15 @@ listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio
 
 puntajesICFES * EstudianteDAO::getPuntajesICFES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
 {
-    return selectAll("codigo,len,mat,fil,bio,qui,fis, CASE WHEN cis IS NULL THEN (geo+his)/2 ELSE cis END as cis",fecha_inicio,fecha_final,listadoAsignaturas);
+    return selectAll("codigo,len,mat,fil,bio,qui,fis, CASE WHEN cis IS NULL THEN (geo+his)/2 ELSE cis END as cis",fecha_inicio,fecha_final,listadoAsignaturas,true);
 }
 
-ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inicio,int fecha_final,std::string listadoAsignaturas){
+puntajesICFES * EstudianteDAO::getPuntajesECAES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
+{
+    return selectAll("codigo,componente1,componente2,componente3,componente4,componente5,componente6,componente7,competencia1,competencia2,competencia3",fecha_inicio,fecha_final,listadoAsignaturas,false);
+}
+
+ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inicio,int fecha_final,std::string listadoAsignaturas,bool ICFESoECAES){
 
     PG *objPg = new PG(conexion.c_str());
 
@@ -424,7 +429,11 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
         ss<<" WHERE  cantidad = "<<cantidadComas;
     }
 
-    ss<<") as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL AND (cis IS NOT NULL OR (his IS NOT NULL AND geo IS NOT NULL))";
+    if(ICFESoECAES){
+        ss<<") as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL AND (cis IS NOT NULL OR (his IS NOT NULL AND geo IS NOT NULL))";
+    }else{
+        ss<<") as subconsulta ON (codigo_estudiante = codigo) WHERE componente1 IS NOT NULL";
+    }
 
 
     if(fecha_inicio > 0)

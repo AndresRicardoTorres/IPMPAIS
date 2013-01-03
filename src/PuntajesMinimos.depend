@@ -3018,10 +3018,10 @@
 1357167371 source:/home/andresrtm/Documents/IPMPAIS/src/EquivalenciaDAO.cpp
 	"EquivalenciaDAO.h"
 
-1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/EstudianteDAO.cpp
+1357193117 source:/home/andresrtm/Documents/IPMPAIS/src/EstudianteDAO.cpp
 	"EstudianteDAO.h"
 
-1356114671 /home/andresrtm/Documents/IPMPAIS/src/EstudianteDAO.h
+1357192991 /home/andresrtm/Documents/IPMPAIS/src/EstudianteDAO.h
 	"DAO.h"
 	"PG.h"
 	"LeerCSV.h"
@@ -3030,7 +3030,7 @@
 	"CalificacionDAO.h"
 	"admisionesunivalle.h"
 
-1356114671 /home/andresrtm/Documents/IPMPAIS/src/admisionesunivalle.h
+1357190152 /home/andresrtm/Documents/IPMPAIS/src/admisionesunivalle.h
 	<vector>
 	<queue>
 	"EstudianteDAO.h"
@@ -3143,12 +3143,12 @@
 	<map>
 	<vector>
 
-1357188811 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
+1357193523 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>
 
-1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/admisionesunivalle.cpp
+1357193195 source:/home/andresrtm/Documents/IPMPAIS/src/admisionesunivalle.cpp
 	"admisionesunivalle.h"
 
 1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/algoritmogenetico.cpp
