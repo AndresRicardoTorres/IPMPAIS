@@ -72,6 +72,7 @@ class PuntajesMinimosFrame: public GUIFrame
         string limpiarString(string str);
         string encriptar(string in);
 
+        virtual void OnRadioBoxComparar( wxCommandEvent& event );
         virtual void OnClose(wxCloseEvent& event);
         virtual void OnQuit(wxCommandEvent& event);
         virtual void OnAbout(wxCommandEvent& event);

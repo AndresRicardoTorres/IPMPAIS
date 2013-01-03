@@ -46,6 +46,8 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
 
 #endif
     //grilla_puntajes_minimos->Show(false);
+
+    //grilla_ecaes->Show(false);
 }
 
 const char* PuntajesMinimosFrame::getInformacionConexion(){
@@ -361,6 +363,11 @@ void PuntajesMinimosFrame::actualizarInterfaz(){
 
  void PuntajesMinimosFrame::mostar_puntajes_minimos( wxCommandEvent& event ){
     actualizarInterfaz();
+ }
+
+ void PuntajesMinimosFrame::OnRadioBoxComparar( wxCommandEvent& event ){
+    int  i = radio_comparacion->GetSelection();
+    std::cout <<"i"<<i<<std::endl;
  }
 
 void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){

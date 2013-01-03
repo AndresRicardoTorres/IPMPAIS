@@ -119,6 +119,50 @@ class GUIFrame : public wxFrame
 		wxStaticText* m_staticText13;
 		wxTextCtrl* inputPromedio;
 		wxTextCtrl* inputDesviacionPromedio;
+		wxGridSizer* grilla_ecaes;
+		wxStaticText* input_vacio1;
+		wxStaticText* input_peso1;
+		wxStaticText* input_d_peso1;
+		wxStaticText* input_puntaje1;
+		wxStaticText* input_d_puntaje1;
+		wxStaticText* input_lenguaje1;
+		wxTextCtrl* inputPuntajeLenguaje1;
+		wxTextCtrl* inputDPuntajeLenguaje1;
+		wxTextCtrl* inputPonderacionLenguaje1;
+		wxTextCtrl* inputDPonderacionLenguaje1;
+		wxStaticText* input_matematica1;
+		wxTextCtrl* inputPuntajeMatematica1;
+		wxTextCtrl* inputDPuntajeMatematica1;
+		wxTextCtrl* inputPonderacionMatematica1;
+		wxTextCtrl* inputDPonderacionMatematica1;
+		wxStaticText* input_ciencias_sociales1;
+		wxTextCtrl* inputPuntajeSociales1;
+		wxTextCtrl* inputDPuntajeSociales1;
+		wxTextCtrl* inputPonderacionSociales1;
+		wxTextCtrl* inputDPonderacionSociales1;
+		wxStaticText* input_filosofia1;
+		wxTextCtrl* inputPuntajeFilosofia1;
+		wxTextCtrl* inputDPuntajeFilosofia1;
+		wxTextCtrl* inputPonderacionFilosofia1;
+		wxTextCtrl* inputDPonderacionFilosofia1;
+		wxStaticText* input_biologia1;
+		wxTextCtrl* inputPuntajeBiologia1;
+		wxTextCtrl* inputDPuntajeBiologia1;
+		wxTextCtrl* inputPonderacionBiologia1;
+		wxTextCtrl* inputDPonderacionBiologia1;
+		wxStaticText* input_quimica1;
+		wxTextCtrl* inputPuntajeQuimica1;
+		wxTextCtrl* inputDPuntajeQuimica1;
+		wxTextCtrl* inputPonderacionQuimica1;
+		wxTextCtrl* inputDPonderacionQuimica1;
+		wxStaticText* input_fisica1;
+		wxTextCtrl* inputPuntajeFisica1;
+		wxTextCtrl* inputDPuntajeFisica1;
+		wxTextCtrl* inputPonderacionFisica1;
+		wxTextCtrl* inputDPonderacionFisica1;
+		wxStaticText* m_staticText131;
+		wxTextCtrl* inputPromedio1;
+		wxTextCtrl* inputDesviacionPromedio1;
 		wxButton* boton_guardarCSV;
 		wxButton* button_guardar_datos;
 		
@@ -132,6 +176,7 @@ class GUIFrame : public wxFrame
 		virtual void cargarInformacionEquivalencias( wxCommandEvent& event ) { event.Skip(); }
 		virtual void cargarInformacionRegistroAcademico( wxCommandEvent& event ) { event.Skip(); }
 		virtual void cargarInformacionECAES( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnRadioBoxComparar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroFechaInicio( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroFechaFin( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroAsignaturas( wxCommandEvent& event ) { event.Skip(); }
