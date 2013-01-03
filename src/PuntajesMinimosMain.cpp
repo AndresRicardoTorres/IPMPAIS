@@ -123,14 +123,6 @@ void PuntajesMinimosFrame::OnQuit(wxCommandEvent &event)
     Destroy();
 }
 
-void PuntajesMinimosFrame::OnPaint( wxPaintEvent& event )
-{
-    wxPaintDC dc(panel_grafico);
-
-    //dc.DrawText(wxT("Лев Николaевич Толстoй"), 40, 60);
-    //dc.DrawText(wxT("Анна Каренина"), 70, 80);
-}
-
 void PuntajesMinimosFrame::OnAbout(wxCommandEvent &event)
 {
 //    wxString msg = wxbuildinfo(long_f);
@@ -300,9 +292,6 @@ void PuntajesMinimosFrame::cargarInformacionECAES( wxCommandEvent& event )
 }
 
 
-void PuntajesMinimosFrame::OnRadioBoxFiltroCompletitud( wxCommandEvent& event ){
-    filtro_completitud_datos = radioBox_filtro_completitud->GetSelection();
-}
 
 void PuntajesMinimosFrame::actualizarCantidadMuestra(){
    ///Consulto cuantos estudiantes hay actualmente para tener actualizado al usuario

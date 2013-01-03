@@ -26,8 +26,8 @@
 #include <wx/radiobox.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
-#include <wx/checkbox.h>
 #include <wx/valgen.h>
+#include <wx/checkbox.h>
 #include <wx/notebook.h>
 #include <wx/frame.h>
 
@@ -63,23 +63,17 @@ class GUIFrame : public wxFrame
 		wxGauge* progresoRegistro;
 		wxButton* m_button13;
 		wxGauge* progresoECAES;
-		wxPanel* panel_filtros;
-		wxRadioBox* radioBox_filtro_completitud;
+		wxPanel* panel_resultados;
+		wxRadioBox* radio_comparacion;
 		wxStaticText* m_staticText1;
 		wxTextCtrl* input_fecha_desde;
 		wxStaticText* m_staticText2;
 		wxTextCtrl* input_fecha_hasta;
-		wxTextCtrl* input_asignaturas;
-		wxButton* button_seleccionar_asignaturas;
-		wxPanel* m_panel5;
-		wxButton* button_guardar_datos;
-		wxPanel* panel_grafico;
-		wxPanel* panel_resultados;
-		wxRadioBox* radio_comparacion;
 		wxStaticText* label_cantidad;
-		wxCheckBox* check_mostrar_puntajes_minimos;
+		wxTextCtrl* input_asignaturas;
 		wxStaticText* m_staticText16;
 		wxTextCtrl* input_numero_iteraciones;
+		wxCheckBox* check_mostrar_puntajes_minimos;
 		wxButton* boton_buscar;
 		wxGridSizer* grilla_valores;
 		wxStaticText* input_vacio;
@@ -126,6 +120,7 @@ class GUIFrame : public wxFrame
 		wxTextCtrl* inputPromedio;
 		wxTextCtrl* inputDesviacionPromedio;
 		wxButton* boton_guardarCSV;
+		wxButton* button_guardar_datos;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
@@ -137,21 +132,18 @@ class GUIFrame : public wxFrame
 		virtual void cargarInformacionEquivalencias( wxCommandEvent& event ) { event.Skip(); }
 		virtual void cargarInformacionRegistroAcademico( wxCommandEvent& event ) { event.Skip(); }
 		virtual void cargarInformacionECAES( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnRadioBoxFiltroCompletitud( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroFechaInicio( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroFechaFin( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroAsignaturas( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnButtonSeleccionarAsignaturas( wxCommandEvent& event ) { event.Skip(); }
-		virtual void GuardarDatosCSV( wxCommandEvent& event ) { event.Skip(); }
-		virtual void OnPaint( wxPaintEvent& event ) { event.Skip(); }
 		virtual void mostar_puntajes_minimos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void BotonBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void BotonGuardarResultados( wxCommandEvent& event ) { event.Skip(); }
+		virtual void GuardarDatosCSV( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
 		
-		GUIFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Determinador de puntajes minimos "), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 800,600 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
+		GUIFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Determinador de puntajes minimos "), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1024,768 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		~GUIFrame();
 	
 };

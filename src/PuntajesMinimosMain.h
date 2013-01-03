@@ -76,13 +76,11 @@ class PuntajesMinimosFrame: public GUIFrame
         virtual void OnQuit(wxCommandEvent& event);
         virtual void OnAbout(wxCommandEvent& event);
         virtual void OnBDConfig( wxCommandEvent& event );
-        virtual void OnPaint( wxPaintEvent& event );
         virtual void cargarInformacionAdmisiones( wxCommandEvent& event );
         virtual void CagarPuntajesICFES( wxCommandEvent& event );
 		virtual void cargarInformacionEquivalencias( wxCommandEvent& event );
 		virtual void cargarInformacionRegistroAcademico( wxCommandEvent& event );
 		virtual void cargarInformacionECAES( wxCommandEvent& event );
-		virtual void OnRadioBoxFiltroCompletitud( wxCommandEvent& event );
 		virtual void BotonBuscar( wxCommandEvent& event );
 		virtual void BotonGuardarResultados( wxCommandEvent& event );
 		virtual void GuardarDatosCSV( wxCommandEvent& event );

@@ -119,98 +119,63 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	panel_lectura->Layout();
 	bSizer2->Fit( panel_lectura );
 	m_notebook1->AddPage( panel_lectura, wxT("Lectura de datos"), false );
-	panel_filtros = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxBoxSizer* bSizer3;
-	bSizer3 = new wxBoxSizer( wxVERTICAL );
-	
-	wxString radioBox_filtro_completitudChoices[] = { wxT("Todos los datos"), wxT("Datos completos"), wxT("Datos incompletos") };
-	int radioBox_filtro_completitudNChoices = sizeof( radioBox_filtro_completitudChoices ) / sizeof( wxString );
-	radioBox_filtro_completitud = new wxRadioBox( panel_filtros, wxID_ANY, wxT("Completitud de los datos"), wxDefaultPosition, wxDefaultSize, radioBox_filtro_completitudNChoices, radioBox_filtro_completitudChoices, 1, wxRA_SPECIFY_COLS );
-	radioBox_filtro_completitud->SetSelection( 0 );
-	radioBox_filtro_completitud->Enable( false );
-	
-	bSizer3->Add( radioBox_filtro_completitud, 0, wxALL|wxEXPAND, 10 );
-	
-	wxStaticBoxSizer* sbSizer12;
-	sbSizer12 = new wxStaticBoxSizer( new wxStaticBox( panel_filtros, wxID_ANY, wxT("Rango de años") ), wxVERTICAL );
-	
-	wxGridSizer* gSizer1;
-	gSizer1 = new wxGridSizer( 1, 4, 0, 0 );
-	
-	m_staticText1 = new wxStaticText( panel_filtros, wxID_ANY, wxT("Desde:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText1->Wrap( -1 );
-	gSizer1->Add( m_staticText1, 0, wxALIGN_CENTER|wxALL, 5 );
-	
-	input_fecha_desde = new wxTextCtrl( panel_filtros, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	input_fecha_desde->SetMaxLength( 4 ); 
-	gSizer1->Add( input_fecha_desde, 0, wxALIGN_CENTER|wxALL, 5 );
-	
-	m_staticText2 = new wxStaticText( panel_filtros, wxID_ANY, wxT("Hasta:"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText2->Wrap( -1 );
-	gSizer1->Add( m_staticText2, 0, wxALIGN_CENTER|wxALL, 5 );
-	
-	input_fecha_hasta = new wxTextCtrl( panel_filtros, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	gSizer1->Add( input_fecha_hasta, 0, wxALIGN_CENTER|wxALL, 5 );
-	
-	sbSizer12->Add( gSizer1, 1, 0, 5 );
-	
-	bSizer3->Add( sbSizer12, 0, wxALL|wxEXPAND, 5 );
-	
-	wxStaticBoxSizer* sbSizer14;
-	sbSizer14 = new wxStaticBoxSizer( new wxStaticBox( panel_filtros, wxID_ANY, wxT("Lista de asignaturas") ), wxVERTICAL );
-	
-	wxFlexGridSizer* fgSizer1;
-	fgSizer1 = new wxFlexGridSizer( 2, 2, 0, 0 );
-	fgSizer1->SetFlexibleDirection( wxBOTH );
-	fgSizer1->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
-	
-	input_asignaturas = new wxTextCtrl( panel_filtros, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 540,-1 ), 0 );
-	fgSizer1->Add( input_asignaturas, 5, wxALL, 5 );
-	
-	button_seleccionar_asignaturas = new wxButton( panel_filtros, wxID_ANY, wxT("Seleccionar Asignaturas ..."), wxDefaultPosition, wxDefaultSize, 0 );
-	button_seleccionar_asignaturas->Hide();
-	
-	fgSizer1->Add( button_seleccionar_asignaturas, 1, wxALL, 5 );
-	
-	sbSizer14->Add( fgSizer1, 1, wxEXPAND, 5 );
-	
-	bSizer3->Add( sbSizer14, 0, wxALL|wxEXPAND, 5 );
-	
-	m_panel5 = new wxPanel( panel_filtros, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	bSizer3->Add( m_panel5, 1, wxEXPAND | wxALL, 5 );
-	
-	button_guardar_datos = new wxButton( panel_filtros, wxID_ANY, wxT("Guardar datos aplicando filtos ..."), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer3->Add( button_guardar_datos, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	panel_filtros->SetSizer( bSizer3 );
-	panel_filtros->Layout();
-	bSizer3->Fit( panel_filtros );
-	m_notebook1->AddPage( panel_filtros, wxT("Filtros de información"), true );
-	panel_grafico = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	panel_grafico->Hide();
-	
-	m_notebook1->AddPage( panel_grafico, wxT("Grafico"), false );
 	panel_resultados = new wxPanel( m_notebook1, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	wxStaticBoxSizer* sbSizer8;
-	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Ponderaciones recomendadas") ), wxVERTICAL );
+	wxBoxSizer* bSizer5;
+	bSizer5 = new wxBoxSizer( wxVERTICAL );
 	
-	wxString radio_comparacionChoices[] = { wxT("ICFES con asignaturas"), wxT("ICFES con ECAES"), wxT("asignaturas con ECAES") };
+	wxString radio_comparacionChoices[] = { wxT("ICFES con asignaturas"), wxT("ICFES con ECAES") };
 	int radio_comparacionNChoices = sizeof( radio_comparacionChoices ) / sizeof( wxString );
 	radio_comparacion = new wxRadioBox( panel_resultados, wxID_ANY, wxT("Comparar ..."), wxDefaultPosition, wxDefaultSize, radio_comparacionNChoices, radio_comparacionChoices, 1, wxRA_SPECIFY_ROWS );
 	radio_comparacion->SetSelection( 0 );
-	radio_comparacion->Enable( false );
+	bSizer5->Add( radio_comparacion, 0, wxALL, 5 );
 	
-	sbSizer8->Add( radio_comparacion, 0, wxALL, 5 );
+	wxStaticBoxSizer* sbSizer9;
+	sbSizer9 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Filtros") ), wxVERTICAL );
+	
+	wxStaticBoxSizer* sbSizer12;
+	sbSizer12 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Rango de años") ), wxVERTICAL );
+	
+	wxGridSizer* gSizer1;
+	gSizer1 = new wxGridSizer( 1, 5, 0, 0 );
+	
+	m_staticText1 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Desde:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText1->Wrap( -1 );
+	gSizer1->Add( m_staticText1, 0, wxALIGN_CENTER|wxALL, 5 );
+	
+	input_fecha_desde = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	input_fecha_desde->SetMaxLength( 4 ); 
+	gSizer1->Add( input_fecha_desde, 0, wxALIGN_CENTER, 5 );
+	
+	m_staticText2 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Hasta:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText2->Wrap( -1 );
+	gSizer1->Add( m_staticText2, 0, wxALIGN_CENTER|wxALL, 5 );
+	
+	input_fecha_hasta = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	gSizer1->Add( input_fecha_hasta, 0, wxALIGN_CENTER, 5 );
 	
 	label_cantidad = new wxStaticText( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	label_cantidad->Wrap( -1 );
-	sbSizer8->Add( label_cantidad, 0, wxALL, 5 );
+	gSizer1->Add( label_cantidad, 0, wxALL, 5 );
 	
-	check_mostrar_puntajes_minimos = new wxCheckBox( panel_resultados, wxID_ANY, wxT("Mostrar puntajes minimos"), wxDefaultPosition, wxDefaultSize, 0 );
-	sbSizer8->Add( check_mostrar_puntajes_minimos, 0, wxALL, 5 );
+	sbSizer12->Add( gSizer1, 1, 0, 5 );
+	
+	sbSizer9->Add( sbSizer12, 0, wxALL|wxEXPAND, 5 );
+	
+	wxStaticBoxSizer* sbSizer14;
+	sbSizer14 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Lista de asignaturas") ), wxVERTICAL );
+	
+	input_asignaturas = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 540,-1 ), 0 );
+	sbSizer14->Add( input_asignaturas, 5, wxEXPAND, 5 );
+	
+	sbSizer9->Add( sbSizer14, 0, wxALL|wxEXPAND, 5 );
+	
+	bSizer5->Add( sbSizer9, 0, wxEXPAND, 5 );
+	
+	wxStaticBoxSizer* sbSizer8;
+	sbSizer8 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Ponderaciones recomendadas") ), wxVERTICAL );
 	
 	wxGridSizer* gSizer51;
-	gSizer51 = new wxGridSizer( 1, 2, 0, 0 );
+	gSizer51 = new wxGridSizer( 1, 4, 0, 0 );
 	
 	m_staticText16 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Numero de iteraciones : "), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText16->Wrap( -1 );
@@ -219,12 +184,15 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	input_numero_iteraciones = new wxTextCtrl( panel_resultados, wxID_ANY, wxT("5"), wxDefaultPosition, wxDefaultSize, wxTE_CENTRE );
 	gSizer51->Add( input_numero_iteraciones, 0, wxALL, 5 );
 	
-	sbSizer8->Add( gSizer51, 0, 0, 5 );
+	check_mostrar_puntajes_minimos = new wxCheckBox( panel_resultados, wxID_ANY, wxT("Mostrar puntajes minimos"), wxDefaultPosition, wxDefaultSize, 0 );
+	gSizer51->Add( check_mostrar_puntajes_minimos, 0, wxALL, 5 );
 	
 	boton_buscar = new wxButton( panel_resultados, wxID_ANY, wxT("Buscar ..."), wxDefaultPosition, wxDefaultSize, 0 );
 	boton_buscar->Enable( false );
 	
-	sbSizer8->Add( boton_buscar, 0, wxALIGN_LEFT|wxALL, 5 );
+	gSizer51->Add( boton_buscar, 0, wxALIGN_LEFT|wxALL, 5 );
+	
+	sbSizer8->Add( gSizer51, 0, 0, 5 );
 	
 	grilla_valores = new wxGridSizer( 9, 5, 2, 0 );
 	
@@ -372,15 +340,25 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	sbSizer8->Add( grilla_valores, 1, wxALIGN_RIGHT|wxEXPAND, 5 );
 	
+	bSizer5->Add( sbSizer8, 3, wxEXPAND, 5 );
+	
+	wxGridSizer* gSizer4;
+	gSizer4 = new wxGridSizer( 2, 2, 0, 0 );
+	
 	boton_guardarCSV = new wxButton( panel_resultados, wxID_ANY, wxT("Guardar ..."), wxDefaultPosition, wxDefaultSize, 0 );
 	boton_guardarCSV->Enable( false );
 	
-	sbSizer8->Add( boton_guardarCSV, 0, wxALL, 5 );
+	gSizer4->Add( boton_guardarCSV, 0, wxALL, 5 );
 	
-	panel_resultados->SetSizer( sbSizer8 );
+	button_guardar_datos = new wxButton( panel_resultados, wxID_ANY, wxT("Guardar datos aplicando filtos ..."), wxDefaultPosition, wxDefaultSize, 0 );
+	gSizer4->Add( button_guardar_datos, 0, wxALIGN_RIGHT|wxALL, 5 );
+	
+	bSizer5->Add( gSizer4, 0, wxEXPAND, 5 );
+	
+	panel_resultados->SetSizer( bSizer5 );
 	panel_resultados->Layout();
-	sbSizer8->Fit( panel_resultados );
-	m_notebook1->AddPage( panel_resultados, wxT("Resultados"), false );
+	bSizer5->Fit( panel_resultados );
+	m_notebook1->AddPage( panel_resultados, wxT("Resultados"), true );
 	
 	bSizer1->Add( m_notebook1, 1, wxEXPAND | wxALL, 5 );
 	
@@ -397,16 +375,13 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	m_button11->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::cargarInformacionEquivalencias ), NULL, this );
 	m_button12->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::cargarInformacionRegistroAcademico ), NULL, this );
 	m_button13->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::cargarInformacionECAES ), NULL, this );
-	radioBox_filtro_completitud->Connect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( GUIFrame::OnRadioBoxFiltroCompletitud ), NULL, this );
 	input_fecha_desde->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaInicio ), NULL, this );
 	input_fecha_hasta->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaFin ), NULL, this );
 	input_asignaturas->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroAsignaturas ), NULL, this );
-	button_seleccionar_asignaturas->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::OnButtonSeleccionarAsignaturas ), NULL, this );
-	button_guardar_datos->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::GuardarDatosCSV ), NULL, this );
-	panel_grafico->Connect( wxEVT_PAINT, wxPaintEventHandler( GUIFrame::OnPaint ), NULL, this );
 	check_mostrar_puntajes_minimos->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIFrame::mostar_puntajes_minimos ), NULL, this );
 	boton_buscar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
 	boton_guardarCSV->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonGuardarResultados ), NULL, this );
+	button_guardar_datos->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::GuardarDatosCSV ), NULL, this );
 }
 
 GUIFrame::~GUIFrame()
@@ -421,14 +396,11 @@ GUIFrame::~GUIFrame()
 	m_button11->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::cargarInformacionEquivalencias ), NULL, this );
 	m_button12->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::cargarInformacionRegistroAcademico ), NULL, this );
 	m_button13->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::cargarInformacionECAES ), NULL, this );
-	radioBox_filtro_completitud->Disconnect( wxEVT_COMMAND_RADIOBOX_SELECTED, wxCommandEventHandler( GUIFrame::OnRadioBoxFiltroCompletitud ), NULL, this );
 	input_fecha_desde->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaInicio ), NULL, this );
 	input_fecha_hasta->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaFin ), NULL, this );
 	input_asignaturas->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroAsignaturas ), NULL, this );
-	button_seleccionar_asignaturas->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::OnButtonSeleccionarAsignaturas ), NULL, this );
-	button_guardar_datos->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::GuardarDatosCSV ), NULL, this );
-	panel_grafico->Disconnect( wxEVT_PAINT, wxPaintEventHandler( GUIFrame::OnPaint ), NULL, this );
 	check_mostrar_puntajes_minimos->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIFrame::mostar_puntajes_minimos ), NULL, this );
 	boton_buscar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
 	boton_guardarCSV->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonGuardarResultados ), NULL, this );
+	button_guardar_datos->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::GuardarDatosCSV ), NULL, this );
 }
