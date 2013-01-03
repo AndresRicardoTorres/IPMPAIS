@@ -3045,7 +3045,7 @@
 1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/GUIDialogoAsignaturas.cpp
 	"GUIDialogoAsignaturas.h"
 
-1357172253 source:/home/andresrtm/Documents/IPMPAIS/src/GUIFrame.cpp
+1357178744 source:/home/andresrtm/Documents/IPMPAIS/src/GUIFrame.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"

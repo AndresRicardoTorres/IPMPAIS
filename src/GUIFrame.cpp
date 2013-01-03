@@ -125,7 +125,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	wxString radio_comparacionChoices[] = { wxT("ICFES con asignaturas"), wxT("ICFES con ECAES") };
 	int radio_comparacionNChoices = sizeof( radio_comparacionChoices ) / sizeof( wxString );
-	radio_comparacion = new wxRadioBox( panel_resultados, wxID_ANY, wxT("Comparar ..."), wxDefaultPosition, wxDefaultSize, radio_comparacionNChoices, radio_comparacionChoices, 1, wxRA_SPECIFY_ROWS );
+	radio_comparacion = new wxRadioBox( panel_resultados, wxID_ANY, wxT("Modo de compararción"), wxDefaultPosition, wxDefaultSize, radio_comparacionNChoices, radio_comparacionChoices, 1, wxRA_SPECIFY_ROWS );
 	radio_comparacion->SetSelection( 0 );
 	bSizer5->Add( radio_comparacion, 0, wxALL, 5 );
 	
@@ -134,6 +134,9 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	wxStaticBoxSizer* sbSizer12;
 	sbSizer12 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Rango de años") ), wxVERTICAL );
+	
+	wxGridSizer* gSizer5;
+	gSizer5 = new wxGridSizer( 2, 2, 0, 0 );
 	
 	wxGridSizer* gSizer1;
 	gSizer1 = new wxGridSizer( 1, 5, 0, 0 );
@@ -153,11 +156,13 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	input_fecha_hasta = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	gSizer1->Add( input_fecha_hasta, 0, wxALIGN_CENTER, 5 );
 	
+	gSizer5->Add( gSizer1, 1, 0, 5 );
+	
 	label_cantidad = new wxStaticText( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 	label_cantidad->Wrap( -1 );
-	gSizer1->Add( label_cantidad, 0, wxALL, 5 );
+	gSizer5->Add( label_cantidad, 0, wxALL, 5 );
 	
-	sbSizer12->Add( gSizer1, 1, 0, 5 );
+	sbSizer12->Add( gSizer5, 1, wxEXPAND, 5 );
 	
 	sbSizer9->Add( sbSizer12, 0, wxALL|wxEXPAND, 5 );
 	
