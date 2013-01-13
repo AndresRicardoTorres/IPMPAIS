@@ -3045,12 +3045,12 @@
 1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/GUIDialogoAsignaturas.cpp
 	"GUIDialogoAsignaturas.h"
 
-1357188169 source:/home/andresrtm/Documents/IPMPAIS/src/GUIFrame.cpp
+1358033537 source:/home/andresrtm/Documents/IPMPAIS/src/GUIFrame.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"
 
-1357188169 /home/andresrtm/Documents/IPMPAIS/src/GUIFrame.h
+1358033537 /home/andresrtm/Documents/IPMPAIS/src/GUIFrame.h
 	<wx/string.h>
 	<wx/bitmap.h>
 	<wx/image.h>
@@ -3143,7 +3143,7 @@
 	<map>
 	<vector>
 
-1357193523 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
+1358033514 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>

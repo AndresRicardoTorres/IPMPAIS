@@ -98,6 +98,8 @@ class PuntajesMinimosFrame: public GUIFrame
 		virtual void actualizarFiltroAsignaturas( wxCommandEvent& event );
 		void actualizarInterfaz();
 
+		virtual void seleccionarComponentesYCompetencias( wxCommandEvent& event );
+
 };
 
 #endif // PUNTAJESMINIMOSMAIN_H

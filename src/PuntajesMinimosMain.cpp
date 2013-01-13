@@ -335,17 +335,25 @@ void PuntajesMinimosFrame::actualizarFiltroAsignaturas( wxCommandEvent& event ) 
     actualizarCantidadMuestra();
 }
 
+void PuntajesMinimosFrame::seleccionarComponentesYCompetencias( wxCommandEvent& event )
+{
+
+
+}
+
 void PuntajesMinimosFrame::actualizarInterfaz(){
 
     int opcion = radio_comparacion->GetSelection();
     switch(opcion){
         case 0:
-            grilla_ecaes->Show(false);
-            grilla_valores->Show(true);
+            filtro_asignaturas->Show(true);
+            filtro_ecaes->Show(false);
+            //grilla_valores->Show(true);
         break;
         default:
-            grilla_ecaes->Show(true);
-            grilla_valores->Show(false);
+            filtro_asignaturas->Show(false);
+            filtro_ecaes->Show(true);
+            //grilla_valores->Show(false);
         break;
     }
 
@@ -375,31 +383,9 @@ void PuntajesMinimosFrame::actualizarInterfaz(){
     soloCalcularPonderaciones = check_mostrar_puntajes_minimos->IsChecked();
     if(opcion == 0) soloCalcularPonderaciones=false;
     ///Se actualizan inputs de la grilla del ECAES
-    input_puntaje1->Show(soloCalcularPonderaciones);
-    input_d_puntaje1->Show(soloCalcularPonderaciones);
-    inputPonderacionComponente1->Show(soloCalcularPonderaciones);
-    inputDPonderacionComponente1->Show(soloCalcularPonderaciones);
-    inputPonderacionComponente2->Show(soloCalcularPonderaciones);
-    inputDPonderacionComponente2->Show(soloCalcularPonderaciones);
-    inputPonderacionComponente3->Show(soloCalcularPonderaciones);
-    inputDPonderacionComponente3->Show(soloCalcularPonderaciones);
-    inputPonderacionComponente4->Show(soloCalcularPonderaciones);
-    inputDPonderacionComponente4->Show(soloCalcularPonderaciones);
-    inputPonderacionComponente5->Show(soloCalcularPonderaciones);
-    inputDPonderacionComponente5->Show(soloCalcularPonderaciones);
-    inputPonderacionComponente6->Show(soloCalcularPonderaciones);
-    inputDPonderacionComponente6->Show(soloCalcularPonderaciones);
-    inputPonderacionComponente7->Show(soloCalcularPonderaciones);
-    inputDPonderacionComponente7->Show(soloCalcularPonderaciones);
 
-    inputPonderacionCompetencia1->Show(soloCalcularPonderaciones);
-    inputDPonderacionCompetencia1->Show(soloCalcularPonderaciones);
-    inputPonderacionCompetencia2->Show(soloCalcularPonderaciones);
-    inputDPonderacionCompetencia2->Show(soloCalcularPonderaciones);
-    inputPonderacionCompetencia3->Show(soloCalcularPonderaciones);
-    inputDPonderacionCompetencia3->Show(soloCalcularPonderaciones);
 
-    grilla_ecaes->RecalcSizes();
+
     grilla_valores->RecalcSizes();
     box_resultados->RecalcSizes();
  }
@@ -673,17 +659,7 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
       ponderacionesDesviacionTipica[i]=ponderacionesDesviacionTipica[i]*100/suma;
     }
     if(ECAESoRegistro){
-        inputPuntajeComponente1->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
-        inputPuntajeComponente2->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[1]));
-        inputPuntajeComponente3->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[2]));
-        inputPuntajeComponente4->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[3]));
-        inputPuntajeComponente5->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[4]));
-        inputPuntajeComponente6->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[5]));
-        inputPuntajeComponente7->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[6]));
 
-        inputPuntajeCompetencia1->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[7]));
-        inputPuntajeCompetencia2->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[8]));
-        inputPuntajeCompetencia3->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[9]));
 
     }else{
         inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));

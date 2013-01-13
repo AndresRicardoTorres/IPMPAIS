@@ -17,7 +17,7 @@
 		<Cursor position="0" topLine="45" />
 	</File>
 	<File name="DAO.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="308" topLine="5" />
+		<Cursor position="308" topLine="0" />
 	</File>
 	<File name="DAO.h" open="0" top="0" tabpos="10">
 		<Cursor position="252" topLine="0" />
@@ -29,34 +29,28 @@
 		<Cursor position="70" topLine="0" />
 	</File>
 	<File name="EquivalenciaDAO.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="349" topLine="6" />
+		<Cursor position="1595" topLine="0" />
 	</File>
 	<File name="EquivalenciaDAO.h" open="0" top="0" tabpos="9">
-		<Cursor position="547" topLine="0" />
+		<Cursor position="99" topLine="0" />
 	</File>
-	<File name="EstudianteDAO.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="17054" topLine="364" />
+	<File name="EstudianteDAO.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="19716" topLine="463" />
 	</File>
-	<File name="EstudianteDAO.h" open="0" top="0" tabpos="2">
-		<Cursor position="701" topLine="0" />
+	<File name="EstudianteDAO.h" open="0" top="0" tabpos="5">
+		<Cursor position="1424" topLine="6" />
 	</File>
 	<File name="GUIFrame.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="15092" topLine="261" />
+		<Cursor position="21526" topLine="390" />
 	</File>
 	<File name="GUIFrame.h" open="0" top="0" tabpos="5">
-		<Cursor position="3113" topLine="67" />
-	</File>
-	<File name="LeeYaml.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1558" topLine="0" />
-	</File>
-	<File name="LeeYaml.h" open="0" top="0" tabpos="0">
-		<Cursor position="216" topLine="0" />
+		<Cursor position="5004" topLine="120" />
 	</File>
 	<File name="LeerCSV.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="545" topLine="14" />
+		<Cursor position="667" topLine="46" />
 	</File>
 	<File name="LeerCSV.h" open="0" top="0" tabpos="8">
-		<Cursor position="250" topLine="0" />
+		<Cursor position="289" topLine="0" />
 	</File>
 	<File name="PG.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="1135" topLine="49" />
@@ -67,17 +61,17 @@
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="1" top="1" tabpos="0">
-		<Cursor position="25558" topLine="184" />
+	<File name="PuntajesMinimosMain.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="11275" topLine="39" />
 	</File>
-	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="4">
-		<Cursor position="2546" topLine="66" />
+	<File name="PuntajesMinimosMain.h" open="1" top="0" tabpos="2">
+		<Cursor position="3144" topLine="74" />
 	</File>
-	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="460" topLine="0" />
+	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="985" topLine="11" />
 	</File>
-	<File name="admisionesunivalle.h" open="0" top="0" tabpos="7">
-		<Cursor position="1487" topLine="13" />
+	<File name="admisionesunivalle.h" open="0" top="0" tabpos="3">
+		<Cursor position="1711" topLine="43" />
 	</File>
 	<File name="algoritmogenetico.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="1006" topLine="72" />
@@ -92,7 +86,7 @@
 		<Cursor position="0" topLine="8" />
 	</File>
 	<File name="fenotipoipmpais.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="659" topLine="17" />
+		<Cursor position="562" topLine="5" />
 	</File>
 	<File name="fenotipoipmpais.h" open="0" top="0" tabpos="9">
 		<Cursor position="1774" topLine="42" />

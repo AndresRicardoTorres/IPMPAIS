@@ -71,7 +71,11 @@ class GUIFrame : public wxFrame
 		wxStaticText* m_staticText2;
 		wxTextCtrl* input_fecha_hasta;
 		wxStaticText* label_cantidad;
+		wxStaticBoxSizer* filtro_asignaturas;
 		wxTextCtrl* input_asignaturas;
+		wxStaticBoxSizer* filtro_ecaes;
+		wxStaticText* label_componentes_seleccionados;
+		wxButton* m_button9;
 		wxStaticText* m_staticText16;
 		wxTextCtrl* input_numero_iteraciones;
 		wxCheckBox* check_mostrar_puntajes_minimos;
@@ -120,65 +124,6 @@ class GUIFrame : public wxFrame
 		wxStaticText* m_staticText13;
 		wxTextCtrl* inputPromedio;
 		wxTextCtrl* inputDesviacionPromedio;
-		wxGridSizer* grilla_ecaes;
-		wxStaticText* input_vacio1;
-		wxStaticText* input_peso1;
-		wxStaticText* input_d_peso1;
-		wxStaticText* input_puntaje1;
-		wxStaticText* input_d_puntaje1;
-		wxStaticText* input_componente1;
-		wxTextCtrl* inputPuntajeComponente1;
-		wxTextCtrl* inputDPuntajeComponente1;
-		wxTextCtrl* inputPonderacionComponente1;
-		wxTextCtrl* inputDPonderacionComponente1;
-		wxStaticText* input_componente2;
-		wxTextCtrl* inputPuntajeComponente2;
-		wxTextCtrl* inputDPuntajeComponente2;
-		wxTextCtrl* inputPonderacionComponente2;
-		wxTextCtrl* inputDPonderacionComponente2;
-		wxStaticText* input_componente3;
-		wxTextCtrl* inputPuntajeComponente3;
-		wxTextCtrl* inputDPuntajeComponente3;
-		wxTextCtrl* inputPonderacionComponente3;
-		wxTextCtrl* inputDPonderacionComponente3;
-		wxStaticText* input_componente4;
-		wxTextCtrl* inputPuntajeComponente4;
-		wxTextCtrl* inputDPuntajeComponente4;
-		wxTextCtrl* inputPonderacionComponente4;
-		wxTextCtrl* inputDPonderacionComponente4;
-		wxStaticText* input_componente5;
-		wxTextCtrl* inputPuntajeComponente5;
-		wxTextCtrl* inputDPuntajeComponente5;
-		wxTextCtrl* inputPonderacionComponente5;
-		wxTextCtrl* inputDPonderacionComponente5;
-		wxStaticText* input_componente6;
-		wxTextCtrl* inputPuntajeComponente6;
-		wxTextCtrl* inputDPuntajeComponente6;
-		wxTextCtrl* inputPonderacionComponente6;
-		wxTextCtrl* inputDPonderacionComponente6;
-		wxStaticText* input_componente7;
-		wxTextCtrl* inputPuntajeComponente7;
-		wxTextCtrl* inputDPuntajeComponente7;
-		wxTextCtrl* inputPonderacionComponente7;
-		wxTextCtrl* inputDPonderacionComponente7;
-		wxStaticText* input_competencia1;
-		wxTextCtrl* inputPuntajeCompetencia1;
-		wxTextCtrl* inputDPuntajeCompetencia1;
-		wxTextCtrl* inputPonderacionCompetencia1;
-		wxTextCtrl* inputDPonderacionCompetencia1;
-		wxStaticText* input_competencia2;
-		wxTextCtrl* inputPuntajeCompetencia2;
-		wxTextCtrl* inputDPuntajeCompetencia2;
-		wxTextCtrl* inputPonderacionCompetencia2;
-		wxTextCtrl* inputDPonderacionCompetencia2;
-		wxStaticText* input_competencia3;
-		wxTextCtrl* inputPuntajeCompetencia3;
-		wxTextCtrl* inputDPuntajeCompetencia3;
-		wxTextCtrl* inputPonderacionCompetencia3;
-		wxTextCtrl* inputDPonderacionCompetencia3;
-		wxStaticText* m_staticText131;
-		wxTextCtrl* inputPromedio1;
-		wxTextCtrl* inputDesviacionPromedio1;
 		wxButton* boton_guardarCSV;
 		wxButton* button_guardar_datos;
 		
@@ -196,6 +141,7 @@ class GUIFrame : public wxFrame
 		virtual void actualizarFiltroFechaInicio( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroFechaFin( wxCommandEvent& event ) { event.Skip(); }
 		virtual void actualizarFiltroAsignaturas( wxCommandEvent& event ) { event.Skip(); }
+		virtual void seleccionarComponentesYCompetencias( wxCommandEvent& event ) { event.Skip(); }
 		virtual void mostar_puntajes_minimos( wxCommandEvent& event ) { event.Skip(); }
 		virtual void BotonBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void BotonGuardarResultados( wxCommandEvent& event ) { event.Skip(); }

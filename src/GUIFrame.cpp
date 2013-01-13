@@ -165,13 +165,28 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	sbSizer9->Add( sbSizer12, 0, wxALL|wxEXPAND, 5 );
 	
-	wxStaticBoxSizer* sbSizer14;
-	sbSizer14 = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Lista de asignaturas") ), wxVERTICAL );
+	filtro_asignaturas = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Lista de asignaturas") ), wxVERTICAL );
 	
 	input_asignaturas = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 540,-1 ), 0 );
-	sbSizer14->Add( input_asignaturas, 5, wxEXPAND, 5 );
+	filtro_asignaturas->Add( input_asignaturas, 5, wxEXPAND, 5 );
 	
-	sbSizer9->Add( sbSizer14, 0, wxALL|wxEXPAND, 5 );
+	sbSizer9->Add( filtro_asignaturas, 0, wxALL|wxEXPAND, 5 );
+	
+	filtro_ecaes = new wxStaticBoxSizer( new wxStaticBox( panel_resultados, wxID_ANY, wxT("Componentes y Competencias") ), wxVERTICAL );
+	
+	wxGridSizer* gSizer6;
+	gSizer6 = new wxGridSizer( 2, 2, 0, 0 );
+	
+	label_componentes_seleccionados = new wxStaticText( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+	label_componentes_seleccionados->Wrap( -1 );
+	gSizer6->Add( label_componentes_seleccionados, 0, wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT, 5 );
+	
+	m_button9 = new wxButton( panel_resultados, wxID_ANY, wxT("Seleccionar competencias y/o componentes ... "), wxDefaultPosition, wxDefaultSize, 0 );
+	gSizer6->Add( m_button9, 0, wxALIGN_RIGHT, 5 );
+	
+	filtro_ecaes->Add( gSizer6, 1, wxEXPAND, 5 );
+	
+	sbSizer9->Add( filtro_ecaes, 1, wxEXPAND, 5 );
 	
 	box_resultados->Add( sbSizer9, 0, wxEXPAND, 5 );
 	
@@ -344,200 +359,6 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	
 	sbSizer8->Add( grilla_valores, 1, wxALIGN_RIGHT|wxEXPAND, 5 );
 	
-	grilla_ecaes = new wxGridSizer( 9, 5, 2, 0 );
-	
-	input_vacio1 = new wxStaticText( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-	input_vacio1->Wrap( -1 );
-	grilla_ecaes->Add( input_vacio1, 0, wxALL, 5 );
-	
-	input_peso1 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Valor medio peso"), wxDefaultPosition, wxDefaultSize, 0 );
-	input_peso1->Wrap( -1 );
-	grilla_ecaes->Add( input_peso1, 0, wxALL, 5 );
-	
-	input_d_peso1 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Desviación típica"), wxDefaultPosition, wxDefaultSize, 0 );
-	input_d_peso1->Wrap( -1 );
-	grilla_ecaes->Add( input_d_peso1, 0, wxALL, 5 );
-	
-	input_puntaje1 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Valor medio puntaje"), wxDefaultPosition, wxDefaultSize, 0 );
-	input_puntaje1->Wrap( -1 );
-	grilla_ecaes->Add( input_puntaje1, 0, wxALL, 5 );
-	
-	input_d_puntaje1 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Desviación típica"), wxDefaultPosition, wxDefaultSize, 0 );
-	input_d_puntaje1->Wrap( -1 );
-	grilla_ecaes->Add( input_d_puntaje1, 0, wxALL, 5 );
-	
-	input_componente1 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Componente 1 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_componente1->Wrap( -1 );
-	grilla_ecaes->Add( input_componente1, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	inputPuntajeComponente1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeComponente1, 0, wxALL, 5 );
-	
-	inputDPuntajeComponente1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeComponente1, 0, wxALL, 5 );
-	
-	inputPonderacionComponente1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionComponente1, 0, wxALL, 5 );
-	
-	inputDPonderacionComponente1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionComponente1, 0, wxALL, 5 );
-	
-	input_componente2 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Componente 2 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_componente2->Wrap( -1 );
-	grilla_ecaes->Add( input_componente2, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	inputPuntajeComponente2 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeComponente2, 0, wxALL, 5 );
-	
-	inputDPuntajeComponente2 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeComponente2, 0, wxALL, 5 );
-	
-	inputPonderacionComponente2 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionComponente2, 0, wxALL, 5 );
-	
-	inputDPonderacionComponente2 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionComponente2, 0, wxALL, 5 );
-	
-	input_componente3 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Componente 3 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_componente3->Wrap( -1 );
-	grilla_ecaes->Add( input_componente3, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	inputPuntajeComponente3 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeComponente3, 0, wxALL, 5 );
-	
-	inputDPuntajeComponente3 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeComponente3, 0, wxALL, 5 );
-	
-	inputPonderacionComponente3 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionComponente3, 0, wxALL, 5 );
-	
-	inputDPonderacionComponente3 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionComponente3, 0, wxALL, 5 );
-	
-	input_componente4 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Componente 4 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_componente4->Wrap( -1 );
-	grilla_ecaes->Add( input_componente4, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	inputPuntajeComponente4 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeComponente4, 0, wxALL, 5 );
-	
-	inputDPuntajeComponente4 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeComponente4, 0, wxALL, 5 );
-	
-	inputPonderacionComponente4 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionComponente4, 0, wxALL, 5 );
-	
-	inputDPonderacionComponente4 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionComponente4, 0, wxALL, 5 );
-	
-	input_componente5 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Componente 5 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_componente5->Wrap( -1 );
-	grilla_ecaes->Add( input_componente5, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	inputPuntajeComponente5 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeComponente5, 0, wxALL, 5 );
-	
-	inputDPuntajeComponente5 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeComponente5, 0, wxALL, 5 );
-	
-	inputPonderacionComponente5 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionComponente5, 0, wxALL, 5 );
-	
-	inputDPonderacionComponente5 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionComponente5, 0, wxALL, 5 );
-	
-	input_componente6 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Componente 6 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_componente6->Wrap( -1 );
-	grilla_ecaes->Add( input_componente6, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	inputPuntajeComponente6 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeComponente6, 0, wxALL, 5 );
-	
-	inputDPuntajeComponente6 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeComponente6, 0, wxALL, 5 );
-	
-	inputPonderacionComponente6 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionComponente6, 0, wxALL, 5 );
-	
-	inputDPonderacionComponente6 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionComponente6, 0, wxALL, 5 );
-	
-	input_componente7 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Componente 7 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_componente7->Wrap( -1 );
-	grilla_ecaes->Add( input_componente7, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	inputPuntajeComponente7 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeComponente7, 0, wxALL, 5 );
-	
-	inputDPuntajeComponente7 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeComponente7, 0, wxALL, 5 );
-	
-	inputPonderacionComponente7 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionComponente7, 0, wxALL, 5 );
-	
-	inputDPonderacionComponente7 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionComponente7, 0, wxALL, 5 );
-	
-	input_competencia1 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Competencia 1 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_competencia1->Wrap( -1 );
-	grilla_ecaes->Add( input_competencia1, 0, wxALL|wxALIGN_RIGHT, 5 );
-	
-	inputPuntajeCompetencia1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeCompetencia1, 0, wxALL, 5 );
-	
-	inputDPuntajeCompetencia1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeCompetencia1, 0, wxALL, 5 );
-	
-	inputPonderacionCompetencia1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionCompetencia1, 0, wxALL, 5 );
-	
-	inputDPonderacionCompetencia1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionCompetencia1, 0, wxALL, 5 );
-	
-	input_competencia2 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Competencia 2 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_competencia2->Wrap( -1 );
-	grilla_ecaes->Add( input_competencia2, 0, wxALL|wxALIGN_RIGHT, 5 );
-	
-	inputPuntajeCompetencia2 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeCompetencia2, 0, wxALL, 5 );
-	
-	inputDPuntajeCompetencia2 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeCompetencia2, 0, wxALL, 5 );
-	
-	inputPonderacionCompetencia2 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionCompetencia2, 0, wxALL, 5 );
-	
-	inputDPonderacionCompetencia2 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionCompetencia2, 0, wxALL, 5 );
-	
-	input_competencia3 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Competencia 3 : "), wxDefaultPosition, wxDefaultSize, 0 );
-	input_competencia3->Wrap( -1 );
-	grilla_ecaes->Add( input_competencia3, 0, wxALL|wxALIGN_RIGHT, 5 );
-	
-	inputPuntajeCompetencia3 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPuntajeCompetencia3, 0, wxALL, 5 );
-	
-	inputDPuntajeCompetencia3 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPuntajeCompetencia3, 0, wxALL, 5 );
-	
-	inputPonderacionCompetencia3 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPonderacionCompetencia3, 0, wxALL, 5 );
-	
-	inputDPonderacionCompetencia3 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDPonderacionCompetencia3, 0, wxALL, 5 );
-	
-	m_staticText131 = new wxStaticText( panel_resultados, wxID_ANY, wxT("Promedio : "), wxDefaultPosition, wxDefaultSize, 0 );
-	m_staticText131->Wrap( -1 );
-	grilla_ecaes->Add( m_staticText131, 0, wxALIGN_RIGHT|wxALL, 5 );
-	
-	inputPromedio1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputPromedio1, 0, wxALL, 5 );
-	
-	inputDesviacionPromedio1 = new wxTextCtrl( panel_resultados, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
-	grilla_ecaes->Add( inputDesviacionPromedio1, 0, wxALL, 5 );
-	
-	sbSizer8->Add( grilla_ecaes, 1, wxEXPAND, 5 );
-	
 	box_resultados->Add( sbSizer8, 3, wxEXPAND, 5 );
 	
 	wxGridSizer* gSizer4;
@@ -577,6 +398,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	input_fecha_desde->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaInicio ), NULL, this );
 	input_fecha_hasta->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaFin ), NULL, this );
 	input_asignaturas->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroAsignaturas ), NULL, this );
+	m_button9->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::seleccionarComponentesYCompetencias ), NULL, this );
 	check_mostrar_puntajes_minimos->Connect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIFrame::mostar_puntajes_minimos ), NULL, this );
 	boton_buscar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
 	boton_guardarCSV->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonGuardarResultados ), NULL, this );
@@ -599,6 +421,7 @@ GUIFrame::~GUIFrame()
 	input_fecha_desde->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaInicio ), NULL, this );
 	input_fecha_hasta->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroFechaFin ), NULL, this );
 	input_asignaturas->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( GUIFrame::actualizarFiltroAsignaturas ), NULL, this );
+	m_button9->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::seleccionarComponentesYCompetencias ), NULL, this );
 	check_mostrar_puntajes_minimos->Disconnect( wxEVT_COMMAND_CHECKBOX_CLICKED, wxCommandEventHandler( GUIFrame::mostar_puntajes_minimos ), NULL, this );
 	boton_buscar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonBuscar ), NULL, this );
 	boton_guardarCSV->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::BotonGuardarResultados ), NULL, this );

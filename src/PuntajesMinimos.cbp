@@ -51,6 +51,8 @@
 		<Unit filename="GUIDialog.h" />
 		<Unit filename="GUIDialogoAsignaturas.cpp" />
 		<Unit filename="GUIDialogoAsignaturas.h" />
+		<Unit filename="GUIDialogoECAES.cpp" />
+		<Unit filename="GUIDialogoECAES.h" />
 		<Unit filename="GUIFrame.cpp" />
 		<Unit filename="GUIFrame.h" />
 		<Unit filename="LeeYaml.cpp" />
