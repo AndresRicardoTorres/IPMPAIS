@@ -12,6 +12,8 @@
 
 #include "GUIDialog.h"
 #include "leerconfiguracion.h"
+#include "PG.h"
+#include <wx/msgdlg.h>
 
 class ConfBDDialog: public GUIDialog
 {
@@ -26,5 +28,10 @@ class ConfBDDialog: public GUIDialog
         virtual void OnAyuda( wxCommandEvent& event );
 		virtual void OnGuardar( wxCommandEvent& event );
 		virtual void OnProbar( wxCommandEvent& event );
+		wxString host;
+		wxString puerto;
+		wxString nombrebd;
+		wxString usuario;
+		wxString clave;
 };
 #endif // CONFBDMAIN_H

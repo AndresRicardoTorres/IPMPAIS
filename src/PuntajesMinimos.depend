@@ -2957,14 +2957,16 @@
 	<list>
 	<vector>
 
-1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/ConfBDMain.cpp
+1359041890 source:/home/andresrtm/Documents/IPMPAIS/src/ConfBDMain.cpp
 	"wx_pch.h"
 	"ConfBDMain.h"
 	<iostream>
 
-1356114671 /home/andresrtm/Documents/IPMPAIS/src/ConfBDMain.h
+1359041353 /home/andresrtm/Documents/IPMPAIS/src/ConfBDMain.h
 	"GUIDialog.h"
 	"leerconfiguracion.h"
+	"PG.h"
+	<wx/msgdlg.h>
 
 1356114671 /home/andresrtm/Documents/IPMPAIS/src/GUIDialog.h
 	<wx/string.h>
@@ -3144,7 +3146,7 @@
 	<map>
 	<vector>
 
-1359037960 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
+1359040517 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>
@@ -3168,7 +3170,7 @@
 1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/gen.cpp
 	"gen.h"
 
-1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/leerconfiguracion.cpp
+1359040479 source:/home/andresrtm/Documents/IPMPAIS/src/leerconfiguracion.cpp
 	"leerconfiguracion.h"
 
 1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/matematicas.cpp

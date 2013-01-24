@@ -24,20 +24,19 @@ ConfBDDialog::ConfBDDialog(wxDialog *dlg)
 {
     objLector = new LeerConfiguracion();
     if(objLector->LeerDatos()){
-        wxString host(objLector->Gethost().c_str(), wxConvUTF8);
+        host = wxString(objLector->Gethost().c_str(), wxConvUTF8);
         inputHost->SetValue(host);
 
-        wxString puerto;
         puerto << objLector->Getpuerto();
         inputPuerto->SetValue(puerto);
 
-        wxString nombrebd(objLector->Getnombrebd().c_str(), wxConvUTF8);
+        nombrebd = wxString(objLector->Getnombrebd().c_str(), wxConvUTF8);
         inputNombrebd->SetValue(nombrebd);
 
-        wxString usuario(objLector->Getusuario().c_str(), wxConvUTF8);
+        usuario = wxString(objLector->Getusuario().c_str(), wxConvUTF8);
         inputUsuario->SetValue(usuario);
 
-        wxString clave(objLector->Getclave().c_str(), wxConvUTF8);
+        clave = wxString(objLector->Getclave().c_str(), wxConvUTF8);
         inputClave->SetValue(clave);
     }
 }
@@ -60,7 +59,7 @@ void ConfBDDialog::OnSalir(wxCommandEvent &event)
 string ConfBDDialog::getInformacion()
 {
     stringstream info;
-    info << "user=" << objLector->Getusuario() << " password="<<objLector->Getclave()<<" dbname="<<objLector->Getnombrebd()<<
+    info << "user=" << std::string(usuario.mb_str()) << " password="<<objLector->Getclave()<<" dbname="<<objLector->Getnombrebd()<<
     " hostaddr="<<objLector->Gethost()<<" port="<<objLector->Getpuerto();
     return info.str();
 }
@@ -74,5 +73,20 @@ void ConfBDDialog::OnGuardar( wxCommandEvent& event ){
 }
 
 void ConfBDDialog::OnProbar( wxCommandEvent& event ){
+
+    stringstream info;
+
+    info << "user=" << std::string(inputUsuario->GetValue().mb_str()) << " password="<<std::string(inputClave->GetValue().mb_str())<<" dbname="<<std::string(inputNombrebd->GetValue().mb_str())<<
+    " hostaddr="<<std::string(inputHost->GetValue().mb_str())<<" port="<<std::string(inputPuerto->GetValue().mb_str());
+
+    PG *objPg = new PG(info.str().c_str());
+    bool hayBD = objPg->checkStatus();
+
+    wxString msg = _("");
+    if (hayBD)
+        msg=_("La conexion es correcta");
+    else
+        msg=_("La conexion es incorrecta");
+    wxMessageBox(msg, _("Estado de la conexion"));
 
 }
