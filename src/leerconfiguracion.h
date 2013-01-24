@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>
+#include <wx/stdpaths.h>
 
 using namespace std;
 

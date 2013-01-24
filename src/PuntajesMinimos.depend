@@ -2978,12 +2978,13 @@
 	<wx/sizer.h>
 	<wx/dialog.h>
 
-1356114671 /home/andresrtm/Documents/IPMPAIS/src/leerconfiguracion.h
+1359037950 /home/andresrtm/Documents/IPMPAIS/src/leerconfiguracion.h
 	<string>
 	<fstream>
 	<iostream>
 	<stdlib.h>
 	<sstream>
+	<wx/stdpaths.h>
 
 1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/DAO.cpp
 	"DAO.h"
@@ -3093,7 +3094,7 @@
 	<wx/app.h>
 	<wx/dcclient.h>
 
-1357179768 /home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.h
+1358033625 /home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.h
 	"PuntajesMinimosApp.h"
 	"algoritmogenetico.h"
 	"fenotipoipmpais.h"
@@ -3143,7 +3144,7 @@
 	<map>
 	<vector>
 
-1358033514 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
+1359037960 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>
@@ -3172,4 +3173,31 @@
 
 1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
+
+1358034378 source:/home/andresrtm/Documents/IPMPAIS/src/GUIDialogoECAES.cpp
+	"GUIDialogoECAES.h"
+
+1358034378 /home/andresrtm/Documents/IPMPAIS/src/GUIDialogoECAES.h
+	<wx/string.h>
+	<wx/stattext.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/checkbox.h>
+	<wx/sizer.h>
+	<wx/statbox.h>
+	<wx/dialog.h>
+
+1329067901 /usr/include/wx-2.8/wx/stdpaths.h
+	"wx/defs.h"
+	"wx/string.h"
+	"wx/filefn.h"
+	"wx/msw/stdpaths.h"
+	"wx/mac/corefoundation/stdpaths.h"
+	"wx/os2/stdpaths.h"
+	"wx/unix/stdpaths.h"
+	"wx/palmos/stdpaths.h"
+
+1329067902 /usr/include/wx-2.8/wx/unix/stdpaths.h
 

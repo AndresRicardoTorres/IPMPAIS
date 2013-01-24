@@ -19,7 +19,11 @@ bool LeerConfiguracion::LeerDatos()
     ifstream inFile;
     string linea;
 
-    inFile.open("determinador.conf");
+
+    wxString path = wxStandardPaths::Get().GetExecutablePath().BeforeLast('/')+ wxT("/determinador.conf");
+    std::cout<<"Usando archivo de configuracion : "<<std::string(path.mb_str()).c_str()<<std::endl;
+
+    inFile.open(std::string(path.mb_str()).c_str());
     if (!inFile) {
         cout << "Unable to open file";
         return false;
