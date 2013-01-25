@@ -12,9 +12,6 @@
 
 #define CODIGOS_ENCRIPTADOS FALSE
 
-
-#include "PuntajesMinimosApp.h"
-
 #include "algoritmogenetico.h"
 #include "fenotipoipmpais.h"
 #include "admisionesunivalle.h"

@@ -65,7 +65,7 @@ string ConfBDDialog::getInformacion()
 }
 
 void ConfBDDialog::OnAyuda( wxCommandEvent& event ){
-
+    wxMessageBox(_("El boton probar intenta hacer una conexion con los datos ingresados actualmente \n El boton guardar almacena los datos de conexion en el archivo determinador.conf para futuras conexiones"), _("Ayuda"));
 }
 
 void ConfBDDialog::OnGuardar( wxCommandEvent& event ){

@@ -43,7 +43,7 @@ AdmisionesUnivalle::AdmisionesUnivalle(bool ECAESoRegistro,const char* conn,int 
       miColaDePrioridad.pop();
 //      char *tmp = new char[11];  // Un entero sin signo tiene como máximo 10 cifras, más el terminador.
       char *tmp = new char[int(1+ceil(log10f(sizeof(unsigned int))))];  // Un entero sin signo tiene como máximo 10 cifras, más el terminador.
-      sprintf(tmp, "%u", resultadosICFES->size()-i);
+      sprintf(tmp, "%u", (resultadosICFES->size()-i));
       resultadosICFES->at(indiceOrdenado).at(j+1) = tmp;
     }
   }
