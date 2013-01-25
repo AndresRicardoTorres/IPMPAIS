@@ -21,11 +21,6 @@ encabezadoCSV LeerCSV::leerEncabezado(){
     return lista;
 }
 
-bool LeerCSV::escribirDatos(datosCSV entrada)
-{
-    return true;
-}
-
 datosCSV LeerCSV::leerDatos(){
     datosCSV lista;
     std::ifstream  data(nombreArchivo.c_str());

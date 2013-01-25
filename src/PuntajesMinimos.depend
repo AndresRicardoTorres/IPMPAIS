@@ -3237,7 +3237,7 @@
 	<iostream>
 	<cstring>
 
-1359125164 /home/andresrtm/Desktop/IPMPAIS/src/LeerCSV.h
+1359127084 /home/andresrtm/Desktop/IPMPAIS/src/LeerCSV.h
 	<iostream>
 	<sstream>
 	<fstream>
@@ -3249,16 +3249,17 @@
 	<string>
 	<ctype.h>
 
-1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/ConfBDMain.cpp
+1359127725 source:/home/andresrtm/Desktop/IPMPAIS/src/ConfBDMain.cpp
 	"wx_pch.h"
 	"ConfBDMain.h"
 	<iostream>
 
-1359125164 /home/andresrtm/Desktop/IPMPAIS/src/ConfBDMain.h
+1359127552 /home/andresrtm/Desktop/IPMPAIS/src/ConfBDMain.h
 	"GUIDialog.h"
 	"leerconfiguracion.h"
 	"PG.h"
 	<wx/msgdlg.h>
+	<fstream>
 
 1359125164 /home/andresrtm/Desktop/IPMPAIS/src/GUIDialog.h
 	<wx/string.h>
@@ -3395,7 +3396,7 @@
 	<string>
 	<cstring>
 
-1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/LeerCSV.cpp
+1359127074 source:/home/andresrtm/Desktop/IPMPAIS/src/LeerCSV.cpp
 	"LeerCSV.h"
 
 1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/PG.cpp
@@ -3411,7 +3412,7 @@
 	<wx/app.h>
 	<wx/dcclient.h>
 
-1359126844 /home/andresrtm/Desktop/IPMPAIS/src/PuntajesMinimosMain.h
+1359126859 /home/andresrtm/Desktop/IPMPAIS/src/PuntajesMinimosMain.h
 	"algoritmogenetico.h"
 	"fenotipoipmpais.h"
 	"admisionesunivalle.h"
@@ -3465,7 +3466,7 @@
 	"PuntajesMinimosMain.h"
 	<math.h>
 
-1359125943 source:/home/andresrtm/Desktop/IPMPAIS/src/admisionesunivalle.cpp
+1359127811 source:/home/andresrtm/Desktop/IPMPAIS/src/admisionesunivalle.cpp
 	"admisionesunivalle.h"
 
 1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/algoritmogenetico.cpp

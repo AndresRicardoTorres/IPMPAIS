@@ -69,7 +69,24 @@ void ConfBDDialog::OnAyuda( wxCommandEvent& event ){
 }
 
 void ConfBDDialog::OnGuardar( wxCommandEvent& event ){
+    wxString path = wxStandardPaths::Get().GetExecutablePath().BeforeLast('/')+ wxT("/determinador.conf");
 
+    ofstream miArchivo;
+    miArchivo.open (std::string(path.mb_str()).c_str());
+
+    if (!miArchivo) {
+        wxMessageBox(_("Unable to open file"), _("Guardar Archivo"));
+        return;
+    }
+
+    miArchivo << "host=" << std::string(inputHost->GetValue().mb_str()) <<std::endl;
+    miArchivo << "puerto=" << std::string(inputPuerto->GetValue().mb_str()) <<std::endl;
+    miArchivo << "nombrebd=" << std::string(inputNombrebd->GetValue().mb_str()) <<std::endl;
+    miArchivo << "usuario=" << std::string(inputUsuario->GetValue().mb_str()) <<std::endl;
+    miArchivo << "clave=" << std::string(inputClave->GetValue().mb_str()) <<std::endl;
+
+    miArchivo.close();
+    wxMessageBox(_("Guardado con exito"), _("Guardar Archivo"));
 }
 
 void ConfBDDialog::OnProbar( wxCommandEvent& event ){

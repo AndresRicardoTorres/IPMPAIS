@@ -14,6 +14,7 @@
 #include "leerconfiguracion.h"
 #include "PG.h"
 #include <wx/msgdlg.h>
+#include <fstream>
 
 class ConfBDDialog: public GUIDialog
 {

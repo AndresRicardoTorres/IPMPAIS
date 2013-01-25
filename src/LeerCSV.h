@@ -19,7 +19,6 @@ class LeerCSV
         LeerCSV(std::string archivo);
         virtual ~LeerCSV();
         datosCSV leerDatos();
-        bool escribirDatos(datosCSV entrada);
         encabezadoCSV leerEncabezado();
     protected:
     private:
