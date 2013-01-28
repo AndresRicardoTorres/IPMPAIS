@@ -215,14 +215,14 @@ void PuntajesMinimosFrame::cargarInformacionRegistroAcademico( wxCommandEvent& e
         ///Creo las tablas
 
         std::cout<<"Creo las tablas"<<std::endl;
-        objCalificaciones->crearTablas();
+       // objCalificaciones->crearTablas();
 
         ///Inserto todas las notas
 
 std::cout<<"Inserto todas las notas"<<std::endl;
 
-        resultado = objCalificaciones->insertar(encabezados,datosIn,progresoRegistro);
-        informar(resultado);
+        //resultado = objCalificaciones->insertar(encabezados,datosIn,progresoRegistro);
+        //informar(resultado);
 
         ///Aplico las equivalencias
         std::cout<<"Aplico las equivalencias"<<std::endl;
@@ -245,7 +245,7 @@ std::cout<<"Inserto todas las notas"<<std::endl;
 
         while (!listadoCodigoAsignaturas->empty())
         {
-            objEstudiantes->crearColumnasAsignaturas(listadoCodigoAsignaturas->back());
+            //objEstudiantes->crearColumnasAsignaturas(listadoCodigoAsignaturas->back());
             listadoCodigoAsignaturas->pop_back();
         }
 

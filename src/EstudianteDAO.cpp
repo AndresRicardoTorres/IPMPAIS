@@ -232,14 +232,16 @@ bool EstudianteDAO::actualizar(Calificacion* unaCalificacion)
         if(0==afectadas){
             std::cout<<" "<<sql1.str().c_str()<<std::endl;
             std::cout<<" "<<sql2.str().c_str()<<std::endl;
+
         }
-        sql1.str(std::string());
-        sql2.str(std::string());
     }
+
+    sql1.str(std::string());
+    sql2.str(std::string());
 
     ///Actualizo la tabla estudiante creditos con los creditos que tenia la asignatura cuando la curso
 
-    sql1 << "UPDATE estudiante_creditos SET \"CREDITOS_" << unaCalificacion->getCodigoAsignatura() << "\" = '" << unaCalificacion->getCreditos()+"' WHERE codigo = '" << unaCalificacion->getCodigoEstudiante() << "';";
+    sql1 << "UPDATE estudiante_creditos SET \"CREDITOS_" << unaCalificacion->getCodigoAsignatura() << "\" = '" << unaCalificacion->getCreditos()<<"' WHERE codigo = '" << unaCalificacion->getCodigoEstudiante() << "';";
     afectadas = objPg->update(sql1.str().c_str());
     if(0==afectadas){
         sql2 << "INSERT INTO estudiante_creditos (año,codigo,\"CREDITOS_" << unaCalificacion->getCodigoAsignatura() << "\") VALUES (" << unaCalificacion->getAnno() << ",'" << unaCalificacion->getCodigoEstudiante() << "','" << unaCalificacion->getCreditos() << "');";
@@ -248,11 +250,11 @@ bool EstudianteDAO::actualizar(Calificacion* unaCalificacion)
             std::cout<<" "<<sql1.str().c_str()<<std::endl;
             std::cout<<" "<<sql2.str().c_str()<<std::endl;
         }
-        sql1.str(std::string());
-        sql2.str(std::string());
+
     }
 
-
+    sql1.str(std::string());
+    sql2.str(std::string());
 
 
     sql1 << "UPDATE estudiante SET \"" << unaCalificacion->getCodigoAsignatura() << "\" = '" << unaCalificacion->getCalificacion() << "' WHERE codigo = '" << unaCalificacion->getCodigoEstudiante() << "';";
@@ -270,8 +272,7 @@ bool EstudianteDAO::actualizar(Calificacion* unaCalificacion)
             exito = true;
         }
 
-        sql1.str(std::string());
-        sql2.str(std::string());
+
 
     }else{
         exito = true;
