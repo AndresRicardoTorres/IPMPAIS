@@ -17,9 +17,9 @@ void EstudianteDAO::crearTablas()
     objPg->query("DROP TABLE IF EXISTS estudiante;");
     objPg->query("CREATE TABLE estudiante(año integer,codigo character varying,identificacion character varying,estrato character varying,comuna character varying,barrio character varying,ciudad character varying,colegio character varying,tipo_colegio character varying,snp character varying,bio real,cis real,fil real,fis real,geo real,his real,idi real,int real,len real,mat real,qui real,ecaes_total real,componente1 real,componente2 real,componente3 real,componente4 real,componente5 real,componente6 real,componente7 real,competencia1 real,competencia2 real,competencia3 real,CONSTRAINT estudiante_pkey PRIMARY KEY (codigo))");
     objPg->query("DROP TABLE IF EXISTS estudiante_tipo;");
-    objPg->query("CREATE TABLE estudiante_tipo(año integer,codigo character varying)");
+    objPg->query("CREATE TABLE estudiante_tipo(año integer,codigo character varying,CONSTRAINT estudiante_tipo_pkey PRIMARY KEY (codigo ))");
     objPg->query("DROP TABLE IF EXISTS estudiante_creditos;");
-    objPg->query("CREATE TABLE estudiante_creditos(año integer,codigo character varying)");
+    objPg->query("CREATE TABLE estudiante_creditos(año integer,codigo character varying,CONSTRAINT estudiante_creditos_pkey PRIMARY KEY (codigo ))");
     delete objPg;
 }
 
