@@ -26,7 +26,7 @@ ResultadoConsulta* PG::select(const char* query)
 {
     ResultadoConsulta *resultado = new ResultadoConsulta();
     PGresult  *res = PQexec(conn,query);
-
+    //std::cout<<"SELECT "<<query<<std::endl;
     for (int i=0;i<PQntuples(res);i++)
     {
         std::vector<const char*> unVector;
@@ -44,6 +44,7 @@ ResultadoConsulta* PG::select(const char* query)
 
 bool PG::query(const char* query)
 {
+    //std::cout<<"query>> "<<query<<std::endl;
     PGresult  *res = PQexec(conn,query);
     PQclear(res);
 
@@ -87,7 +88,7 @@ int PG::borrar(const char* query){
 
 int PG::update(const char* query){
     //std::cout<<"insert() coon>> "<<conn<<std::endl;
-    //std::cout<<"INSERT "<<query<<std::endl;
+    //std::cout<<"UPDATE "<<query<<std::endl;
     PGresult *res = PQexec(conn,query);
 //    char* error = PQresultErrorField(res,PG_DIAG_SQLSTATE);
 //    std::cout<<"ERROR>> "<<error<<std::endl;

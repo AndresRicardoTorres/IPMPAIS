@@ -14,7 +14,7 @@ CalificacionDAO::~CalificacionDAO()
 const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalencias)
 {
     PG *objPg = new PG(conexion.c_str());
-    int afectadas = 0,totales = 0,cantidadAntiguas = 0,cantidadNuevas = 0;
+    int afectadas = 0,totales = 0,errores=0,cantidadAntiguas = 0,cantidadNuevas = 0;
     std::string antigua,nueva,sql;
     std::stringstream sstm;
 
@@ -25,13 +25,15 @@ const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalen
         antigua = unaEquivalencia->getAntigua();
         nueva = unaEquivalencia->getNueva();
 
+        std::cout<<"Aplicando equivalencia "<<antigua<<" => "<<nueva<<std::endl;
+
         cantidadAntiguas=1;
         cantidadNuevas=1;
 
-        if(antigua.find(",")!=std::string::npos)
+        if(antigua.find(";")!=std::string::npos)
             cantidadAntiguas=2;
 
-        if(nueva.find(",")!=std::string::npos)
+        if(nueva.find(";")!=std::string::npos)
             cantidadNuevas=2;
 
 
@@ -53,7 +55,7 @@ const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalen
 
             VectorCalificaciones *calificaciones =  getCalificacionesPorAsignatura(antigua);
 
-            vectorCSV nuevas = separarComas(nueva);
+            vectorCSV nuevas = separarPuntoComas(nueva);
 
             for(unsigned int i=0;calificaciones->size()>i;i++)
             {
@@ -87,8 +89,10 @@ const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalen
                 calificacionNueva2->setPeriodo(unaCalificacion->getPeriodo());
                 calificacionNueva2->setTipoCursado(unaCalificacion->getTipoCursado());
                 calificacionNueva2->setTipoNumericoCursado(unaCalificacion->getTipoNumericoCursado());
-                guardar(calificacionNueva1);
-                guardar(calificacionNueva2);
+                if(borrar(unaCalificacion)==0){errores++;}
+                if(guardar(calificacionNueva1)==1)afectadas++;else{errores++;}
+                if(guardar(calificacionNueva2)==1)afectadas++;else{errores++;}
+
 
             }
 
@@ -97,20 +101,100 @@ const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalen
         ///Equivalencia dos a uno
         else if(cantidadAntiguas==2 && cantidadNuevas == 1)
         {
-            ///TODO
-            std::cout<<"TODO 21"<<std::endl;
+            VectorCalificaciones *calificaciones =  getCalificacionesPorAsignatura(antigua);
+            const char* estudiante_anterior = "";
+            double calificacion_nueva = 0;
+            for(unsigned int i=0;calificaciones->size()>i;i++)
+            {
+                Calificacion *unaCalificacion = calificaciones->at(i);
+                if(estudiante_anterior == unaCalificacion->getCodigoEstudiante()){
+                    calificacion_nueva += unaCalificacion->getCalificacionReal();
+                    calificacion_nueva = calificacion_nueva / 2;
+
+
+                    Calificacion *calificacionNueva1 = new Calificacion();
+
+                    calificacionNueva1->setCodigoAsignatura(nueva.c_str());
+                    calificacionNueva1->setAnno(unaCalificacion->getAnno());
+                    calificacionNueva1->setCalificacion(unaCalificacion->getCalificacion());
+                    calificacionNueva1->setCalificacionReal(calificacion_nueva);
+                    calificacionNueva1->setCodigoEstudiante(unaCalificacion->getCodigoEstudiante());
+                    calificacionNueva1->setCodigoOriginalAsignatura(unaCalificacion->getCodigoOriginalAsignatura());
+                    calificacionNueva1->setCreditos(unaCalificacion->getCreditos());
+                    calificacionNueva1->setNombreAsignatura(unaCalificacion->getNombreAsignatura());
+                    calificacionNueva1->setPeriodo(unaCalificacion->getPeriodo());
+                    calificacionNueva1->setTipoCursado(unaCalificacion->getTipoCursado());
+                    calificacionNueva1->setTipoNumericoCursado(unaCalificacion->getTipoNumericoCursado());
+                    if(borrar(unaCalificacion)==0){errores++;}
+                    if(guardar(calificacionNueva1)==1)afectadas++;else{errores++;}
+
+                }else{
+                    estudiante_anterior = unaCalificacion->getCodigoEstudiante();
+                    calificacion_nueva = unaCalificacion->getCalificacionReal();
+                    if(borrar(unaCalificacion)==0){errores++;}
+
+                }
+
+            }
         }
         ///Equivalencia 2 a 2
         else if(cantidadAntiguas==2 && cantidadNuevas == 2)
         {
-            ///TODO
-            std::cout<<"TODO 22"<<std::endl;
+            VectorCalificaciones *calificaciones =  getCalificacionesPorAsignatura(antigua);
+            const char* estudiante_anterior = "";
+            double calificacion_nueva = 0;
+            vectorCSV nuevas = separarPuntoComas(nueva);
+            for(unsigned int i=0;calificaciones->size()>i;i++)
+            {
+                Calificacion *unaCalificacion = calificaciones->at(i);
+                if(estudiante_anterior == unaCalificacion->getCodigoEstudiante()){
+                    calificacion_nueva += unaCalificacion->getCalificacionReal();
+                    calificacion_nueva = calificacion_nueva / 2;
+
+
+                    Calificacion *calificacionNueva1 = new Calificacion();
+
+                    calificacionNueva1->setCodigoAsignatura(nuevas.at(0).c_str());
+                    calificacionNueva1->setAnno(unaCalificacion->getAnno());
+                    calificacionNueva1->setCalificacion(unaCalificacion->getCalificacion());
+                    calificacionNueva1->setCalificacionReal(calificacion_nueva);
+                    calificacionNueva1->setCodigoEstudiante(unaCalificacion->getCodigoEstudiante());
+                    calificacionNueva1->setCodigoOriginalAsignatura(unaCalificacion->getCodigoOriginalAsignatura());
+                    calificacionNueva1->setCreditos(unaCalificacion->getCreditos());
+                    calificacionNueva1->setNombreAsignatura(unaCalificacion->getNombreAsignatura());
+                    calificacionNueva1->setPeriodo(unaCalificacion->getPeriodo());
+                    calificacionNueva1->setTipoCursado(unaCalificacion->getTipoCursado());
+                    calificacionNueva1->setTipoNumericoCursado(unaCalificacion->getTipoNumericoCursado());
+
+                    Calificacion *calificacionNueva2 = new Calificacion();
+                    calificacionNueva2->setCodigoAsignatura(nuevas.at(1).c_str());
+                    calificacionNueva2->setAnno(unaCalificacion->getAnno());
+                    calificacionNueva2->setCalificacion(unaCalificacion->getCalificacion());
+                    calificacionNueva2->setCalificacionReal(calificacion_nueva);
+                    calificacionNueva2->setCodigoEstudiante(unaCalificacion->getCodigoEstudiante());
+                    calificacionNueva2->setCodigoOriginalAsignatura(unaCalificacion->getCodigoOriginalAsignatura());
+                    calificacionNueva2->setCreditos(unaCalificacion->getCreditos());
+                    calificacionNueva2->setNombreAsignatura(unaCalificacion->getNombreAsignatura());
+                    calificacionNueva2->setPeriodo(unaCalificacion->getPeriodo());
+                    calificacionNueva2->setTipoCursado(unaCalificacion->getTipoCursado());
+                    calificacionNueva2->setTipoNumericoCursado(unaCalificacion->getTipoNumericoCursado());
+                    if(borrar(unaCalificacion)==0){errores++;}
+                    if(guardar(calificacionNueva1)==1)afectadas++;else{errores++;}
+                    if(guardar(calificacionNueva2)==1)afectadas++;else{errores++;}
+
+                }else{
+                    estudiante_anterior = unaCalificacion->getCodigoEstudiante();
+                    calificacion_nueva = unaCalificacion->getCalificacionReal();
+                    if(borrar(unaCalificacion)==0){errores++;}
+
+                }
+            }
         }
     }
 
     delete objPg;
 
-    sstm << "Se actualizaron " << totales <<" calificaciones ";
+    sstm << "Se actualizaron " << totales <<" calificaciones , errores "<<errores;
 
     return sstm.str().c_str();
 }
@@ -138,6 +222,10 @@ bool CalificacionDAO::guardar(Calificacion *obj)
 
     int afectadas = objPG->insert(sql.c_str());
     delete objPG;
+    if(afectadas!=1)
+    {
+        std::cout<<"INSERT ERROR >>>"<<sql<<std::endl;
+    }
     return afectadas == 1;
 }
 
@@ -166,6 +254,11 @@ bool CalificacionDAO::borrar(Calificacion *obj)
     int x = objPG->borrar(sql.c_str());
 
     delete objPG;
+
+    if(x!=1)
+    {
+        std::cout<<"DELETE ERROR >>>"<<sql<<std::endl;
+    }
     return 0 < x;
 }
 
@@ -197,6 +290,34 @@ vectorCSV CalificacionDAO::separarComas(std::string asignatura)
     return results;
 }
 
+vectorCSV CalificacionDAO::separarPuntoComas(std::string asignatura)
+{
+//std::cout<<"separarPuntoComas() "<<asignatura<<std::endl;
+    vectorCSV results;
+
+    size_t found;
+    found = asignatura.find(";");
+
+    while(found != std::string::npos){
+
+        if(found > 0){
+            results.push_back(asignatura.substr(0,found));
+        }
+        asignatura = asignatura.substr(found+1);
+        found = asignatura.find(",");
+    }
+    if(asignatura.length() > 0){
+        results.push_back(asignatura);
+    }
+
+    for(unsigned int i=0;i<results.size();i++)
+    {
+         std::cout<<" "<<results.at(i);
+    }
+ //std::cout<<"END separarPuntoComas() "<<std::endl;
+    return results;
+}
+
 
 std::string CalificacionDAO::formatearComas(std::string asignatura)
 {
@@ -213,13 +334,12 @@ std::string CalificacionDAO::formatearComas(std::string asignatura)
     return sstm.str();
 }
 
-
 VectorCalificaciones* CalificacionDAO::getCalificacionesPorAsignatura(std::string asignatura)
 {
     //std::cout<<"getCalificacionesPorAsignatura()"<<std::endl;
     VectorCalificaciones *califaciones = new VectorCalificaciones();
     PG *objPG = new PG(conexion.c_str());
-    std::string sql ="SELECT año ,periodo,codigo_estudiante   ,codigo_asignatura_original  ,codigo_asignatura  ,nombre_asignatura  ,tipo  ,tipo_numerico ,calificacion  ,creditos ,calificacion_numerica  FROM calificacion WHERE codigo_asignatura = "+formatearComas(asignatura)+"";
+    std::string sql ="SELECT año ,periodo,codigo_estudiante   ,codigo_asignatura_original  ,codigo_asignatura  ,nombre_asignatura  ,tipo  ,tipo_numerico ,calificacion  ,creditos ,calificacion_numerica  FROM calificacion WHERE codigo_asignatura = "+formatearComas(asignatura)+" ORDER BY codigo_estudiante";
     ResultadoConsulta *resultado = objPG->select(sql.c_str());
     //std::cout<<"SQL "<< sql <<std::endl;
     //std::cout<<"CANTIDAD CALIFICACIONES "<<resultado->size()<<std::endl;
@@ -278,7 +398,7 @@ void CalificacionDAO::crearTablas()
 {
     PG *objPg = new PG(conexion.c_str());
     objPg->query("DROP TABLE IF EXISTS calificacion;");
-    objPg->query("CREATE TABLE calificacion(año integer,periodo character varying,codigo_estudiante character varying,codigo_asignatura_original character varying,codigo_asignatura character varying,nombre_asignatura character varying,tipo character varying,tipo_numerico integer,calificacion character varying,creditos integer,calificacion_numerica real,CONSTRAINT calificacion_pkey PRIMARY KEY (periodo,codigo_asignatura_original,codigo_estudiante));");
+    objPg->query("CREATE TABLE calificacion(año integer,periodo character varying,codigo_estudiante character varying,codigo_asignatura_original character varying,codigo_asignatura character varying,nombre_asignatura character varying,tipo character varying,tipo_numerico integer,calificacion character varying,creditos integer,calificacion_numerica real,CONSTRAINT calificacion_pkey PRIMARY KEY (periodo,codigo_asignatura,codigo_estudiante));");
 }
 
 const char* CalificacionDAO::insertar(encabezadoCSV encabezados,datosCSV datosIn,wxGauge *barraProgreso)

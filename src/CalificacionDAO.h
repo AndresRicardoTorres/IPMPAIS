@@ -10,6 +10,7 @@
 #include "LeerCSV.h"
 #include "DAO.h"
 typedef std::vector<Calificacion* > VectorCalificaciones;
+typedef std::vector<std::vector<std::string> > VectorPromedios;
 typedef std::map<const char*, const char*> PromediosDeEstudiantes;
 
 
@@ -29,6 +30,7 @@ class CalificacionDAO: protected DAO
         bool borrar(Calificacion *obj);
         std::string formatearComas(std::string asignatura);
         vectorCSV separarComas(std::string asignatura);
+        vectorCSV separarPuntoComas(std::string asignatura);
     protected:
     private:
         std::string conexion;

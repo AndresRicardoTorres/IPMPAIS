@@ -2908,10 +2908,10 @@
 
 1356114671 /home/andresrtm/Documents/IPMPAIS/src/Calificacion.h
 
-1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/CalificacionDAO.cpp
+1359432124 source:/home/andresrtm/Documents/IPMPAIS/src/CalificacionDAO.cpp
 	"CalificacionDAO.h"
 
-1356114671 /home/andresrtm/Documents/IPMPAIS/src/CalificacionDAO.h
+1359419541 /home/andresrtm/Documents/IPMPAIS/src/CalificacionDAO.h
 	<vector>
 	<string>
 	<map>
@@ -2957,7 +2957,7 @@
 	<list>
 	<vector>
 
-1359384382 source:/home/andresrtm/Documents/IPMPAIS/src/ConfBDMain.cpp
+1359420151 source:/home/andresrtm/Documents/IPMPAIS/src/ConfBDMain.cpp
 	"wx_pch.h"
 	"ConfBDMain.h"
 	<iostream>
@@ -3022,7 +3022,7 @@
 1357167371 source:/home/andresrtm/Documents/IPMPAIS/src/EquivalenciaDAO.cpp
 	"EquivalenciaDAO.h"
 
-1359412744 source:/home/andresrtm/Documents/IPMPAIS/src/EstudianteDAO.cpp
+1359413148 source:/home/andresrtm/Documents/IPMPAIS/src/EstudianteDAO.cpp
 	"EstudianteDAO.h"
 
 1357192991 /home/andresrtm/Documents/IPMPAIS/src/EstudianteDAO.h
@@ -3084,7 +3084,7 @@
 1359384382 source:/home/andresrtm/Documents/IPMPAIS/src/LeerCSV.cpp
 	"LeerCSV.h"
 
-1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/PG.cpp
+1359430772 source:/home/andresrtm/Documents/IPMPAIS/src/PG.cpp
 	"PG.h"
 
 1356114671 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosApp.cpp
@@ -3146,7 +3146,7 @@
 	<map>
 	<vector>
 
-1359411777 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
+1359430629 source:/home/andresrtm/Documents/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>

@@ -59,8 +59,10 @@ void ConfBDDialog::OnSalir(wxCommandEvent &event)
 string ConfBDDialog::getInformacion()
 {
     stringstream info;
-    info << "user=" << std::string(usuario.mb_str()) << " password="<<objLector->Getclave()<<" dbname="<<objLector->Getnombrebd()<<
-    " hostaddr="<<objLector->Gethost()<<" port="<<objLector->Getpuerto();
+    info << "user=" << std::string(usuario.mb_str()) << " password="<<std::string(clave.mb_str()) <<" dbname="<<std::string(nombrebd.mb_str()) <<
+    " hostaddr="<<std::string(host.mb_str()) <<" port="<<std::string(puerto.mb_str()) ;
+
+    std::cout << "INFO=> " <<info.str().c_str() << std::endl;
     return info.str();
 }
 
@@ -84,6 +86,12 @@ void ConfBDDialog::OnGuardar( wxCommandEvent& event ){
     miArchivo << "nombrebd=" << std::string(inputNombrebd->GetValue().mb_str()) <<std::endl;
     miArchivo << "usuario=" << std::string(inputUsuario->GetValue().mb_str()) <<std::endl;
     miArchivo << "clave=" << std::string(inputClave->GetValue().mb_str()) <<std::endl;
+
+    host = inputHost->GetValue();
+    puerto = inputPuerto->GetValue();
+    nombrebd = inputNombrebd->GetValue();
+    clave = inputClave->GetValue();
+    usuario = inputUsuario->GetValue();
 
     miArchivo.close();
     wxMessageBox(_("Guardado con exito"), _("Guardar Archivo"));
