@@ -38,6 +38,13 @@ ConfBDDialog::ConfBDDialog(wxDialog *dlg)
 
         clave = wxString(objLector->Getclave().c_str(), wxConvUTF8);
         inputClave->SetValue(clave);
+
+    }else{
+        puerto=_("");
+        nombrebd=_("");
+        usuario=_("");
+        clave=_("");
+        puerto=_("");
     }
 }
 
@@ -59,6 +66,7 @@ void ConfBDDialog::OnSalir(wxCommandEvent &event)
 string ConfBDDialog::getInformacion()
 {
     stringstream info;
+
     info << "user=" << std::string(usuario.mb_str()) << " password="<<std::string(clave.mb_str()) <<" dbname="<<std::string(nombrebd.mb_str()) <<
     " hostaddr="<<std::string(host.mb_str()) <<" port="<<std::string(puerto.mb_str()) ;
 
@@ -95,6 +103,7 @@ void ConfBDDialog::OnGuardar( wxCommandEvent& event ){
 
     miArchivo.close();
     wxMessageBox(_("Guardado con exito"), _("Guardar Archivo"));
+    this->Show(false);
 }
 
 void ConfBDDialog::OnProbar( wxCommandEvent& event ){

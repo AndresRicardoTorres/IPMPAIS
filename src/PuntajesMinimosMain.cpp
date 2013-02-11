@@ -26,7 +26,7 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
     puntajeMinimo_maximo = 120; //El maximo que he visto es 116.95
     ponderacion_minimo = 0;
     ponderacion_maximo = 100;
-    actualizarInterfaz();
+
 
     ///Inicializo los dialogos que se utilizaran
     dialogo_configuracion_base_datos = new ConfBDDialog(0L);
@@ -37,7 +37,7 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
     listadoAsignaturas = "";
     ///Miro si hay conexion a la base de datos, para colocarlo en la barra de estado
     checkDB();
-
+    actualizarInterfaz();
 #if CODIGOS_ENCRIPTADOS
     ///Inicializo el numero aleatorio para la encriptacion
     // 2012-10-21: Angel. Aquí no viene el srand() sino en DialogoAsignaturasMain()
@@ -295,11 +295,22 @@ void PuntajesMinimosFrame::cargarInformacionECAES( wxCommandEvent& event )
 
 void PuntajesMinimosFrame::actualizarCantidadMuestra(){
    ///Consulto cuantos estudiantes hay actualmente para tener actualizado al usuario
+
+
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
-    cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
+
+    int opcion = radio_comparacion->GetSelection();
+    if(opcion){
+        ResultadoConsulta *ResultadoConsulta = objEstudiantes->getPuntajesECAES(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
+         cantidad_estudiantes_filtrados =ResultadoConsulta->size();
+    }else{
+        listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
+         cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
+    }
+
+
     label_cantidad->SetLabel(wxString::Format(wxT("Total de la muestra : %i estudiantes"),cantidad_estudiantes_filtrados));
-    wxString cantidad = wxString::Format(wxT("%i"),listadoCodigoEstudiantes->size());
+    wxString cantidad = wxString::Format(wxT("%i"),cantidad_estudiantes_filtrados);
     statusBar->SetStatusText(cantidad+_(" estudiantes selecionados"), 0);
 }
 
@@ -341,6 +352,8 @@ void PuntajesMinimosFrame::seleccionarComponentesYCompetencias( wxCommandEvent& 
 }
 
 void PuntajesMinimosFrame::actualizarInterfaz(){
+
+     actualizarCantidadMuestra();
 
     int opcion = radio_comparacion->GetSelection();
     switch(opcion){
