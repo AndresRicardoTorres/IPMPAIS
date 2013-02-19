@@ -579,13 +579,13 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
   // ?? Imprimir en GUI el número de estudiantes despues del filtro
     if(!comprobarConexionBD())
         return;
-
+    std::cout<<582<<std::endl;
     bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica) */
-    bool ECAESoRegistro = radio_comparacion->GetSelection() != 0;
+    bool ECAESoRegistro = radio_comparacion->GetSelection() != 0;std::cout<<584<<std::endl;
     AdmisionesUnivalle admisionesUnivalle(ECAESoRegistro,getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
-
+std::cout<<586<<std::endl;
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-
+std::cout<<588<<std::endl;
     listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
     int cuantosEgresados = listadoCodigoEstudiantes->size();
     std::cout << ">> " << cuantosEgresados << std::endl;
