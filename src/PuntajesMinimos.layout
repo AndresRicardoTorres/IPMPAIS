@@ -5,25 +5,28 @@
 		<Cursor position="129" topLine="0" />
 	</File>
 	<File name="Calificacion.h" open="0" top="0" tabpos="8">
-		<Cursor position="1569" topLine="3" />
+		<Cursor position="1569" topLine="0" />
 	</File>
-	<File name="CalificacionDAO.cpp" open="1" top="0" tabpos="2">
+	<File name="CalificacionDAO.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="10136" topLine="186" />
 	</File>
-	<File name="CalificacionDAO.h" open="1" top="0" tabpos="5">
-		<Cursor position="523" topLine="10" />
+	<File name="CalificacionDAO.h" open="0" top="0" tabpos="5">
+		<Cursor position="523" topLine="0" />
 	</File>
 	<File name="ConfBDMain.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1744" topLine="51" />
+		<Cursor position="402" topLine="0" />
 	</File>
-	<File name="ConfBDMain.h" open="0" top="0" tabpos="0">
-		<Cursor position="0" topLine="9" />
-	</File>
-	<File name="DAO.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="308" topLine="11" />
+	<File name="DAO.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="308" topLine="0" />
 	</File>
 	<File name="DAO.h" open="0" top="0" tabpos="10">
 		<Cursor position="252" topLine="0" />
+	</File>
+	<File name="DialogoEcaes.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="838" topLine="0" />
+	</File>
+	<File name="DialogoEcaes.h" open="0" top="0" tabpos="0">
+		<Cursor position="129" topLine="0" />
 	</File>
 	<File name="Equivalencia.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="231" topLine="0" />
@@ -31,17 +34,23 @@
 	<File name="Equivalencia.h" open="0" top="0" tabpos="9">
 		<Cursor position="70" topLine="0" />
 	</File>
-	<File name="EquivalenciaDAO.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="239" topLine="90" />
+	<File name="EquivalenciaDAO.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="239" topLine="70" />
 	</File>
 	<File name="EquivalenciaDAO.h" open="0" top="0" tabpos="9">
 		<Cursor position="99" topLine="0" />
 	</File>
-	<File name="EstudianteDAO.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="10249" topLine="48" />
+	<File name="EstudianteDAO.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="19112" topLine="395" />
 	</File>
 	<File name="EstudianteDAO.h" open="0" top="0" tabpos="5">
-		<Cursor position="1424" topLine="6" />
+		<Cursor position="1424" topLine="0" />
+	</File>
+	<File name="GUIDialogoECAES.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2571" topLine="39" />
+	</File>
+	<File name="GUIDialogoECAES.h" open="0" top="0" tabpos="0">
+		<Cursor position="1389" topLine="6" />
 	</File>
 	<File name="GUIFrame.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="21526" topLine="390" />
@@ -65,13 +74,13 @@
 		<Cursor position="554" topLine="0" />
 	</File>
 	<File name="PuntajesMinimosMain.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="8416" topLine="245" />
+		<Cursor position="20241" topLine="571" />
 	</File>
 	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="2">
-		<Cursor position="3144" topLine="56" />
+		<Cursor position="914" topLine="6" />
 	</File>
-	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="1356" topLine="9" />
+	<File name="admisionesunivalle.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="881" topLine="3" />
 	</File>
 	<File name="admisionesunivalle.h" open="0" top="0" tabpos="3">
 		<Cursor position="1711" topLine="43" />

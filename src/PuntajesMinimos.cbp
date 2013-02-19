@@ -38,10 +38,10 @@
 		<Unit filename="ConfBDMain.h" />
 		<Unit filename="DAO.cpp" />
 		<Unit filename="DAO.h" />
-		<Unit filename="DialogoAsignaturas.cpp" />
 		<Unit filename="DialogoAsignaturas.h" />
-		<Unit filename="DialogoAsignaturasMain.cpp" />
 		<Unit filename="DialogoAsignaturasMain.h" />
+		<Unit filename="DialogoEcaes.cpp" />
+		<Unit filename="DialogoEcaes.h" />
 		<Unit filename="Equivalencia.cpp" />
 		<Unit filename="Equivalencia.h" />
 		<Unit filename="EquivalenciaDAO.cpp" />
