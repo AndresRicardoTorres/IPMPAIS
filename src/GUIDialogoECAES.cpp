@@ -60,9 +60,9 @@ GUIDialogoEcaes::GUIDialogoEcaes( wxWindow* parent, wxWindowID id, const wxStrin
 	wxGridSizer* gSizer9;
 	gSizer9 = new wxGridSizer( 2, 1, 0, 0 );
 	
-	m_checkBoxCompetencia = new wxCheckBox( this, wxID_ANY, wxT("Competencia 1"), wxDefaultPosition, wxDefaultSize, 0 );
-	m_checkBoxCompetencia->SetValue(true); 
-	gSizer9->Add( m_checkBoxCompetencia, 0, wxALL, 5 );
+	m_checkBoxCompetencia1 = new wxCheckBox( this, wxID_ANY, wxT("Competencia 1"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBoxCompetencia1->SetValue(true); 
+	gSizer9->Add( m_checkBoxCompetencia1, 0, wxALL, 5 );
 	
 	m_checkBoxCompetencia2 = new wxCheckBox( this, wxID_ANY, wxT("Competencia 2"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_checkBoxCompetencia2->SetValue(true); 
@@ -76,14 +76,23 @@ GUIDialogoEcaes::GUIDialogoEcaes( wxWindow* parent, wxWindowID id, const wxStrin
 	
 	bSizer4->Add( sbSizer14, 1, 0, 5 );
 	
+	m_checkBoxTotal = new wxCheckBox( this, wxID_ANY, wxT("Puntaje Total"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_checkBoxTotal->SetValue(true); 
+	bSizer4->Add( m_checkBoxTotal, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
 	m_buttonAceptar = new wxButton( this, wxID_ANY, wxT("Aceptar"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_buttonAceptar, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	this->SetSizer( bSizer4 );
 	this->Layout();
 	bSizer4->Fit( this );
+	
+	// Connect Events
+	m_buttonAceptar->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialogoEcaes::botonAceptar ), NULL, this );
 }
 
 GUIDialogoEcaes::~GUIDialogoEcaes()
 {
+	// Disconnect Events
+	m_buttonAceptar->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIDialogoEcaes::botonAceptar ), NULL, this );
 }

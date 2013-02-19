@@ -37,10 +37,15 @@ class GUIDialogoEcaes : public wxDialog
 		wxCheckBox* m_checkComponente5;
 		wxCheckBox* m_checkComponente6;
 		wxCheckBox* m_checkComponente7;
-		wxCheckBox* m_checkBoxCompetencia;
+		wxCheckBox* m_checkBoxCompetencia1;
 		wxCheckBox* m_checkBoxCompetencia2;
 		wxCheckBox* m_checkBoxCompetencia3;
+		wxCheckBox* m_checkBoxTotal;
 		wxButton* m_buttonAceptar;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void botonAceptar( wxCommandEvent& event ) { event.Skip(); }
+		
 	
 	public:
 		

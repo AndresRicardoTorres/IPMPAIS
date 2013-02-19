@@ -313,6 +313,28 @@ void PuntajesMinimosFrame::actualizarCantidadMuestra(){
     label_cantidad->SetLabel(wxString::Format(wxT("Total de la muestra : %i estudiantes"),cantidad_estudiantes_filtrados));
     wxString cantidad = wxString::Format(wxT("%i"),cantidad_estudiantes_filtrados);
     statusBar->SetStatusText(cantidad+_(" estudiantes selecionados"), 0);
+
+
+    std::vector<bool> opciones_ecaes = dialogo_ecaes->getOpciones();
+
+    unsigned int cantidad_componentes = 0;
+    for(unsigned int i = 0;i<7;i++)
+    {
+        if(opciones_ecaes[i])
+            cantidad_componentes++;
+    }
+
+    unsigned int cantidad_competencias = 0;
+    for(unsigned int i = 7;i<10;i++)
+    {
+        if(opciones_ecaes[i])
+            cantidad_competencias++;
+    }
+
+    unsigned int cantidad_total = (opciones_ecaes[10])?1:0;
+
+    label_componentes_seleccionados->SetLabel(wxString::Format(wxT("%i Componentes , %i Competencias , %i Total"),cantidad_componentes,cantidad_competencias,cantidad_total));
+
 }
 
 void PuntajesMinimosFrame::actualizarFiltroFechaInicio( wxCommandEvent& event )
@@ -348,8 +370,8 @@ void PuntajesMinimosFrame::actualizarFiltroAsignaturas( wxCommandEvent& event ) 
 
 void PuntajesMinimosFrame::seleccionarComponentesYCompetencias( wxCommandEvent& event )
 {
-    dialogo_ecaes->Show();
-
+    dialogo_ecaes->ShowModal();
+    actualizarCantidadMuestra();
 }
 
 void PuntajesMinimosFrame::actualizarInterfaz(){

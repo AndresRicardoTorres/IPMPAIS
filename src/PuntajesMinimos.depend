@@ -3341,10 +3341,10 @@
 1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/GUIDialogoAsignaturas.cpp
 	"GUIDialogoAsignaturas.h"
 
-1361287002 source:/home/andresrtm/Desktop/IPMPAIS/src/GUIDialogoECAES.cpp
+1361290494 source:/home/andresrtm/Desktop/IPMPAIS/src/GUIDialogoECAES.cpp
 	"GUIDialogoECAES.h"
 
-1361287002 /home/andresrtm/Desktop/IPMPAIS/src/GUIDialogoECAES.h
+1361290291 /home/andresrtm/Desktop/IPMPAIS/src/GUIDialogoECAES.h
 	<wx/string.h>
 	<wx/checkbox.h>
 	<wx/gdicmn.h>
@@ -3462,7 +3462,7 @@
 	<map>
 	<vector>
 
-1361287128 source:/home/andresrtm/Desktop/IPMPAIS/src/PuntajesMinimosMain.cpp
+1361290482 source:/home/andresrtm/Desktop/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>
@@ -3492,9 +3492,10 @@
 1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
 
-1361287033 source:/home/andresrtm/Desktop/IPMPAIS/src/DialogoEcaes.cpp
+1361290374 source:/home/andresrtm/Desktop/IPMPAIS/src/DialogoEcaes.cpp
 	"DialogoEcaes.h"
 
-1361287027 /home/andresrtm/Desktop/IPMPAIS/src/DialogoEcaes.h
+1361290356 /home/andresrtm/Desktop/IPMPAIS/src/DialogoEcaes.h
 	"GUIDialogoECAES.h"
+	<vector>
 
