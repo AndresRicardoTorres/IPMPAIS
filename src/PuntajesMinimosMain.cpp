@@ -30,6 +30,7 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
 
     ///Inicializo los dialogos que se utilizaran
     dialogo_configuracion_base_datos = new ConfBDDialog(0L);
+    dialogo_ecaes = new DialogoEcaes(0L);
     ///Inicializo los filtros de la aplicacion
     filtro_completitud_datos = 1;
     filtro_fecha_inicio = 0;
@@ -347,7 +348,7 @@ void PuntajesMinimosFrame::actualizarFiltroAsignaturas( wxCommandEvent& event ) 
 
 void PuntajesMinimosFrame::seleccionarComponentesYCompetencias( wxCommandEvent& event )
 {
-
+    dialogo_ecaes->Show();
 
 }
 

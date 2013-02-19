@@ -20,6 +20,7 @@
 #include "Calificacion.h"
 #include "GUIFrame.h"
 #include "LeerCSV.h"
+#include "DialogoEcaes.h"
 
 #include "EquivalenciaDAO.h"
 #include "CalificacionDAO.h"
@@ -51,6 +52,7 @@ class PuntajesMinimosFrame: public GUIFrame
     private:
 
         ConfBDDialog* dialogo_configuracion_base_datos;
+        DialogoEcaes* dialogo_ecaes;
 
         char filename[1024];
         int un_numero_aleatorio;

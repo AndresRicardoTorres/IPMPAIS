@@ -9,52 +9,43 @@
 #define __GUIDialogoECAES__
 
 #include <wx/string.h>
-#include <wx/stattext.h>
+#include <wx/checkbox.h>
 #include <wx/gdicmn.h>
 #include <wx/font.h>
 #include <wx/colour.h>
 #include <wx/settings.h>
-#include <wx/checkbox.h>
 #include <wx/sizer.h>
 #include <wx/statbox.h>
+#include <wx/button.h>
 #include <wx/dialog.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Class MyDialog1
+/// Class GUIDialogoEcaes
 ///////////////////////////////////////////////////////////////////////////////
-class MyDialog1 : public wxDialog 
+class GUIDialogoEcaes : public wxDialog 
 {
 	private:
 	
 	protected:
-		wxStaticText* m_staticText19;
-		wxCheckBox* m_checkBox2;
-		wxStaticText* m_staticText20;
-		wxCheckBox* m_checkBox3;
-		wxStaticText* m_staticText21;
-		wxCheckBox* m_checkBox4;
-		wxStaticText* m_staticText22;
-		wxCheckBox* m_checkBox5;
-		wxStaticText* m_staticText23;
-		wxCheckBox* m_checkBox6;
-		wxStaticText* m_staticText24;
-		wxCheckBox* m_checkBox7;
-		wxStaticText* m_staticText25;
-		wxCheckBox* m_checkBox8;
-		wxStaticText* m_staticText26;
-		wxCheckBox* m_checkBox9;
-		wxStaticText* m_staticText27;
-		wxCheckBox* m_checkBox10;
-		wxStaticText* m_staticText28;
-		wxCheckBox* m_checkBox11;
+		wxCheckBox* m_checkComponente1;
+		wxCheckBox* m_checkComponente2;
+		wxCheckBox* m_checkComponente3;
+		wxCheckBox* m_checkComponente4;
+		wxCheckBox* m_checkComponente5;
+		wxCheckBox* m_checkComponente6;
+		wxCheckBox* m_checkComponente7;
+		wxCheckBox* m_checkBoxCompetencia;
+		wxCheckBox* m_checkBoxCompetencia2;
+		wxCheckBox* m_checkBoxCompetencia3;
+		wxButton* m_buttonAceptar;
 	
 	public:
 		
-		MyDialog1( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
-		~MyDialog1();
+		GUIDialogoEcaes( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE );
+		~GUIDialogoEcaes();
 	
 };
 
