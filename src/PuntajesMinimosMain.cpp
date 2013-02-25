@@ -83,6 +83,7 @@ PuntajesMinimosFrame::~PuntajesMinimosFrame()
 {
     ///Elimino los dialogos que cree
     delete dialogo_configuracion_base_datos;
+    delete dialogo_ecaes;
 }
 
 bool PuntajesMinimosFrame::comprobarConexionBD()
@@ -298,42 +299,28 @@ void PuntajesMinimosFrame::actualizarCantidadMuestra(){
    ///Consulto cuantos estudiantes hay actualmente para tener actualizado al usuario
 
 
+    bool ECAESoRegistro = radio_comparacion->GetSelection() != 0;
+
+    opcionesEcaes = dialogo_ecaes->getOpciones();
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-
-    int opcion = radio_comparacion->GetSelection();
-    if(opcion){
-        ResultadoConsulta *ResultadoConsulta = objEstudiantes->getPuntajesECAES(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
-         cantidad_estudiantes_filtrados =ResultadoConsulta->size();
-    }else{
-        listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
-         cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
-    }
+    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,ECAESoRegistro?opcionesEcaes:listadoAsignaturas,ECAESoRegistro);
+    delete objEstudiantes;
 
 
+    cantidad_estudiantes_filtrados = listadoCodigoEstudiantes->size();
     label_cantidad->SetLabel(wxString::Format(wxT("Total de la muestra : %i estudiantes"),cantidad_estudiantes_filtrados));
     wxString cantidad = wxString::Format(wxT("%i"),cantidad_estudiantes_filtrados);
     statusBar->SetStatusText(cantidad+_(" estudiantes selecionados"), 0);
 
-
-    std::vector<bool> opciones_ecaes = dialogo_ecaes->getOpciones();
-
-    unsigned int cantidad_componentes = 0;
-    for(unsigned int i = 0;i<7;i++)
+    if(ECAESoRegistro)
     {
-        if(opciones_ecaes[i])
-            cantidad_componentes++;
+        unsigned int cantidad_componentes = dialogo_ecaes->getCantidadComponentes();
+        unsigned int cantidad_competencias = dialogo_ecaes->getCantidadCompetencias();
+        unsigned int cantidad_total = dialogo_ecaes->getCantidadTotal();
+
+        label_componentes_seleccionados->SetLabel(wxString::Format(wxT("%i Componentes , %i Competencias , %i Total"),cantidad_componentes,cantidad_competencias,cantidad_total));
+
     }
-
-    unsigned int cantidad_competencias = 0;
-    for(unsigned int i = 7;i<10;i++)
-    {
-        if(opciones_ecaes[i])
-            cantidad_competencias++;
-    }
-
-    unsigned int cantidad_total = (opciones_ecaes[10])?1:0;
-
-    label_componentes_seleccionados->SetLabel(wxString::Format(wxT("%i Componentes , %i Competencias , %i Total"),cantidad_componentes,cantidad_competencias,cantidad_total));
 
 }
 
@@ -576,17 +563,28 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
 // varias veces el AG, obteniendo el promedio y la desviación típica de las ponderaciones.
 #include <math.h>
 void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
-  // ?? Imprimir en GUI el número de estudiantes despues del filtro
+    std::cout<<"COMIENZO  botonBuscar >>>>"<<std::endl;
+    ///Compruebo si hay conexion a la base de datos, si no, no hago nada
     if(!comprobarConexionBD())
         return;
-    std::cout<<582<<std::endl;
-    bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();  // ??? Obtener esta información de la GUI (y modificar la GUI en función de ello poniendo dos columnas más para PuntajesMinimosPromedio y PuntajesMinimosDesviacionTipica) */
-    bool ECAESoRegistro = radio_comparacion->GetSelection() != 0;std::cout<<584<<std::endl;
-    AdmisionesUnivalle admisionesUnivalle(ECAESoRegistro,getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
-std::cout<<586<<std::endl;
+
+    ///Obtengo opciones de la interfaz
+    int veces=wxAtoi(input_numero_iteraciones->GetValue());
+    bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();
+    bool ECAESoRegistro = radio_comparacion->GetSelection() != 0;
+    ///ECAESoRegistro si es TRUE trabajo con el ECAES, si no con las notas de Univalle
+
+    ///objeto AdmisionesUnivalle que controla en que puesto quedan los estudiantes
+    std::cout<<"AdmisionesUnivalle"<<std::endl;
+    AdmisionesUnivalle admisionesUnivalle(ECAESoRegistro,getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final);
+
+    ///
+    std::cout<<"objEstudiantes"<<std::endl;
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-std::cout<<588<<std::endl;
-    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas);
+    listaCSV *listadoCodigoEstudiantes = objEstudiantes->getListaEstudiantesOrdenadaPorPromedio(filtro_fecha_inicio,filtro_fecha_final,ECAESoRegistro?opcionesEcaes:listadoAsignaturas,ECAESoRegistro);
+    delete objEstudiantes;
+
+    std::cout<<":)"<<std::endl;
     int cuantosEgresados = listadoCodigoEstudiantes->size();
     std::cout << ">> " << cuantosEgresados << std::endl;
 
@@ -597,8 +595,6 @@ std::cout<<588<<std::endl;
         std::string stringIt =  *it;
         listaEgresadosOrdenada[i] = stringIt.c_str();
     }
-
-    int veces=wxAtoi(input_numero_iteraciones->GetValue());  // ??? Obtener este valor de la GUI */
 
     double vectorPuntajesMinimos[veces][cuantosComponentesExamenIngreso];
     double vectorPonderaciones[veces][cuantosComponentesExamenIngreso];
@@ -659,7 +655,6 @@ std::cout<<588<<std::endl;
 
     if(not soloCalcularPonderaciones)
     {
-      /* ??? Imprimir en GUI puntajesMinimosPromedio y puntajesMinimosDesviacionTipica */
 
         inputPonderacionLenguaje->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[0]));
         inputPonderacionMatematica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[1]));
@@ -693,28 +688,26 @@ std::cout<<588<<std::endl;
       ponderacionesPromedio[i]=ponderacionesPromedio[i]*100/suma;
       ponderacionesDesviacionTipica[i]=ponderacionesDesviacionTipica[i]*100/suma;
     }
-    if(ECAESoRegistro){
+
+    inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
+    inputPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[1]));
+    inputPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[2]));
+    inputPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[3]));
+    inputPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[4]));
+    inputPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[5]));
+    inputPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[6]));
+
+    inputDPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[0]));
+    inputDPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[1]));
+    inputDPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[2]));
+    inputDPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[3]));
+    inputDPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[4]));
+    inputDPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[5]));
+    inputDPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[6]));
+
+    inputPromedio->SetValue(wxString::Format(wxT("%f"),aptitudPromedio));
+    inputDesviacionPromedio->SetValue(wxString::Format(wxT("%f"),aptitudDesviacionTipica));
 
 
-    }else{
-        inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
-        inputPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[1]));
-        inputPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[2]));
-        inputPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[3]));
-        inputPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[4]));
-        inputPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[5]));
-        inputPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[6]));
-
-        inputDPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[0]));
-        inputDPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[1]));
-        inputDPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[2]));
-        inputDPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[3]));
-        inputDPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[4]));
-        inputDPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[5]));
-        inputDPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[6]));
-
-        inputPromedio->SetValue(wxString::Format(wxT("%f"),aptitudPromedio));
-        inputDesviacionPromedio->SetValue(wxString::Format(wxT("%f"),aptitudDesviacionTipica));
-    }
     boton_guardarCSV->Enable(true);
 }

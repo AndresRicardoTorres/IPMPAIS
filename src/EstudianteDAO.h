@@ -23,9 +23,8 @@ class EstudianteDAO: protected DAO
         bool actualizar(Calificacion* unaCalificacion);
         const char * actualizarPromedio(PromediosDeEstudiantes *listadoPromedios);
         std::string insertarPuntajesECAES(encabezadoCSV encabezados,datosCSV datosIn,wxGauge *barraProgreso);
-        listaCSV* getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final,std::string listadoAsignaturas);
+        listaCSV* getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final,std::string filtro_texto,bool ECAESoRegistro);
         puntajesICFES* getPuntajesICFES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas);
-        puntajesICFES* getPuntajesECAES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas);
         ResultadoConsulta* selectAll(std::string columnas,int fecha_inicio,int fecha_final,std::string listadoAsignaturas,bool ICFESoECAES);
         std::string obtenerNombreColumnas();
     protected:

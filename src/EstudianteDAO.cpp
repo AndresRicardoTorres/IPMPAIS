@@ -382,9 +382,9 @@ std::string EstudianteDAO::insertarPuntajesECAES(encabezadoCSV encabezados,datos
     return sstm.str();
 }
 
-listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
+listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio,int fecha_final,std::string filtro_texto,bool ECAESoRegistro)
 {
-    ResultadoConsulta *resultado = selectAll("codigo",fecha_inicio,fecha_final,listadoAsignaturas,true);
+    ResultadoConsulta *resultado = selectAll("codigo",fecha_inicio,fecha_final,filtro_texto,ECAESoRegistro);
 
     listaCSV *listadoCodigoEstudiantes = new listaCSV;
     for(unsigned int i=0;i<resultado->size();i++)
@@ -399,53 +399,119 @@ listaCSV* EstudianteDAO::getListaEstudiantesOrdenadaPorPromedio(int fecha_inicio
 
 puntajesICFES * EstudianteDAO::getPuntajesICFES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
 {
-    return selectAll("codigo,len,mat,fil,bio,qui,fis, CASE WHEN cis IS NULL THEN (geo+his)/2 ELSE cis END as cis",fecha_inicio,fecha_final,listadoAsignaturas,true);
+    ///El orden de los campos de la consulta NO se debe cambiar, corresponde al orden en admisionesunivalle
+    return selectAll("codigo,len,mat,CASE WHEN cis IS NULL THEN (geo+his)/2 ELSE cis END as cis,fil,bio,qui,fis",fecha_inicio,fecha_final,listadoAsignaturas,false);
 }
 
-puntajesICFES * EstudianteDAO::getPuntajesECAES(int fecha_inicio,int fecha_final,std::string listadoAsignaturas)
-{
-    return selectAll("codigo,componente1,componente2,componente3,componente4,componente5,componente6,componente7,competencia1,competencia2,competencia3",fecha_inicio,fecha_final,listadoAsignaturas,false);
-}
-
-ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inicio,int fecha_final,std::string listadoAsignaturas,bool ICFESoECAES){
+ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inicio,int fecha_final,std::string listadoAsignaturas,bool ECAESoRegistro){
 
     PG *objPg = new PG(conexion.c_str());
-
     std::stringstream ss;
-    if(columnas.size() <= 0)
-       columnas = "subconsulta.promedio,*";
+    std::string order;
+    ResultadoConsulta *resultado;
 
-    ss << "SELECT " << columnas <<" FROM estudiante JOIN (  SELECT codigo_estudiante,promedio FROM  (SELECT count(codigo_asignatura) as cantidad,codigo_estudiante,SUM(calificacion_numerica*creditos)/SUM(creditos) as promedio FROM calificacion WHERE creditos!= 0 ";
+    if(ECAESoRegistro){
 
-    if(listadoAsignaturas.size()>0)
-        ss<<" AND codigo_asignatura IN("<<listadoAsignaturas<<")";
 
-    ss << " GROUP BY codigo_estudiante ) as a ";
+        if(listadoAsignaturas.size()!=11){
+            std::cout<<"ERROR listadoAsignaturas.size()"<<std::endl;
+            resultado = objPg->select("SELECT FALSE");
+            return resultado;
+        }
 
-    if(listadoAsignaturas.size()>0){
-        int cantidadComas = 1;
-        for(unsigned int i=0;i<listadoAsignaturas.size();i++)
-            if(listadoAsignaturas[i] == ',')
-                cantidadComas++;
-        ss<<" WHERE  cantidad = "<<cantidadComas;
-    }
+        order="promedio";
+        ss << " SELECT (";
+        bool first_comma = false;
+        unsigned int cantidad = 0;
+        for(unsigned int i = 0;i<7;i++)
+        {
+            if(listadoAsignaturas.compare(i,1,"1")==0)
+            {
+                if(!first_comma)
+                {
+                    first_comma=true;
+                }else{
+                    ss << " + ";
+                }
+                ss << "componente" << (i+1);
+                cantidad++;
+            }
 
-    if(ICFESoECAES){
-        ss<<") as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL AND (cis IS NOT NULL OR (his IS NOT NULL AND geo IS NOT NULL))";
+        }
+
+        for(unsigned int i = 7;i<10;i++){
+            if(listadoAsignaturas.compare(i,1,"1")==0)
+            {
+                if(!first_comma)
+                {
+                    first_comma=true;
+                }else{
+                    ss << " + ";
+                }
+                ss << "competencia" << (i-7+1);
+                cantidad++;
+            }
+        }
+
+        if(listadoAsignaturas.compare(10,1,"1")==0)
+        {
+            if(!first_comma)
+                {
+                    first_comma=true;
+                }else{
+                    ss << " + ";
+                }
+                ss << "ecaes_total";
+                cantidad++;
+        }
+
+        if(cantidad==0){
+            std::cout<<"ERROR cantidad ECAES"<<std::endl;
+            resultado = objPg->select("SELECT FALSE");
+            return resultado;
+        }
+
+        ss << ")/" << cantidad;
+
+        ss << " as promedio ,codigo FROM estudiante WHERE componente1 IS NOT NULL AND componente7 IS NOT NULL GROUP BY codigo ";
+
+
     }else{
-        ss<<") as subconsulta ON (codigo_estudiante = codigo) WHERE componente1 IS NOT NULL";
+        order="subconsulta.promedio";
+        if(columnas.size() <= 0)
+            columnas = "subconsulta.promedio,*";
+
+        ss << "SELECT " << columnas <<" FROM estudiante JOIN (  SELECT codigo_estudiante,promedio FROM  (SELECT count(codigo_asignatura) as cantidad,codigo_estudiante,SUM(calificacion_numerica*creditos)/SUM(creditos) as promedio FROM calificacion WHERE creditos!= 0 ";
+
+        if(listadoAsignaturas.size()>0)
+            ss<<" AND codigo_asignatura IN("<<listadoAsignaturas<<")";
+
+        ss << " GROUP BY codigo_estudiante ) as a ";
+
+        if(listadoAsignaturas.size()>0){
+            int cantidadComas = 1;
+            for(unsigned int i=0;i<listadoAsignaturas.size();i++)
+                if(listadoAsignaturas[i] == ',')
+                    cantidadComas++;
+            ///la cantidad es para limitar la cantidad materias promedidas si la repitio
+            //ss<<" WHERE  cantidad = "<<cantidadComas;
+        }
+
+        ss<<") as subconsulta ON (codigo_estudiante = codigo) WHERE len is not null AND mat is not null AND fil IS NOT NULL AND bio IS NOT NULL AND qui IS NOT NULL and fis IS NOT NULL AND (cis IS NOT NULL OR (his IS NOT NULL AND geo IS NOT NULL))";
     }
 
 
     if(fecha_inicio > 0)
-        ss << "AND año >= " << fecha_inicio;
+        ss << " AND año >= " << fecha_inicio;
 
     if(fecha_final > 0)
         ss << " AND año <= " << fecha_final;
 
-    ss << " ORDER BY subconsulta.promedio DESC";
-std::cout<<ss.str()<<std::endl;
-    ResultadoConsulta *resultado = objPg->select(ss.str().c_str());
+    ss << " ORDER BY " << order << " DESC ";
+
+    std::cout<<"EstudianteDAO::selectAll"<<ss.str()<<std::endl;
+
+    resultado = objPg->select(ss.str().c_str());
 
     delete objPg;
     return resultado;

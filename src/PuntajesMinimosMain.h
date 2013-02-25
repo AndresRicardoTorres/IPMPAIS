@@ -61,6 +61,7 @@ class PuntajesMinimosFrame: public GUIFrame
         int filtro_fecha_final;
         int cantidad_estudiantes_filtrados;
         std::string listadoAsignaturas;
+        std::string opcionesEcaes;
         int cuantosComponentesExamenIngreso;
         double puntajeMinimo_minimo;
         double puntajeMinimo_maximo; //El maximo que he visto es 116.95

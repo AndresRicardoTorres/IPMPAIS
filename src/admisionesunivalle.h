@@ -31,7 +31,8 @@
 
 #include <iostream>
 #include <cstdio>
-
+#include <stdio.h>
+#include <stdlib.h>
 
 class miComparador
 {
@@ -63,7 +64,7 @@ typedef std::vector<std::vector <const char*> > puntajesICFES;
 class AdmisionesUnivalle
 {
   public:
-    AdmisionesUnivalle(bool ECAESoRegistro,const char* conn,int filtro_anno_inicio,int filtro_anno_final,std::string listadoAsignaturas);
+    AdmisionesUnivalle(bool ECAESoRegistro,const char* conn,int filtro_anno_inicio,int filtro_anno_final);
     ~AdmisionesUnivalle();
     const VectorEstudiantes *ordenarEstudiantesAdmisionesSegunPuntajesMinimosYPonderaciones(double puntajesMinimos[], double ponderaciones[]);
     private:

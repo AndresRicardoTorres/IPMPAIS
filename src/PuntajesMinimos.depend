@@ -3314,10 +3314,10 @@
 1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/EquivalenciaDAO.cpp
 	"EquivalenciaDAO.h"
 
-1361284807 source:/home/andresrtm/Desktop/IPMPAIS/src/EstudianteDAO.cpp
+1361822347 source:/home/andresrtm/Desktop/IPMPAIS/src/EstudianteDAO.cpp
 	"EstudianteDAO.h"
 
-1359125164 /home/andresrtm/Desktop/IPMPAIS/src/EstudianteDAO.h
+1361817578 /home/andresrtm/Desktop/IPMPAIS/src/EstudianteDAO.h
 	"DAO.h"
 	"PG.h"
 	"LeerCSV.h"
@@ -3326,12 +3326,14 @@
 	"CalificacionDAO.h"
 	"admisionesunivalle.h"
 
-1359125164 /home/andresrtm/Desktop/IPMPAIS/src/admisionesunivalle.h
+1361816414 /home/andresrtm/Desktop/IPMPAIS/src/admisionesunivalle.h
 	<vector>
 	<queue>
 	"EstudianteDAO.h"
 	<iostream>
 	<cstdio>
+	<stdio.h>
+	<stdlib.h>
 
 1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/GUIDialog.cpp
 	"wx/wxprec.h"
@@ -3412,7 +3414,7 @@
 	<wx/app.h>
 	<wx/dcclient.h>
 
-1361287100 /home/andresrtm/Desktop/IPMPAIS/src/PuntajesMinimosMain.h
+1361809256 /home/andresrtm/Desktop/IPMPAIS/src/PuntajesMinimosMain.h
 	"algoritmogenetico.h"
 	"fenotipoipmpais.h"
 	"admisionesunivalle.h"
@@ -3462,12 +3464,12 @@
 	<map>
 	<vector>
 
-1361291442 source:/home/andresrtm/Desktop/IPMPAIS/src/PuntajesMinimosMain.cpp
+1361822414 source:/home/andresrtm/Desktop/IPMPAIS/src/PuntajesMinimosMain.cpp
 	"wx_pch.h"
 	"PuntajesMinimosMain.h"
 	<math.h>
 
-1359127811 source:/home/andresrtm/Desktop/IPMPAIS/src/admisionesunivalle.cpp
+1361816868 source:/home/andresrtm/Desktop/IPMPAIS/src/admisionesunivalle.cpp
 	"admisionesunivalle.h"
 
 1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/algoritmogenetico.cpp
@@ -3492,10 +3494,11 @@
 1359125164 source:/home/andresrtm/Desktop/IPMPAIS/src/matematicas.cpp
 	"matematicas.h"
 
-1361290374 source:/home/andresrtm/Desktop/IPMPAIS/src/DialogoEcaes.cpp
+1361809210 source:/home/andresrtm/Desktop/IPMPAIS/src/DialogoEcaes.cpp
 	"DialogoEcaes.h"
 
-1361290356 /home/andresrtm/Desktop/IPMPAIS/src/DialogoEcaes.h
+1361809237 /home/andresrtm/Desktop/IPMPAIS/src/DialogoEcaes.h
 	"GUIDialogoECAES.h"
 	<vector>
+	<string>
 
