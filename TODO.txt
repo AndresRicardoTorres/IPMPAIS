@@ -1,6 +1,0 @@
--Ahora el lector de equivalencias es en CSV.
--Colocar lo del tercer tab en el segundo,justo debajo y llamarlo "Resultados por promedios de asignaturas"
--Copiar el segundo tab, realizado en el punto anterior, y llamarlo "Resultados por promedios de ECAES"
--En el nuevo tercer tab, cambiar lista de asignaturas, por componentes del ECAES.
-
--Pensar si es mejor utilizar dos tabs, o uno solo.
