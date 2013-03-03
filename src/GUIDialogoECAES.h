@@ -44,6 +44,8 @@ class GUIDialogoEcaes : public wxDialog
 		wxButton* m_buttonAceptar;
 		
 		// Virtual event handlers, overide them in your derived class
+		virtual void verificarSeleccion( wxCommandEvent& event ) { event.Skip(); }
+		virtual void verificarSeleccionTotal( wxCommandEvent& event ) { event.Skip(); }
 		virtual void botonAceptar( wxCommandEvent& event ) { event.Skip(); }
 		
 	

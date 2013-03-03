@@ -17,7 +17,7 @@ public:
 	/** Constructor */
 	DialogoEcaes( wxWindow* parent );
     std::string getOpciones();
-    virtual void botonAceptar( wxCommandEvent& event );
+
     unsigned int getCantidadComponentes();
     unsigned int getCantidadCompetencias();
     unsigned int getCantidadTotal();
@@ -26,6 +26,9 @@ private:
     unsigned int cantidad_componentes;
     unsigned int cantidad_competencias;
     unsigned int cantidad_total;
+    virtual void botonAceptar( wxCommandEvent& event );
+    virtual void verificarSeleccion( wxCommandEvent& event );
+    virtual void verificarSeleccionTotal( wxCommandEvent& event );
 };
 
 #endif // __DialogoEcaes__

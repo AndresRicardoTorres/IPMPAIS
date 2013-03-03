@@ -76,5 +76,34 @@ unsigned int DialogoEcaes::getCantidadTotal(){
     return cantidad_total;
 }
 
+void DialogoEcaes::verificarSeleccion( wxCommandEvent& event )
+{
+    if( m_checkComponente1->IsChecked()  || m_checkComponente2->IsChecked() ||
+        m_checkComponente3->IsChecked() || m_checkComponente4->IsChecked() ||
+        m_checkComponente5->IsChecked() || m_checkComponente6->IsChecked() ||
+        m_checkComponente7->IsChecked() || m_checkBoxCompetencia1->IsChecked() ||
+        m_checkBoxCompetencia2->IsChecked() ||m_checkBoxCompetencia3->IsChecked()
+       ){
+          m_checkBoxTotal->SetValue(false);
+       }
+
+}
+
+void DialogoEcaes::verificarSeleccionTotal( wxCommandEvent& event ){
+    if(m_checkBoxTotal->IsChecked())
+    {
+        m_checkComponente1->SetValue(false);
+        m_checkComponente2->SetValue(false);
+        m_checkComponente3->SetValue(false);
+        m_checkComponente4->SetValue(false);
+        m_checkComponente5->SetValue(false);
+        m_checkComponente6->SetValue(false);
+        m_checkComponente7->SetValue(false);
+
+        m_checkBoxCompetencia1->SetValue(false);
+        m_checkBoxCompetencia2->SetValue(false);
+        m_checkBoxCompetencia3->SetValue(false);
+    }
+}
 
 
