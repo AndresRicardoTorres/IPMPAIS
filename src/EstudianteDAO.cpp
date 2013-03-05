@@ -473,7 +473,7 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
 
         ss << ")/" << cantidad;
 
-        ss << " as promedio ,codigo FROM estudiante WHERE componente1 IS NOT NULL AND componente7 IS NOT NULL GROUP BY codigo ";
+        ss << " as promedio ,codigo FROM estudiante WHERE componente1 IS NOT NULL AND componente7 IS NOT NULL ";
 
 
     }else{
@@ -507,7 +507,13 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
     if(fecha_final > 0)
         ss << " AND año <= " << fecha_final;
 
+
+    if(ECAESoRegistro){
+        ss << "GROUP BY codigo";
+    }
+
     ss << " ORDER BY " << order << " DESC ";
+
 
     std::cout<<"EstudianteDAO::selectAll"<<ss.str()<<std::endl;
 

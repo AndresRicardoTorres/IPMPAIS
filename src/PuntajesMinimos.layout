@@ -22,11 +22,11 @@
 	<File name="DAO.h" open="0" top="0" tabpos="10">
 		<Cursor position="252" topLine="0" />
 	</File>
-	<File name="DialogoEcaes.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="2379" topLine="77" />
+	<File name="DialogoEcaes.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="2379" topLine="59" />
 	</File>
-	<File name="DialogoEcaes.h" open="1" top="0" tabpos="5">
-		<Cursor position="773" topLine="3" />
+	<File name="DialogoEcaes.h" open="0" top="0" tabpos="5">
+		<Cursor position="773" topLine="0" />
 	</File>
 	<File name="Equivalencia.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="231" topLine="0" />
@@ -41,16 +41,16 @@
 		<Cursor position="99" topLine="0" />
 	</File>
 	<File name="EstudianteDAO.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="20842" topLine="323" />
+		<Cursor position="21635" topLine="481" />
 	</File>
 	<File name="EstudianteDAO.h" open="0" top="0" tabpos="7">
 		<Cursor position="1193" topLine="0" />
 	</File>
-	<File name="GUIDialogoECAES.cpp" open="1" top="0" tabpos="2">
+	<File name="GUIDialogoECAES.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="646" topLine="0" />
 	</File>
-	<File name="GUIDialogoECAES.h" open="1" top="0" tabpos="3">
-		<Cursor position="1389" topLine="18" />
+	<File name="GUIDialogoECAES.h" open="0" top="0" tabpos="3">
+		<Cursor position="1389" topLine="9" />
 	</File>
 	<File name="GUIFrame.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="21526" topLine="390" />
@@ -73,23 +73,26 @@
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="6846" topLine="107" />
+	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="22343" topLine="601" />
 	</File>
 	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="2">
 		<Cursor position="1593" topLine="30" />
 	</File>
-	<File name="admisionesunivalle.cpp" open="1" top="0" tabpos="1">
+	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="684" topLine="6" />
 	</File>
 	<File name="admisionesunivalle.h" open="0" top="0" tabpos="5">
 		<Cursor position="1810" topLine="28" />
 	</File>
-	<File name="algoritmogenetico.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="1006" topLine="72" />
+	<File name="algoritmogenetico.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="1005" topLine="29" />
 	</File>
 	<File name="algoritmogenetico.h" open="0" top="0" tabpos="9">
 		<Cursor position="2163" topLine="22" />
+	</File>
+	<File name="cromosoma.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="0" topLine="18" />
 	</File>
 	<File name="fenotipo.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="0" topLine="0" />

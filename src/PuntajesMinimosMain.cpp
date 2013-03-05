@@ -605,8 +605,10 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
         double puntajesMinimos[cuantosComponentesExamenIngreso];  // Array vacío
         double ponderaciones[cuantosComponentesExamenIngreso];  // Array vacío
         AlgoritmoGenetico algoritmoGenetico(fenotipo);
-        double aptitud;
+        double aptitud=0;
+        std::cout<<"double aptitud=0=>"<<aptitud<<std::endl;
         fenotipo->expresar(algoritmoGenetico.ejecutar(aptitud, 100000), puntajesMinimos, ponderaciones);
+        std::cout<<"double aptitud= expresar=>"<<aptitud<<std::endl;
         vectorAptitudes[vez] = aptitud;
         for(int i=0; i<cuantosComponentesExamenIngreso; i++)
         {
@@ -645,6 +647,7 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
     double aptitudDesviacionTipica = 0;
     for(int vez=0; vez<veces; vez++)
     {
+        std::cout<<"aptitudPromedio=>"<<aptitudPromedio<<std::endl;
         aptitudPromedio += vectorAptitudes[vez];
         std::cout<<"vectorAptitudes "<<vectorAptitudes[vez]<<std::endl;
         aptitudDesviacionTipica += vectorAptitudes[vez] * vectorAptitudes[vez];
