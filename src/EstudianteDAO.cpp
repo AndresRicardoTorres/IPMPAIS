@@ -414,7 +414,7 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
 
 
         if(listadoAsignaturas.size()!=11){
-            std::cout<<"ERROR listadoAsignaturas.size()"<<std::endl;
+            std::cout<<"ERROR listadoAsignaturas.size()"<<listadoAsignaturas.size()<<std::endl;
             resultado = objPg->select("SELECT FALSE");
             return resultado;
         }

@@ -428,7 +428,7 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
         return;     // the user changed idea...
 
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    ResultadoConsulta* resultado = objEstudiantes->selectAll("*",filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas,true);
+    ResultadoConsulta* resultado = objEstudiantes->selectAll("*",filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas,false);
 
     std::stringstream contenido;
 

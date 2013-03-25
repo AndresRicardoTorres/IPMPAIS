@@ -41,10 +41,10 @@
 		<Cursor position="99" topLine="0" />
 	</File>
 	<File name="EstudianteDAO.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="21635" topLine="481" />
+		<Cursor position="18503" topLine="451" />
 	</File>
-	<File name="EstudianteDAO.h" open="0" top="0" tabpos="7">
-		<Cursor position="1193" topLine="0" />
+	<File name="EstudianteDAO.h" open="0" top="0" tabpos="5">
+		<Cursor position="281" topLine="6" />
 	</File>
 	<File name="GUIDialogoECAES.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="646" topLine="0" />
@@ -73,11 +73,11 @@
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="22343" topLine="601" />
+	<File name="PuntajesMinimosMain.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="14831" topLine="417" />
 	</File>
-	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="2">
-		<Cursor position="1593" topLine="30" />
+	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="4">
+		<Cursor position="2656" topLine="60" />
 	</File>
 	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="684" topLine="6" />
@@ -85,13 +85,13 @@
 	<File name="admisionesunivalle.h" open="0" top="0" tabpos="5">
 		<Cursor position="1810" topLine="28" />
 	</File>
-	<File name="algoritmogenetico.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="1005" topLine="29" />
+	<File name="algoritmogenetico.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="1543" topLine="29" />
 	</File>
 	<File name="algoritmogenetico.h" open="0" top="0" tabpos="9">
 		<Cursor position="2163" topLine="22" />
 	</File>
-	<File name="cromosoma.cpp" open="1" top="0" tabpos="3">
+	<File name="cromosoma.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="0" topLine="18" />
 	</File>
 	<File name="fenotipo.cpp" open="0" top="0" tabpos="6">
