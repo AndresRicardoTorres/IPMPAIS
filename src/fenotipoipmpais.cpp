@@ -2,7 +2,7 @@
   Archivo: fenotipoipmpais.cpp
   Licencia: GNU-GPL
   Fecha creacion: 8 de marzo de 2012
-  Fecha ultima modificacion:  28 de septiembre de 2012
+  Fecha ultima modificacion:  28 de marzo de 2013
   Version: 0.2
   Copyright: (C) 2012 by Angel Garcia Baños
   Email: angel.garcia@correounivalle.edu.co
@@ -40,7 +40,7 @@ Cromosoma *FenotipoIPMPAIS::crearCromosoma() const
   return cromosoma;
 }
 
-
+#include <stdlib.h>
 #include <iostream>
 double FenotipoIPMPAIS::evaluar(const Cromosoma *cromosoma)
 {
@@ -53,14 +53,14 @@ double FenotipoIPMPAIS::evaluar(const Cromosoma *cromosoma)
   }
   const VectorEstudiantes *estudiantesOrdenados = admisionesUnivalle.ordenarEstudiantesAdmisionesSegunPuntajesMinimosYPonderaciones(puntajesMinimos, ponderaciones);
 
-  int distancia = 0;
+  double distancia = 0;  // 2013-03-28 by Angel. Con int, se desbordaba.
   for(unsigned int posicion = 0; posicion < estudiantesOrdenados->size(); posicion++)
   {
-    int aux = puntajesEgresados[(*estudiantesOrdenados)[posicion]] - posicion;
+    int aux = abs(puntajesEgresados[(*estudiantesOrdenados)[posicion]] - posicion);
     distancia += aux * aux;
   }
   delete estudiantesOrdenados;
-  return -distancia;
+  return -1.0*distancia/estudiantesOrdenados->size();  // 2013-03-25 by Angel: Normalizando respecto al número de estudiantes
 }
 
 

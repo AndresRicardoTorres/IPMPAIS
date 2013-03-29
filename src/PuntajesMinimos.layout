@@ -52,11 +52,11 @@
 	<File name="GUIDialogoECAES.h" open="0" top="0" tabpos="3">
 		<Cursor position="1389" topLine="9" />
 	</File>
-	<File name="GUIFrame.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="21526" topLine="390" />
+	<File name="GUIFrame.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="7508" topLine="147" />
 	</File>
 	<File name="GUIFrame.h" open="0" top="0" tabpos="5">
-		<Cursor position="5004" topLine="120" />
+		<Cursor position="117" topLine="0" />
 	</File>
 	<File name="LeerCSV.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="667" topLine="31" />
@@ -73,11 +73,14 @@
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="14831" topLine="417" />
+	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="29029" topLine="680" />
 	</File>
 	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="4">
 		<Cursor position="2656" topLine="60" />
+	</File>
+	<File name="WxWizFrame.fbp" open="1" top="1" tabpos="5">
+		<Cursor position="122670" topLine="1428" />
 	</File>
 	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="684" topLine="6" />
@@ -85,8 +88,8 @@
 	<File name="admisionesunivalle.h" open="0" top="0" tabpos="5">
 		<Cursor position="1810" topLine="28" />
 	</File>
-	<File name="algoritmogenetico.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1543" topLine="29" />
+	<File name="algoritmogenetico.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="1543" topLine="0" />
 	</File>
 	<File name="algoritmogenetico.h" open="0" top="0" tabpos="9">
 		<Cursor position="2163" topLine="22" />
@@ -100,8 +103,8 @@
 	<File name="fenotipo.h" open="0" top="0" tabpos="7">
 		<Cursor position="0" topLine="8" />
 	</File>
-	<File name="fenotipoipmpais.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="562" topLine="5" />
+	<File name="fenotipoipmpais.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2552" topLine="23" />
 	</File>
 	<File name="fenotipoipmpais.h" open="0" top="0" tabpos="9">
 		<Cursor position="1774" topLine="42" />

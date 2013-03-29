@@ -3,8 +3,9 @@
  * Purpose:   Code for Application Frame
  * Author:    Andrés Ricardo Torres Martínez (aritoma@gmail.com)
  * Created:   2012-02-12
+ * Modified:  2013-03-25 by Angel García
  * Copyright: Andrés Ricardo Torres Martínez ()
- * License:
+ * License:   GPL
  **************************************************************/
 
 #ifdef WX_PRECOMP
@@ -472,10 +473,10 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
     columnas = soloCalcularPonderaciones ? 2 : 4;
 
     listaCSV lista;
-    lista.push_back("Valor medio peso");
+    lista.push_back("Peso óptimo");
     lista.push_back("Desviación tipíca");
     if(not soloCalcularPonderaciones){
-        lista.push_back("Valor medio puntaje");
+        lista.push_back("Puntaje óptimo");
         lista.push_back("Desviación tipíca");
     }
 
@@ -543,7 +544,7 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
 
 
     contenido<<std::string(inputPromedio->GetValue().mb_str())<<",";
-    contenido<<std::string(inputDesviacionPromedio->GetValue().mb_str())<<std::endl;
+//    contenido<<std::string(inputDesviacionPromedio->GetValue().mb_str())<<std::endl;
 
     wxFileOutputStream output_stream(saveFileDialog.GetPath());
     if (!output_stream.IsOk())
@@ -608,6 +609,7 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
         double aptitud=0;
         std::cout<<"double aptitud=0=>"<<aptitud<<std::endl;
         fenotipo->expresar(algoritmoGenetico.ejecutar(aptitud, 100000), puntajesMinimos, ponderaciones);
+        std::cout<<"cuantosEgresados="<<cuantosEgresados<<std::endl;
         std::cout<<"double aptitud= expresar=>"<<aptitud<<std::endl;
         vectorAptitudes[vez] = aptitud;
         for(int i=0; i<cuantosComponentesExamenIngreso; i++)
@@ -619,11 +621,11 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
         fenotipo=0;
     }
 
+// CALCULA LOS ERRORES PROMEDIO Y LOS VALORES PROMEDIO
     double puntajesMinimosPromedio[cuantosComponentesExamenIngreso];  // Array vacío
     double puntajesMinimosDesviacionTipica[cuantosComponentesExamenIngreso];  // Array vacío
     double ponderacionesPromedio[cuantosComponentesExamenIngreso];  // Array vacío
     double ponderacionesDesviacionTipica[cuantosComponentesExamenIngreso];  // Array vacío
-
     for(int i=0; i<cuantosComponentesExamenIngreso; i++)
     {
       puntajesMinimosPromedio[i] = 0;
@@ -632,10 +634,10 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
       ponderacionesDesviacionTipica[i] = 0;
       for(int vez=0; vez<veces; vez++)
       {
-          puntajesMinimosPromedio[i] += vectorPuntajesMinimos[vez][i];
-          ponderacionesPromedio[i] += vectorPonderaciones[vez][i];
-          puntajesMinimosDesviacionTipica[i] += vectorPuntajesMinimos[vez][i] * vectorPuntajesMinimos[vez][i];
-          ponderacionesDesviacionTipica[i] += vectorPonderaciones[vez][i] * vectorPonderaciones[vez][i];
+        puntajesMinimosPromedio[i] += vectorPuntajesMinimos[vez][i];
+        ponderacionesPromedio[i] += vectorPonderaciones[vez][i];
+        puntajesMinimosDesviacionTipica[i] += vectorPuntajesMinimos[vez][i] * vectorPuntajesMinimos[vez][i];
+        ponderacionesDesviacionTipica[i] += vectorPonderaciones[vez][i] * vectorPonderaciones[vez][i];
       }
       puntajesMinimosPromedio[i] /= veces;
       ponderacionesPromedio[i] /= veces;
@@ -643,29 +645,36 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
       ponderacionesDesviacionTipica[i] = sqrt(ponderacionesDesviacionTipica[i] / veces - ponderacionesPromedio[i] * ponderacionesPromedio[i]);
     }
 
-    double aptitudPromedio = 0;
-    double aptitudDesviacionTipica = 0;
-    for(int vez=0; vez<veces; vez++)
+// PERO LO QUE REALMENTE ME INTERESA ES LA MEJOR APTITUD, QUE ES DONDE ESTA EL ERROR MENOR Y SUS CORRESPONDIENTES PUNTAJES MINIMOS
+    double puntajesMinimosMejor[cuantosComponentesExamenIngreso];  // Array vacío
+    double ponderacionesMejor[cuantosComponentesExamenIngreso];  // Array vacío
+    double aptitudMejor = vectorAptitudes[0];
+    int mejorVez = 0;
+    for(int vez=1; vez<veces; vez++)
+      if(aptitudMejor < vectorAptitudes[vez])
+      {
+        mejorVez = vez;
+        aptitudMejor = vectorAptitudes[vez];
+      }
+
+    for(int i=0; i<cuantosComponentesExamenIngreso; i++)
     {
-        std::cout<<"aptitudPromedio=>"<<aptitudPromedio<<std::endl;
-        aptitudPromedio += vectorAptitudes[vez];
-        std::cout<<"vectorAptitudes "<<vectorAptitudes[vez]<<std::endl;
-        aptitudDesviacionTipica += vectorAptitudes[vez] * vectorAptitudes[vez];
+      puntajesMinimosMejor[i] = vectorPuntajesMinimos[mejorVez][i];
+      ponderacionesMejor[i] = vectorPonderaciones[mejorVez][i];
     }
-    aptitudPromedio /= veces;
-    aptitudDesviacionTipica = sqrt(aptitudDesviacionTipica / veces - aptitudPromedio * aptitudPromedio);
-    /* ??? Imprimir en GUI aptitudPromedio y aptitudDesviacionTipica */
+
+    std::cout<<"aptitudMejor=>"<<aptitudMejor<<std::endl;
 
     if(not soloCalcularPonderaciones)
     {
 
-        inputPonderacionLenguaje->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[0]));
-        inputPonderacionMatematica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[1]));
-        inputPonderacionSociales->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[2]));
-        inputPonderacionFilosofia->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[3]));
-        inputPonderacionBiologia->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[4]));
-        inputPonderacionQuimica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[5]));
-        inputPonderacionFisica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosPromedio[6]));
+        inputPonderacionLenguaje->SetValue(wxString::Format(wxT("%f"),puntajesMinimosMejor[0]));
+        inputPonderacionMatematica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosMejor[1]));
+        inputPonderacionSociales->SetValue(wxString::Format(wxT("%f"),puntajesMinimosMejor[2]));
+        inputPonderacionFilosofia->SetValue(wxString::Format(wxT("%f"),puntajesMinimosMejor[3]));
+        inputPonderacionBiologia->SetValue(wxString::Format(wxT("%f"),puntajesMinimosMejor[4]));
+        inputPonderacionQuimica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosMejor[5]));
+        inputPonderacionFisica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosMejor[6]));
 
         inputDPonderacionLenguaje->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[0]));
         inputDPonderacionMatematica->SetValue(wxString::Format(wxT("%f"),puntajesMinimosDesviacionTipica[1]));
@@ -680,25 +689,22 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
     double suma = 0;
     for(int i=0; i<cuantosComponentesExamenIngreso; i++)
     {
-        suma+=ponderacionesPromedio[i];
-
-        //std::cout<<"ponderacionesPromedio "<<ponderacionesPromedio[i]<<std::endl;
-        //std::cout<<"ponderacionesDesviacionTipica "<<ponderacionesDesviacionTipica[i]<<std::endl;
+        suma+=ponderacionesMejor[i];
     }
 
     for(int i=0; i<cuantosComponentesExamenIngreso; i++)
     {
-      ponderacionesPromedio[i]=ponderacionesPromedio[i]*100/suma;
+      ponderacionesMejor[i]=ponderacionesMejor[i]*100/suma;
       ponderacionesDesviacionTipica[i]=ponderacionesDesviacionTipica[i]*100/suma;
     }
 
-    inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[0]));
-    inputPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[1]));
-    inputPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[2]));
-    inputPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[3]));
-    inputPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[4]));
-    inputPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[5]));
-    inputPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesPromedio[6]));
+    inputPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesMejor[0]));
+    inputPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesMejor[1]));
+    inputPuntajeSociales->SetValue(wxString::Format(wxT("%f"),ponderacionesMejor[2]));
+    inputPuntajeFilosofia->SetValue(wxString::Format(wxT("%f"),ponderacionesMejor[3]));
+    inputPuntajeBiologia->SetValue(wxString::Format(wxT("%f"),ponderacionesMejor[4]));
+    inputPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesMejor[5]));
+    inputPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesMejor[6]));
 
     inputDPuntajeLenguaje->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[0]));
     inputDPuntajeMatematica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[1]));
@@ -708,9 +714,7 @@ void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
     inputDPuntajeQuimica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[5]));
     inputDPuntajeFisica->SetValue(wxString::Format(wxT("%f"),ponderacionesDesviacionTipica[6]));
 
-    inputPromedio->SetValue(wxString::Format(wxT("%f"),aptitudPromedio));
-    inputDesviacionPromedio->SetValue(wxString::Format(wxT("%f"),aptitudDesviacionTipica));
-
+    inputPromedio->SetValue(wxString::Format(wxT("%f"),-aptitudMejor)); // 2013-03-26 by Angel: le quito el signo porque despista en la GUI
 
     boton_guardarCSV->Enable(true);
 }
