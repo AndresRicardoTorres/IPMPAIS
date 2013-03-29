@@ -1680,7 +1680,7 @@
                                                     <property name="vgap">0</property>
                                                     <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
-                                                        <property name="flag">wxALL</property>
+                                                        <property name="flag">wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</property>
                                                         <property name="proportion">0</property>
                                                         <object class="wxStaticText" expanded="1">
                                                             <property name="bg"></property>
@@ -1735,7 +1735,7 @@
                                                     </object>
                                                     <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
-                                                        <property name="flag">wxALL</property>
+                                                        <property name="flag">wxALIGN_BOTTOM|wxALL</property>
                                                         <property name="proportion">0</property>
                                                         <object class="wxTextCtrl" expanded="1">
                                                             <property name="bg"></property>
@@ -1794,7 +1794,7 @@
                                                     </object>
                                                     <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
-                                                        <property name="flag">wxALL</property>
+                                                        <property name="flag">wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL</property>
                                                         <property name="proportion">0</property>
                                                         <object class="wxCheckBox" expanded="1">
                                                             <property name="bg"></property>
@@ -1850,7 +1850,7 @@
                                                     </object>
                                                     <object class="sizeritem" expanded="1">
                                                         <property name="border">5</property>
-                                                        <property name="flag">wxALIGN_LEFT|wxALL</property>
+                                                        <property name="flag">wxALIGN_CENTER|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALIGN_LEFT|wxALL</property>
                                                         <property name="proportion">0</property>
                                                         <object class="wxButton" expanded="1">
                                                             <property name="bg"></property>

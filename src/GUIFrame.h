@@ -41,10 +41,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// Class GUIFrame
 ///////////////////////////////////////////////////////////////////////////////
-class GUIFrame : public wxFrame
+class GUIFrame : public wxFrame 
 {
 	private:
-
+	
 	protected:
 		wxMenuBar* mbar;
 		wxMenu* archivo;
@@ -125,7 +125,7 @@ class GUIFrame : public wxFrame
 		wxTextCtrl* inputPromedio;
 		wxButton* boton_guardarCSV;
 		wxButton* button_guardar_datos;
-
+		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnQuit( wxCommandEvent& event ) { event.Skip(); }
@@ -145,13 +145,13 @@ class GUIFrame : public wxFrame
 		virtual void BotonBuscar( wxCommandEvent& event ) { event.Skip(); }
 		virtual void BotonGuardarResultados( wxCommandEvent& event ) { event.Skip(); }
 		virtual void GuardarDatosCSV( wxCommandEvent& event ) { event.Skip(); }
-
-
+		
+	
 	public:
-
+		
 		GUIFrame( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxT("Determinador de puntajes minimos "), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1024,768 ), long style = wxDEFAULT_FRAME_STYLE|wxTAB_TRAVERSAL );
 		~GUIFrame();
-
+	
 };
 
 #endif //__GUIFrame__
