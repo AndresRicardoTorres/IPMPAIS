@@ -7,7 +7,7 @@
 	<File name="Calificacion.h" open="0" top="0" tabpos="8">
 		<Cursor position="1569" topLine="0" />
 	</File>
-	<File name="CalificacionDAO.cpp" open="1" top="1" tabpos="2">
+	<File name="CalificacionDAO.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="20466" topLine="446" />
 	</File>
 	<File name="CalificacionDAO.h" open="0" top="0" tabpos="5">
@@ -40,8 +40,8 @@
 	<File name="EquivalenciaDAO.h" open="0" top="0" tabpos="9">
 		<Cursor position="99" topLine="0" />
 	</File>
-	<File name="EstudianteDAO.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="6918" topLine="277" />
+	<File name="EstudianteDAO.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="20533" topLine="484" />
 	</File>
 	<File name="EstudianteDAO.h" open="0" top="0" tabpos="5">
 		<Cursor position="281" topLine="6" />
@@ -73,11 +73,11 @@
 	<File name="PuntajesMinimosApp.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="554" topLine="0" />
 	</File>
-	<File name="PuntajesMinimosMain.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="6290" topLine="217" />
+	<File name="PuntajesMinimosMain.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="15332" topLine="417" />
 	</File>
 	<File name="PuntajesMinimosMain.h" open="0" top="0" tabpos="4">
-		<Cursor position="2656" topLine="60" />
+		<Cursor position="2672" topLine="71" />
 	</File>
 	<File name="admisionesunivalle.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="684" topLine="6" />

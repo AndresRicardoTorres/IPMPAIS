@@ -428,14 +428,18 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
     if (saveFileDialog.ShowModal() == wxID_CANCEL)
         return;     // the user changed idea...
 
+
+    bool ECAESoRegistro = radio_comparacion->GetSelection() != 0;
+    opcionesEcaes = dialogo_ecaes->getOpciones();
+
     EstudianteDAO *objEstudiantes = new EstudianteDAO(getInformacionConexion());
-    ResultadoConsulta* resultado = objEstudiantes->selectAll("*",filtro_fecha_inicio,filtro_fecha_final,listadoAsignaturas,false);
+    ResultadoConsulta* resultado = objEstudiantes->selectAll("*",filtro_fecha_inicio,filtro_fecha_final,ECAESoRegistro?opcionesEcaes:listadoAsignaturas,ECAESoRegistro);
 
     std::stringstream contenido;
 
     contenido << objEstudiantes->obtenerNombreColumnas()<<std::endl;
 
-
+    unsigned int cantidad_estudiante_guardados = 0;
     for(unsigned int i=0;i<resultado->size();i++)
     {
         ResultadoFila unaFila= resultado->at(i);
@@ -445,6 +449,7 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
                 contenido<<",";
         }
         contenido<<std::endl;
+        cantidad_estudiante_guardados++;
     }
 
 
@@ -452,6 +457,7 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
     wxFileOutputStream output_stream(saveFileDialog.GetPath());
     if (!output_stream.IsOk())
     {
+        informar("No se pudo guardar el archivo correctamente");
         return;
     }else{
         wxFFile file(saveFileDialog.GetPath(), _T("w"));
@@ -460,6 +466,9 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
         file.Write(mystring);
         file.Close();
     }
+    std::stringstream ss;
+    ss << "Se guardaron "<<cantidad_estudiante_guardados<<" estudiantes";
+    informar(ss.str().c_str());
 }
 
  void PuntajesMinimosFrame::BotonGuardarResultados( wxCommandEvent& event ) {

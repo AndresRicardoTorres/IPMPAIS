@@ -419,61 +419,71 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
             return resultado;
         }
 
-        order="promedio";
-        ss << " SELECT (";
-        bool first_comma = false;
-        unsigned int cantidad = 0;
-        for(unsigned int i = 0;i<7;i++)
-        {
-            if(listadoAsignaturas.compare(i,1,"1")==0)
+
+        ss << " SELECT ";
+
+        if(columnas.size() <= 0){
+            order="promedio";
+            ss <<"(";
+
+            bool first_comma = false;
+            unsigned int cantidad = 0;
+            for(unsigned int i = 0;i<7;i++)
             {
-                if(!first_comma)
+                if(listadoAsignaturas.compare(i,1,"1")==0)
                 {
-                    first_comma=true;
-                }else{
-                    ss << " + ";
+                    if(!first_comma)
+                    {
+                        first_comma=true;
+                    }else{
+                        ss << " + ";
+                    }
+                    ss << "componente" << (i+1);
+                    cantidad++;
                 }
-                ss << "componente" << (i+1);
-                cantidad++;
+
             }
 
-        }
+            for(unsigned int i = 7;i<10;i++){
+                if(listadoAsignaturas.compare(i,1,"1")==0)
+                {
+                    if(!first_comma)
+                    {
+                        first_comma=true;
+                    }else{
+                        ss << " + ";
+                    }
+                    ss << "competencia" << (i-7+1);
+                    cantidad++;
+                }
+            }
 
-        for(unsigned int i = 7;i<10;i++){
-            if(listadoAsignaturas.compare(i,1,"1")==0)
+            if(listadoAsignaturas.compare(10,1,"1")==0)
             {
                 if(!first_comma)
-                {
-                    first_comma=true;
-                }else{
-                    ss << " + ";
-                }
-                ss << "competencia" << (i-7+1);
-                cantidad++;
+                    {
+                        first_comma=true;
+                    }else{
+                        ss << " + ";
+                    }
+                    ss << "ecaes_total";
+                    cantidad++;
             }
+
+            if(cantidad==0){
+                std::cout<<"ERROR cantidad ECAES"<<std::endl;
+                resultado = objPg->select("SELECT FALSE");
+                return resultado;
+            }
+
+            ss << ")/" << cantidad << "as promedio ,codigo";
+
+        }else{
+            order="codigo";
+            ss  << columnas;
         }
 
-        if(listadoAsignaturas.compare(10,1,"1")==0)
-        {
-            if(!first_comma)
-                {
-                    first_comma=true;
-                }else{
-                    ss << " + ";
-                }
-                ss << "ecaes_total";
-                cantidad++;
-        }
-
-        if(cantidad==0){
-            std::cout<<"ERROR cantidad ECAES"<<std::endl;
-            resultado = objPg->select("SELECT FALSE");
-            return resultado;
-        }
-
-        ss << ")/" << cantidad;
-
-        ss << " as promedio ,codigo FROM estudiante WHERE componente1 IS NOT NULL AND componente7 IS NOT NULL ";
+        ss << " FROM estudiante WHERE ecaes_total IS NOT NULL ";
 
 
     }else{
@@ -509,7 +519,7 @@ ResultadoConsulta* EstudianteDAO::selectAll(std::string columnas,int fecha_inici
 
 
     if(ECAESoRegistro){
-        ss << "GROUP BY codigo";
+        ss << " GROUP BY codigo";
     }
 
     ss << " ORDER BY " << order << " DESC ";
