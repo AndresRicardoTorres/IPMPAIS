@@ -31,7 +31,6 @@
 		<Linker>
 			<Add option="`wx-config-2.8 --libs`" />
 		</Linker>
-		<Unit filename="../README.md" />
 		<Unit filename="../src/algoritmogenetico/algoritmogenetico.cpp" />
 		<Unit filename="../src/algoritmogenetico/algoritmogenetico.h" />
 		<Unit filename="../src/algoritmogenetico/cromosoma.cpp" />
@@ -56,21 +55,16 @@
 		<Unit filename="../src/gui/dialogoasignaturasmain.h" />
 		<Unit filename="../src/gui/dialogoecaes.cpp" />
 		<Unit filename="../src/gui/dialogoecaes.h" />
-		<Unit filename="../src/gui/eventosdialogoecaes.cpp" />
-		<Unit filename="../src/gui/eventosdialogoecaes.h" />
 		<Unit filename="../src/gui/guidalogoasignaturas.cpp" />
 		<Unit filename="../src/gui/guidialog.cpp" />
 		<Unit filename="../src/gui/guidialog.h" />
 		<Unit filename="../src/gui/guidialogoasignaturas.h" />
-		<Unit filename="../src/gui/guidialogoecaes.cpp" />
-		<Unit filename="../src/gui/guiframe.cpp" />
-		<Unit filename="../src/gui/puntajesminimosmain.cpp" />
 		<Unit filename="../src/gui/ventanaprincipal.cpp" />
 		<Unit filename="../src/gui/ventanaprincipal.h" />
 		<Unit filename="../src/gui/wx_dialogoecaes.cpp" />
 		<Unit filename="../src/gui/wx_dialogoecaes.h" />
-		<Unit filename="../src/gui/wx_ventanaprinpal.cpp" />
-		<Unit filename="../src/gui/wx_ventanaprinpal.h" />
+		<Unit filename="../src/gui/wx_ventanaprincipal.cpp" />
+		<Unit filename="../src/gui/wx_ventanaprincipal.h" />
 		<Unit filename="../src/ipmpais/admisionesunivalle.cpp" />
 		<Unit filename="../src/ipmpais/admisionesunivalle.h" />
 		<Unit filename="../src/ipmpais/calificacion.cpp" />
@@ -87,8 +81,8 @@
 		<Unit filename="../src/ipmpais/estudiante.h" />
 		<Unit filename="../src/ipmpais/fenotipoipmpais.cpp" />
 		<Unit filename="../src/ipmpais/fenotipoipmpais.h" />
-		<Unit filename="../src/puntajesminimos.cpp" />
-		<Unit filename="../src/puntajesminimos.h" />
+		<Unit filename="../src/ipmpais/puntajesminimos.cpp" />
+		<Unit filename="../src/ipmpais/puntajesminimos.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
