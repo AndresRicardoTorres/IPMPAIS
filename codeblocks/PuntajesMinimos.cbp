@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PuntajesMinimos" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/PuntajesMinimos" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="/usr/include/postgresql" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lpq" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`wx-config-2.8 --cflags`" />
+			<Add directory="../src" />
+		</Compiler>
+		<Linker>
+			<Add option="`wx-config-2.8 --libs`" />
+		</Linker>
+		<Unit filename="../src/algoritmogenetico/algoritmogenetico.cpp" />
+		<Unit filename="../src/algoritmogenetico/algoritmogenetico.h" />
+		<Unit filename="../src/algoritmogenetico/cromosoma.cpp" />
+		<Unit filename="../src/algoritmogenetico/cromosoma.h" />
+		<Unit filename="../src/algoritmogenetico/fenotipo.cpp" />
+		<Unit filename="../src/algoritmogenetico/fenotipo.h" />
+		<Unit filename="../src/algoritmogenetico/gen.cpp" />
+		<Unit filename="../src/algoritmogenetico/gen.h" />
+		<Unit filename="../src/algoritmogenetico/matematicas.cpp" />
+		<Unit filename="../src/algoritmogenetico/matematicas.h" />
+		<Unit filename="../src/datos/configuracion.cpp" />
+		<Unit filename="../src/datos/configuracion.h" />
+		<Unit filename="../src/datos/csv.cpp" />
+		<Unit filename="../src/datos/csv.h" />
+		<Unit filename="../src/datos/postgresql.cpp" />
+		<Unit filename="../src/datos/postgresql.h" />
+		<Unit filename="../src/gui/confbdmain.cpp" />
+		<Unit filename="../src/gui/confbdmain.h" />
+		<Unit filename="../src/gui/dialogoasignaturas.cpp" />
+		<Unit filename="../src/gui/dialogoasignaturas.h" />
+		<Unit filename="../src/gui/dialogoasignaturasmain.cpp" />
+		<Unit filename="../src/gui/dialogoasignaturasmain.h" />
+		<Unit filename="../src/gui/dialogoecaes.cpp" />
+		<Unit filename="../src/gui/dialogoecaes.h" />
+		<Unit filename="../src/gui/guidalogoasignaturas.cpp" />
+		<Unit filename="../src/gui/guidialog.cpp" />
+		<Unit filename="../src/gui/guidialog.h" />
+		<Unit filename="../src/gui/guidialogoasignaturas.h" />
+		<Unit filename="../src/gui/ventanaprincipal.cpp" />
+		<Unit filename="../src/gui/ventanaprincipal.h" />
+		<Unit filename="../src/gui/wx_dialogoecaes.cpp" />
+		<Unit filename="../src/gui/wx_dialogoecaes.h" />
+		<Unit filename="../src/gui/wx_ventanaprincipal.cpp" />
+		<Unit filename="../src/gui/wx_ventanaprincipal.h" />
+		<Unit filename="../src/ipmpais/admisionesunivalle.cpp" />
+		<Unit filename="../src/ipmpais/admisionesunivalle.h" />
+		<Unit filename="../src/ipmpais/calificacion.cpp" />
+		<Unit filename="../src/ipmpais/calificacion.h" />
+		<Unit filename="../src/ipmpais/calificaciondao.cpp" />
+		<Unit filename="../src/ipmpais/calificaciondao.h" />
+		<Unit filename="../src/ipmpais/dao.cpp" />
+		<Unit filename="../src/ipmpais/dao.h" />
+		<Unit filename="../src/ipmpais/equivalencia.cpp" />
+		<Unit filename="../src/ipmpais/equivalencia.h" />
+		<Unit filename="../src/ipmpais/equivalenciadao.cpp" />
+		<Unit filename="../src/ipmpais/equivalenciadao.h" />
+		<Unit filename="../src/ipmpais/estudiante.cpp" />
+		<Unit filename="../src/ipmpais/estudiante.h" />
+		<Unit filename="../src/ipmpais/fenotipoipmpais.cpp" />
+		<Unit filename="../src/ipmpais/fenotipoipmpais.h" />
+		<Unit filename="../src/ipmpais/puntajesminimos.cpp" />
+		<Unit filename="../src/ipmpais/puntajesminimos.h" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
