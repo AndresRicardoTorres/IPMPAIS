@@ -1,11 +1,25 @@
-#include "csv.h"
+/***************************************************************
+ * Name:      csv.cpp
+ * Purpose:   Utilidad para leer archivos CSV
+ * Author:    Andrés Ricardo Torres Martínez (aritoma@gmail.com)
+ * Created:   2012-02-12
+ * Copyright: Andrés Ricardo Torres Martínez ()
+ * License:
+ **************************************************************/
 
-LeerCSV::LeerCSV(std::string archivo)
+#include "datos/csv.h"
+
+CSV::CSV(std::string archivo)
 {
     nombreArchivo = archivo;
 }
 
-encabezadoCSV LeerCSV::leerEncabezado(){
+CSV::~CSV()
+{
+    //dtor
+}
+
+encabezadoCSV CSV::leerEncabezado(){
     encabezadoCSV lista;
     std::ifstream  data(nombreArchivo.c_str());
 
@@ -21,7 +35,7 @@ encabezadoCSV LeerCSV::leerEncabezado(){
     return lista;
 }
 
-datosCSV LeerCSV::leerDatos(){
+datosCSV CSV::leerDatos(){
     datosCSV lista;
     std::ifstream  data(nombreArchivo.c_str());
 
@@ -68,9 +82,4 @@ datosCSV LeerCSV::leerDatos(){
         primeraVez=true;
     }
     return lista;
-}
-
-LeerCSV::~LeerCSV()
-{
-    //dtor
 }

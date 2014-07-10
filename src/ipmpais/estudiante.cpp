@@ -65,7 +65,7 @@ const char* EstudianteDAO::insertar(encabezadoCSV encabezados,datosCSV datosIn,w
         }
         ano = codigo.substr(0,4);
 
-        sql = "INSERT INTO estudiante(año,codigo, identificacion,estrato,comuna,barrio,ciudad,colegio,tipo_colegio) VALUES ("+ano+",'"+encriptar(codigo)+"','"+encriptar(documento)+"','"+estrato+"','"+comuna+"','"+barrio+"','"+ciudad+"','"+colegio+"','"+tipo_colegio+"');";
+        sql = "INSERT INTO estudiante(año,codigo, identificacion,estrato,comuna,barrio,ciudad,colegio,tipo_colegio) VALUES ("+ano+",'"+ codigo +"','"+  documento +"','"+estrato+"','"+comuna+"','"+barrio+"','"+ciudad+"','"+colegio+"','"+tipo_colegio+"');";
         afectadas = objPg->insert(sql.c_str());
 
         if(0==afectadas){
@@ -150,7 +150,7 @@ const char* EstudianteDAO::insertarICFES(encabezadoCSV encabezados,datosCSV dato
             ",len = "+len+
             ",mat = "+mat+
             ",qui = "+qui+
-            " WHERE codigo = '"+encriptar(actual)+"';";
+            " WHERE codigo = '"+ actual +"';";
 
 
             bio.clear();cis.clear();fil.clear();fis.clear();geo.clear();his.clear();idi.clear();inte.clear();len.clear();mat.clear();qui.clear();
@@ -359,7 +359,7 @@ std::string EstudianteDAO::insertarPuntajesECAES(encabezadoCSV encabezados,datos
         if(0 == competencia_2.size())competencia_2="NULL";
         if(0 == competencia_3.size())competencia_3="NULL";
 
-        sstm << "UPDATE estudiante SET ecaes_total = "<<puntaje<<",componente1 ="<<componente_1<<",componente2 ="<<componente_2<<",componente3 ="<<componente_3<<",componente4 ="<<componente_4<<",componente5 ="<<componente_5<<",componente6 ="<<componente_6<<",componente7 ="<<componente_7<<",competencia1 ="<<competencia_1<<",competencia2 ="<<competencia_2<<",competencia3 ="<<competencia_3<<" WHERE identificacion = '"<<encriptar(documento)<<"';";
+        sstm << "UPDATE estudiante SET ecaes_total = "<<puntaje<<",componente1 ="<<componente_1<<",componente2 ="<<componente_2<<",componente3 ="<<componente_3<<",componente4 ="<<componente_4<<",componente5 ="<<componente_5<<",componente6 ="<<componente_6<<",componente7 ="<<componente_7<<",competencia1 ="<<competencia_1<<",competencia2 ="<<competencia_2<<",competencia3 ="<<competencia_3<<" WHERE identificacion = '"<< documento <<"';";
         sql = sstm.str();
         sstm.str(std::string());
 

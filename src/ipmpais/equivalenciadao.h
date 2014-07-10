@@ -11,6 +11,9 @@
 
 typedef std::vector<Equivalencia* > VectorEquivalencias;
 
+/**
+ * @brief Encargada de gestionar grupos de equivalencias
+ */
 class EquivalenciaDAO: protected DAO
 {
     public:

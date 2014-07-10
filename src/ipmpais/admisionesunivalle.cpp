@@ -31,7 +31,11 @@ AdmisionesUnivalle::AdmisionesUnivalle(bool ECAESoRegistro,const char* conn,int 
             std::pair<unsigned int,double> unPar(i, atof(resultadosICFES->at(i).at(j+1)));
             vectorTemporal.push_back(unPar);
         }
-        std::priority_queue<std::pair<unsigned int,double>,std::vector<std::pair<unsigned int,double> >,miComparador2> miColaDePrioridad(vectorTemporal.begin(),vectorTemporal.end(),miComparador2());
+        std::priority_queue <std::pair<unsigned int,double>,
+                             std::vector<std::pair<unsigned int,double> >,
+                             OrdenarPorPosicion>
+        miColaDePrioridad(vectorTemporal.begin(), vectorTemporal.end(),
+                          OrdenarPorPosicion());
 
         for(unsigned int i=0; i<resultadosICFES->size(); i++)
         {
@@ -67,7 +71,12 @@ const VectorEstudiantes* AdmisionesUnivalle::ordenarEstudiantesAdmisionesSegunPu
         vectorTemporal.push_back(unPar);
     }
 
-    std::priority_queue<std::pair<const char*,double>,std::vector<std::pair<const char*,double> >,miComparador> miColaDePrioridad(vectorTemporal.begin(),vectorTemporal.end(),miComparador());
+    std::priority_queue<std::pair<const char*,double>
+                       ,std::vector<std::pair<const char*,double> >
+                       ,miComparador>
+     miColaDePrioridad( vectorTemporal.begin()
+                      , vectorTemporal.end()
+                      , ordenarPorCodigo());
 
 
     for(unsigned int i=0;i<vectorTemporal.size();i++)

@@ -18,7 +18,7 @@
 
 #include "ventanaprincipal.h"
 
-PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
+VentanaPrincipal::VentanaPrincipal(wxFrame *frame)
     : GUIFrame(frame)
 {
 
@@ -40,24 +40,16 @@ PuntajesMinimosFrame::PuntajesMinimosFrame(wxFrame *frame)
     ///Miro si hay conexion a la base de datos, para colocarlo en la barra de estado
     checkDB();
     actualizarInterfaz();
-#if CODIGOS_ENCRIPTADOS
-    ///Inicializo el numero aleatorio para la encriptacion
-    // 2012-10-21: Angel. Aquí no viene el srand() sino en DialogoAsignaturasMain()
-    // 2012-10-21: Andres Ricardo. lo coloco en PuntajesMinimosApp que es el programa principal
-    un_numero_aleatorio = rand();
-
-#endif
     wxCommandEvent CE;
     OnRadioBoxComparar(CE);
 }
 
-const char* PuntajesMinimosFrame::getInformacionConexion(){
+const char* VentanaPrincipal::getInformacionConexion(){
     string conexion = dialogo_configuracion_base_datos->getInformacion();
-    //std::cout<<"getInformacionConexion() "<<conexion<<std::endl;
     return conexion.c_str();
 }
 
-bool PuntajesMinimosFrame::checkDB(){
+bool VentanaPrincipal::checkDB(){
     const char* BORAR = getInformacionConexion();
 
     PG *objPg = new PG(BORAR);
@@ -80,14 +72,14 @@ bool PuntajesMinimosFrame::checkDB(){
     return hayBD;
 }
 
-PuntajesMinimosFrame::~PuntajesMinimosFrame()
+VentanaPrincipal::~VentanaPrincipal()
 {
     ///Elimino los dialogos que cree
     delete dialogo_configuracion_base_datos;
     delete dialogo_ecaes;
 }
 
-bool PuntajesMinimosFrame::comprobarConexionBD()
+bool VentanaPrincipal::comprobarConexionBD()
 {
     if(!checkDB()){
         wxMessageBox( _("Configure la conexión a la base de datos"),_("Error"));
@@ -97,7 +89,7 @@ bool PuntajesMinimosFrame::comprobarConexionBD()
     return true;
 }
 
-bool PuntajesMinimosFrame::cargarArchivo(){
+bool VentanaPrincipal::cargarArchivo(){
 
     if(!comprobarConexionBD())
         return false;
@@ -117,34 +109,34 @@ bool PuntajesMinimosFrame::cargarArchivo(){
 }
 
 
-void PuntajesMinimosFrame::OnClose(wxCloseEvent &event)
+void VentanaPrincipal::OnClose(wxCloseEvent &event)
 {
     Destroy();
 }
 
-void PuntajesMinimosFrame::OnQuit(wxCommandEvent &event)
+void VentanaPrincipal::OnQuit(wxCommandEvent &event)
 {
     Destroy();
 }
 
-void PuntajesMinimosFrame::OnAbout(wxCommandEvent &event)
+void VentanaPrincipal::OnAbout(wxCommandEvent &event)
 {
 //    wxString msg = wxbuildinfo(long_f);
 //
 }
 
-void PuntajesMinimosFrame::OnBDConfig(wxCommandEvent &event)
+void VentanaPrincipal::OnBDConfig(wxCommandEvent &event)
 {
     dialogo_configuracion_base_datos->Show();
 }
 
 
-void PuntajesMinimosFrame::cargarInformacionAdmisiones( wxCommandEvent& event )
+void VentanaPrincipal::cargarInformacionAdmisiones( wxCommandEvent& event )
 {
     if(cargarArchivo()){
         statusBar->SetStatusText(_("Leyendo archivo de admisiones ...."), 0);
         ///Leo el archivo
-        LeerCSV *objLectorCSV = new LeerCSV(filename);
+        CSV *objLectorCSV = new CSV(filename);
         encabezadoCSV encabezados = objLectorCSV->leerEncabezado();
         datosCSV datosIn = objLectorCSV->leerDatos();
 
@@ -156,12 +148,12 @@ void PuntajesMinimosFrame::cargarInformacionAdmisiones( wxCommandEvent& event )
     }
 }
 
-void PuntajesMinimosFrame::CagarPuntajesICFES( wxCommandEvent& event )
+void VentanaPrincipal::CagarPuntajesICFES( wxCommandEvent& event )
 {
     if(cargarArchivo()){
         statusBar->SetStatusText(_("Leyendo archivo de puntajes del ICFES ...."), 0);
         ///Leo el archivo
-        LeerCSV *objLectorCSV = new LeerCSV(filename);
+        CSV *objLectorCSV = new CSV(filename);
         encabezadoCSV encabezados = objLectorCSV->leerEncabezado();
         datosCSV datosIn = objLectorCSV->leerDatos();
 
@@ -171,13 +163,13 @@ void PuntajesMinimosFrame::CagarPuntajesICFES( wxCommandEvent& event )
     }
 }
 
-void PuntajesMinimosFrame::cargarInformacionEquivalencias( wxCommandEvent& event )
+void VentanaPrincipal::cargarInformacionEquivalencias( wxCommandEvent& event )
 {
 
      if(cargarArchivo()){
         statusBar->SetStatusText(_("Leyendo archivo de equivalencias ...."), 0);
         ///Leo el archivo
-        LeerCSV *objLectorCSV = new LeerCSV(filename);
+        CSV *objLectorCSV = new CSV(filename);
 
         encabezadoCSV encabezados = objLectorCSV->leerEncabezado();
         datosCSV datosIn = objLectorCSV->leerDatos();
@@ -191,7 +183,7 @@ void PuntajesMinimosFrame::cargarInformacionEquivalencias( wxCommandEvent& event
 }
 
 
-void PuntajesMinimosFrame::informar(const char* mensaje)
+void VentanaPrincipal::informar(const char* mensaje)
 {
     std::cout<<mensaje<<std::endl;
     wxString wxMensaje = wxString(mensaje,wxConvUTF8);
@@ -199,7 +191,7 @@ void PuntajesMinimosFrame::informar(const char* mensaje)
     //wxMessageBox(wxMensaje, _("Resultado"));
 }
 
-void PuntajesMinimosFrame::cargarInformacionRegistroAcademico( wxCommandEvent& event )
+void VentanaPrincipal::cargarInformacionRegistroAcademico( wxCommandEvent& event )
 {
     if(cargarArchivo()){
         const char* resultado;
@@ -210,7 +202,7 @@ void PuntajesMinimosFrame::cargarInformacionRegistroAcademico( wxCommandEvent& e
         statusBar->SetStatusText(_("Leyendo archivo de registro academico ...."), 0);
         ///Leo el archivo
 
-        LeerCSV *objLectorCSV = new LeerCSV(filename);
+        CSV *objLectorCSV = new CSV(filename);
         encabezadoCSV encabezados = objLectorCSV->leerEncabezado();
         datosCSV datosIn = objLectorCSV->leerDatos();
 
@@ -280,11 +272,11 @@ void PuntajesMinimosFrame::cargarInformacionRegistroAcademico( wxCommandEvent& e
     }
 }
 
-void PuntajesMinimosFrame::cargarInformacionECAES( wxCommandEvent& event )
+void VentanaPrincipal::cargarInformacionECAES( wxCommandEvent& event )
 {
     if(cargarArchivo()){
         statusBar->SetStatusText(_("Leyendo archivo de ECAES ...."), 0);
-        LeerCSV *objLectorCSV = new LeerCSV(filename);
+        CSV *objLectorCSV = new CSV(filename);
         listaCSV encabezados = objLectorCSV->leerEncabezado();
         datosCSV datosIn = objLectorCSV->leerDatos();
 
@@ -296,7 +288,7 @@ void PuntajesMinimosFrame::cargarInformacionECAES( wxCommandEvent& event )
 
 
 
-void PuntajesMinimosFrame::actualizarCantidadMuestra(){
+void VentanaPrincipal::actualizarCantidadMuestra(){
    ///Consulto cuantos estudiantes hay actualmente para tener actualizado al usuario
 
 
@@ -325,19 +317,19 @@ void PuntajesMinimosFrame::actualizarCantidadMuestra(){
 
 }
 
-void PuntajesMinimosFrame::actualizarFiltroFechaInicio( wxCommandEvent& event )
+void VentanaPrincipal::actualizarFiltroFechaInicio( wxCommandEvent& event )
 {
     filtro_fecha_inicio = wxAtoi(input_fecha_desde->GetValue());
     actualizarCantidadMuestra();
 }
 
-void PuntajesMinimosFrame::actualizarFiltroFechaFin( wxCommandEvent& event )
+void VentanaPrincipal::actualizarFiltroFechaFin( wxCommandEvent& event )
 {
     filtro_fecha_final = wxAtoi(input_fecha_hasta->GetValue());
     actualizarCantidadMuestra();
 }
 
-void PuntajesMinimosFrame::actualizarFiltroAsignaturas( wxCommandEvent& event ) {
+void VentanaPrincipal::actualizarFiltroAsignaturas( wxCommandEvent& event ) {
 
     wxString a = input_asignaturas->GetValue();
     a = a.Trim();
@@ -356,13 +348,13 @@ void PuntajesMinimosFrame::actualizarFiltroAsignaturas( wxCommandEvent& event ) 
     actualizarCantidadMuestra();
 }
 
-void PuntajesMinimosFrame::seleccionarComponentesYCompetencias( wxCommandEvent& event )
+void VentanaPrincipal::seleccionarComponentesYCompetencias( wxCommandEvent& event )
 {
     dialogo_ecaes->ShowModal();
     actualizarCantidadMuestra();
 }
 
-void PuntajesMinimosFrame::actualizarInterfaz(){
+void VentanaPrincipal::actualizarInterfaz(){
 
      actualizarCantidadMuestra();
 
@@ -414,15 +406,15 @@ void PuntajesMinimosFrame::actualizarInterfaz(){
  }
 
 
- void PuntajesMinimosFrame::mostar_puntajes_minimos( wxCommandEvent& event ){
+ void VentanaPrincipal::mostar_puntajes_minimos( wxCommandEvent& event ){
     actualizarInterfaz();
  }
 
- void PuntajesMinimosFrame::OnRadioBoxComparar( wxCommandEvent& event ){
+ void VentanaPrincipal::OnRadioBoxComparar( wxCommandEvent& event ){
     actualizarInterfaz();
  }
 
-void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
+void VentanaPrincipal::GuardarDatosCSV( wxCommandEvent& event ){
     wxFileDialog saveFileDialog(this, _("Save CSV file"),  wxT(""), wxT(""),_("CSV files (*.csv)|*.csv"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
 
     if (saveFileDialog.ShowModal() == wxID_CANCEL)
@@ -471,7 +463,7 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
     informar(ss.str().c_str());
 }
 
- void PuntajesMinimosFrame::BotonGuardarResultados( wxCommandEvent& event ) {
+ void VentanaPrincipal::BotonGuardarResultados( wxCommandEvent& event ) {
     int columnas = 0;
     bool soloCalcularPonderaciones = !check_mostrar_puntajes_minimos->IsChecked();
     wxFileDialog saveFileDialog(this, _("Save CSV file"),  wxT(""), wxT(""),_("CSV files (*.csv)|*.csv"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
@@ -572,7 +564,7 @@ void PuntajesMinimosFrame::GuardarDatosCSV( wxCommandEvent& event ){
 // 2012-09-28: Función alterada por Angel, para no tener en cuenta PuntajesMinimos(=0) y para repetir
 // varias veces el AG, obteniendo el promedio y la desviación típica de las ponderaciones.
 #include <math.h>
-void PuntajesMinimosFrame::BotonBuscar( wxCommandEvent& event ){
+void VentanaPrincipal::BotonBuscar( wxCommandEvent& event ){
     std::cout<<"COMIENZO  botonBuscar >>>>"<<std::endl;
     ///Compruebo si hay conexion a la base de datos, si no, no hago nada
     if(!comprobarConexionBD())

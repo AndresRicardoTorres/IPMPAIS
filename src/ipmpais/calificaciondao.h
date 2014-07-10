@@ -1,3 +1,19 @@
+/***************************************************************
+ * Name:      calificaciondao.h
+ * Purpose:   Permite gestionar y aplicar operaciones en conjuntos de 
+ *            calificaciones
+ * Author:    Andrés Ricardo Torres Martínez (aritoma@gmail.com)
+ * Created:   2012-02-12
+ * Copyright: Andrés Ricardo Torres Martínez ()
+ * License:
+ **************************************************************/
+
+/**
+ * @class CalificacionDAO
+ * @brief Permite gestionar y aplicar operaciones en conjuntos de 
+ *        calificaciones
+ */
+
 #ifndef CALIFICACIONDAO_H
 #define CALIFICACIONDAO_H
 

@@ -12,6 +12,8 @@
 
 /**
   @class AdmisionesUnivalle
+  @brief Logica del ordenamiento de candidatos para la admision en Univalle.
+
     donde admisionesUnivalle es un objeto de clase AdmisionesUnivalle, que
     tú debes escribir. A ese objeto yo le envío un array de doubles con
     los puntajesMinimos y otro con las ponderaciones. Tu usas esos arrays
@@ -34,28 +36,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-class miComparador
+
+/**
+ * @brief Ordena pares compuestos por código y puntaje, por el código de 
+ * estudiante
+ */
+class OrdenarPorCodigo
 {
 public:
-  miComparador(){}
+  OrdenarPorCodigo(){}
 
-  bool operator() (const std::pair<const char*,double>& lhs,const std::pair<const char*,double>& rhs) const
+ bool operator() ( const std::pair<const char*,double>& lhs
+                 , const std::pair<const char*,double>& rhs) const
   {
     return lhs.second<rhs.second;
   }
 };
 
 // 2012-10-21: Modificado por Angel
-class miComparador2
+/**
+ * @brief Ordena pares compuestos por posición y puntaje, por posición 
+ */
+class OrdenarPorPosicion
 {
 public:
-  miComparador2(){}
+  OrdenarPorPosicion(){}
 
-  bool operator() (const std::pair<unsigned int,double>& lhs,const std::pair<unsigned int,double>& rhs) const
+  bool operator() ( const std::pair<unsigned int,double>& lhs
+                  , const std::pair<unsigned int,double>& rhs) const
   {
-    return lhs.second<rhs.second;
-  }
-};
+    return lhs.second < rhs.second;
+ }};
 
 
 typedef std::vector<const char*> VectorEstudiantes;

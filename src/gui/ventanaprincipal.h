@@ -1,5 +1,5 @@
 /***************************************************************
- * Name:      PuntajesMinimosMain.h
+ * Name:      ventanaprincipal.h
  * Purpose:   Defines Application Frame
  * Author:    Andrés Ricardo Torres Martínez (aritoma@gmail.com)
  * Created:   2012-02-12
@@ -7,48 +7,44 @@
  * License:
  **************************************************************/
 
-#ifndef PUNTAJESMINIMOSMAIN_H
-#define PUNTAJESMINIMOSMAIN_H
+#ifndef SRC_GUI_VENTANAPRINCIPAL_H_
+#define SRC_GUI_VENTANAPRINCIPAL_H_
 
-#define CODIGOS_ENCRIPTADOS FALSE
-
-#include "algoritmogenetico/algoritmogenetico.h"
-#include "ipmpais/fenotipoipmpais.h"
-#include "ipmpais/admisionesunivalle.h"
-
-#include "gui/confbdmain.h"
-#include "ipmpais/calificacion.h"
-#include "wx_ventanaprincipal.h"
-#include "datos/csv.h"
-#include "gui/dialogoecaes.h"
-
-#include "ipmpais/equivalenciadao.h"
-#include "ipmpais/calificaciondao.h"
-#include "ipmpais/estudiante.h"
-
-#include <wx/wfstream.h>
+#include <fstream>
+#include <iostream>
+#include <list>
+#include <string>
+#include <sstream>
 #include <wx/msgdlg.h>
+#include <wx/wfstream.h>
 #include <wx/wx.h>
 
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <string>
-#include <list>
-//#include <algorithm>
+#include "algoritmogenetico/algoritmogenetico.h"
+#include "datos/csv.h"
+#include "gui/dialogoconfiguracion.h"
+#include "gui/dialogoecaes.h"
+#include "gui/wx_ventanaprincipal.h"
+#include "ipmpais/admisionesunivalle.h"
+#include "ipmpais/calificacion.h"
+#include "ipmpais/calificaciondao.h"
+#include "ipmpais/equivalenciadao.h"
+#include "ipmpais/estudiante.h"
+#include "ipmpais/fenotipoipmpais.h"
+
+/**
+  \brief La ventana que maneja las pestañas, el menu y el llamado a dialogos
+
+  VentanaPrincipal Hereda de wx_ventanaprincipal.h donde estan definidos las
+  pestañas (pestaña lectura de datos y pestaña de resultados) y el menu.
+  Estan definidos el comportamiento de los eventos en la ventana
+*/
 
 
-#if CODIGOS_ENCRIPTADOS
-    #include <openssl/sha.h>
-    #include <iomanip>
-    #include <ctime>
-#endif
-
-class PuntajesMinimosFrame: public GUIFrame
+class VentanaPrincipal: public GUIFrame
 {
     public:
-        PuntajesMinimosFrame(wxFrame *frame);
-        ~PuntajesMinimosFrame();
+        VentanaPrincipal(wxFrame *frame);
+        ~VentanaPrincipal();
     private:
 
         ConfBDDialog* dialogo_configuracion_base_datos;
@@ -70,7 +66,6 @@ class PuntajesMinimosFrame: public GUIFrame
 
         bool cargarArchivo();
         string limpiarString(string str);
-        string encriptar(string in);
 
         virtual void OnRadioBoxComparar( wxCommandEvent& event );
         virtual void OnClose(wxCloseEvent& event);
@@ -79,27 +74,27 @@ class PuntajesMinimosFrame: public GUIFrame
         virtual void OnBDConfig( wxCommandEvent& event );
         virtual void cargarInformacionAdmisiones( wxCommandEvent& event );
         virtual void CagarPuntajesICFES( wxCommandEvent& event );
-		virtual void cargarInformacionEquivalencias( wxCommandEvent& event );
-		virtual void cargarInformacionRegistroAcademico( wxCommandEvent& event );
-		virtual void cargarInformacionECAES( wxCommandEvent& event );
-		virtual void BotonBuscar( wxCommandEvent& event );
-		virtual void BotonGuardarResultados( wxCommandEvent& event );
-		virtual void GuardarDatosCSV( wxCommandEvent& event );
-		const char* getInformacionConexion();
-		virtual void mostar_puntajes_minimos( wxCommandEvent& event );
+        virtual void cargarInformacionEquivalencias( wxCommandEvent& event );
+        virtual void cargarInformacionRegistroAcademico( wxCommandEvent& event );
+        virtual void cargarInformacionECAES( wxCommandEvent& event );
+        virtual void BotonBuscar( wxCommandEvent& event );
+        virtual void BotonGuardarResultados( wxCommandEvent& event );
+        virtual void GuardarDatosCSV( wxCommandEvent& event );
+        const char* getInformacionConexion();
+        virtual void mostar_puntajes_minimos( wxCommandEvent& event );
 
-		bool checkDB();
-		void informar(const char* mensaje);
-		bool comprobarConexionBD();
-		void actualizarCantidadMuestra();
+        bool checkDB();
+        void informar(const char* mensaje);
+        bool comprobarConexionBD();
+        void actualizarCantidadMuestra();
 
-		virtual void actualizarFiltroFechaInicio( wxCommandEvent& event );
-		virtual void actualizarFiltroFechaFin( wxCommandEvent& event );
-		virtual void actualizarFiltroAsignaturas( wxCommandEvent& event );
-		void actualizarInterfaz();
+        virtual void actualizarFiltroFechaInicio( wxCommandEvent& event );
+        virtual void actualizarFiltroFechaFin( wxCommandEvent& event );
+        virtual void actualizarFiltroAsignaturas( wxCommandEvent& event );
+        void actualizarInterfaz();
 
-		virtual void seleccionarComponentesYCompetencias( wxCommandEvent& event );
+        virtual void seleccionarComponentesYCompetencias( wxCommandEvent& event );
 
 };
 
-#endif // PUNTAJESMINIMOSMAIN_H
+#endif // SRC_GUI_VENTANAPRINCIPAL_H_

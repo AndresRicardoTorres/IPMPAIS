@@ -9,9 +9,10 @@
   EVALAB (EISC - Universidad del Valle, Cali, Colombia)
 */
 
-
 /**
   @class AlgoritmoGenetico
+  \brief Abstración general del algoritmo genetico
+  
   Es un algoritmo genético diseñado para optimizar los puntajes mínimos de cada uno de los componentes del examen
   de ingreso a la universidad y sus ponderaciones.
   El cromosoma consiste en un array lineal de genes. Los genes impares son promedios mínimos exigidos y los genes pares
@@ -38,7 +39,7 @@ class AlgoritmoGenetico
   public:
     /** Costructor del algoritmo genético.
       @param fenotipo
-      @param cuantosCromosomas. Por defecto 100.
+      @param cuantosCromosomas Por defecto 100.
     */
     AlgoritmoGenetico(Fenotipo *fenotipo, int cuantosCromosomas=100);
     /** Destructor
@@ -46,11 +47,11 @@ class AlgoritmoGenetico
     ~AlgoritmoGenetico();
     /** Ejecuta el proceso de optimización del algoritmo genético y devuelve el mejor Cromosoma. Esta función se puede ejecutar
       varias veces sucesivas.
-      @param aptitudDelMejor. Devuelve en esta variable la aptitud del mejor cromosoma (referencia a una variable, valor de salida).
-      @param numeroDeGeneraciones. Por defecto 10000
-      @param probabilidadDeCrucePromedio. Por defecto 40 (o sea, 40%)
-      @param probabilidadDeCruceUniforme. Por defecto 40 (o sea, 40%). La suma de ambas probabilidades no debe superar 100% (aunque no pasa nada malo si ello ocurre).
-      @param desviacionTipicaDeLaMutacion. Por defecto, 1.
+      @param aptitudDelMejor Devuelve en esta variable la aptitud del mejor cromosoma (referencia a una variable, valor de salida).
+      @param numeroDeGeneraciones Por defecto 10000
+      @param probabilidadDeCrucePromedio Por defecto 40 (o sea, 40%)
+      @param probabilidadDeCruceUniforme Por defecto 40 (o sea, 40%). La suma de ambas probabilidades no debe superar 100% (aunque no pasa nada malo si ello ocurre).
+      @param desviacionTipicaDeLaMutacion Por defecto, 1.
       @return el mejor Cromosoma.
     */
     const Cromosoma *ejecutar(double &aptitudDelMejor, int numeroDeGeneraciones=10000, int probabilidadDeCrucePromedio=40, int probabilidadDeCruceUniforme=40, double desviacionTipicaDeLaMutacion=1);

@@ -7,15 +7,26 @@
  * License:
  **************************************************************/
 
-#ifndef SRC_PUNTAJESMINIMOS_H_
-#define SRC_PUNTAJESMINIMOS_H_
+/**
+  @class PuntajesMinimos
+  \brief Inicio de la aplicación
+
+  Inicia la interfaz grafica y el generador de numeros aleatorios
+*/
+
+#ifndef SRC_IPMPAIS_PUNTAJESMINIMOS_H_
+#define SRC_IPMPAIS_PUNTAJESMINIMOS_H_
 
 #include <wx/app.h>
 #include <wx/dcclient.h>
 
+#include "algoritmogenetico/matematicas.h"
+#include "gui/ventanaprincipal.h"
+
 class PuntajesMinimos : public wxApp{
  public:
+     /// Inicializa la aplicación
     virtual bool OnInit();
 };
 
-#endif  // SRC_PUNTAJESMINIMOS_H_
+#endif  // SRC_IPMPAIS_PUNTAJESMINIMOS_H_

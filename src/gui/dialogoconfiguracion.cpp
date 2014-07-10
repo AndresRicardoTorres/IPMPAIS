@@ -15,7 +15,7 @@
 #pragma hdrstop
 #endif //__BORLANDC__
 
-#include "confbdmain.h"
+#include "dialogoconfiguracion.h"
 #include <iostream>
 
 
