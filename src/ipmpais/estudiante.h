@@ -12,6 +12,10 @@
 
 typedef std::vector<std::vector <const char*> > puntajesICFES;
 
+/**
+ * @brief Encargada de gestionar grupos de objetos estudiantes y su 
+ * almacenamiento en la base de datos 
+ */
 class EstudianteDAO: protected DAO
 {
     public:

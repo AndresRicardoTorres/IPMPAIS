@@ -15,7 +15,7 @@
 #include <wx/wx.h>
 #endif //WX_PRECOMP
 
-#include "guidialog.h"
+#include "wx_dialogoconfiguracion.h"
 
 ///////////////////////////////////////////////////////////////////////////
 

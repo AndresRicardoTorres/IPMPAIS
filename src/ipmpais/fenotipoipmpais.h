@@ -12,7 +12,7 @@
 
 /**
   @class FenotipoIPMPAIS
-  Crea y evalúa un Cromosoma para resolver el problema de IPMPAIS.
+  @brief Crea y evalúa un Cromosoma para resolver el problema de IPMPAIS.
 
   Relaciones con otras clases y objetos:
     - Es un Fenotipo.
@@ -29,7 +29,11 @@
 #include <map>
 #include <vector>
 
-struct ltstr
+/**
+ * @brief Ordena los estudiantes por código para buscarlos posteriormente
+ * de forma mas rápida. 
+ */
+struct ordenarPorCodigo
 {
   bool operator()(const char* s1, const char* s2) const
   {
@@ -37,10 +41,9 @@ struct ltstr
   }
 };
 
-typedef std::map<const char*, double, ltstr> HashEstudiantesYPuntajes;
+typedef std::map<const char*, double, ordenarPorCodigo>
+        HashEstudiantesYPuntajes;
 typedef std::vector<const char*> VectorEstudiantes;
-
-
 
 class FenotipoIPMPAIS : virtual public Fenotipo
 {
@@ -51,10 +54,10 @@ class FenotipoIPMPAIS : virtual public Fenotipo
       @param puntajeMinimo_maximo
       @param ponderacion_minimo
       @param ponderacion_maximo
-      @param admisionesUnivalle. Este es el objeto que calcula la selección y ordenación de estudiantes que van a ingresar a Univalle en función de sus puntajes de ICFES.
-      @param listaEgresadosOrdenada. Debe ir ordenada según los puntajes de egresado (ECAES, promedio de carrera, o algo similar) de mayor a menor.
-      @param cuantosEgresados. La longitud de la lista anterior.
-      @param soloCalcularPonderaciones. Si es false, calcula valores mínimos y ponderaciones. Si es true (por defecto), calcula sólo ponderaciones.
+      @param admisionesUnivalle Este es el objeto que calcula la selección y ordenación de estudiantes que van a ingresar a Univalle en función de sus puntajes de ICFES.
+      @param listaEgresadosOrdenada Debe ir ordenada según los puntajes de egresado (ECAES, promedio de carrera, o algo similar) de mayor a menor.
+      @param cuantosEgresados La longitud de la lista anterior.
+      @param soloCalcularPonderaciones Si es false, calcula valores mínimos y ponderaciones. Si es true (por defecto), calcula sólo ponderaciones.
     */
     FenotipoIPMPAIS(int cuantosComponentesExamenIngreso, double puntajeMinimo_minimo, double puntajeMinimo_maximo, double ponderacion_minimo, double ponderacion_maximo, AdmisionesUnivalle &admisionesUnivalle, const char *listaEgresadosOrdenada[], int cuantosEgresados, bool soloCalcularPonderaciones=true);
     /** Destructor. No hace nada.
@@ -75,9 +78,9 @@ class FenotipoIPMPAIS : virtual public Fenotipo
     */
     double evaluar(const Cromosoma *cromosoma);
     /** Expresa un Cromosoma. OJO: esta función no es ni puede ser virtual. No se puede usar sobre la clase base. Esta es la gran limitación en el polimorfismo de C++ (las funciones de clase base y derivadas deben tener la misma firma)
-      @param puntero a Cromosoma
-      @param retorna un array de puntajesMinimos
-      @param retorna un array de pondereaciones
+      @param cromosoma puntero a Cromosoma
+      @param puntajesMinimos retorna un array de puntajesMinimos
+      @param ponderaciones retorna un array de pondereaciones
     */
     void expresar(const Cromosoma *cromosoma, double puntajesMinimos[], double ponderaciones[]);
 

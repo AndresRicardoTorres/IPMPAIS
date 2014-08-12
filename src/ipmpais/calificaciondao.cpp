@@ -462,7 +462,7 @@ const char* CalificacionDAO::insertar(encabezadoCSV encabezados,datosCSV datosIn
         if(calificacion.size() > 0){
             calificacionNumerica = atof(calificacion.c_str());
             anno=estudiante.substr(0,4);
-            sstm << "INSERT INTO calificacion(año,periodo,codigo_estudiante, codigo_asignatura,codigo_asignatura_original, nombre_asignatura, tipo, calificacion,tipo_numerico,creditos,calificacion_numerica) VALUES ("<<anno<<",'"<<periodo<<"','"<<encriptar(estudiante)<<"','"<<codigo<<"','"<<codigo<<"','"<<asignatura<<"','"<<tipo<<"','"<<calificacion<<"',"<<ntipo<<","<<creditos<<","<<calificacionNumerica<<");";
+            sstm << "INSERT INTO calificacion(año,periodo,codigo_estudiante, codigo_asignatura,codigo_asignatura_original, nombre_asignatura, tipo, calificacion,tipo_numerico,creditos,calificacion_numerica) VALUES ("<<anno<<",'"<<periodo<<"','"<< estudiante <<"','"<<codigo<<"','"<<codigo<<"','"<<asignatura<<"','"<<tipo<<"','"<<calificacion<<"',"<<ntipo<<","<<creditos<<","<<calificacionNumerica<<");";
             sql = sstm.str();
             sstm.str(std::string());
 

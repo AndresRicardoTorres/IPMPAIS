@@ -7,16 +7,6 @@
  * License:
  **************************************************************/
 
-#ifdef WX_PRECOMP
-#include "wx_pch.h"
-#endif
-
-#ifdef __BORLANDC__
-#pragma hdrstop
-#endif  // __BORLANDC__
-
-#include "algoritmogenetico/matematicas.h"
-#include "gui/ventanaprincipal.h"
 #include "ipmpais/puntajesminimos.h"
 
 IMPLEMENT_APP(PuntajesMinimos);
@@ -25,7 +15,7 @@ bool PuntajesMinimos::OnInit() {
     // 2012-10-21: Angel
     // Inicializo el numero aleatorio para la encriptacion
     Matematicas::crear();  // Initialize random number generator.
-    PuntajesMinimosFrame* frame = new PuntajesMinimosFrame(0L);
+    VentanaPrincipal* frame = new VentanaPrincipal(0L);
 
     frame->Show();
 
