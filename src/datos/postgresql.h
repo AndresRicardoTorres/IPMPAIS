@@ -24,12 +24,13 @@
 
 /** ResultadoFila Representa un registro de la base de datos */
 typedef std::vector<const char*> ResultadoFila;
-typedef std::vector<std::vector<const char*> > ResultadoConsulta; /**< This is the documentation for the preceding typedef */
-
+/** Representa un conjunto de registros de la base de datos */
+typedef std::vector<std::vector<const char*> > ResultadoConsulta;
 class PG
 {
     public:
-       /**
+
+      /**
        * \brief Inicia una conexion con el servidor de base de datos, si la
        * conexion no se puede realizar informa con un mensaje de error.
        *
@@ -37,21 +38,50 @@ class PG
        * consultas a la base de datos deberian realizarse por medio de esta
        * clase
        *
-       * \param conexion String de conexion a la base de datos
+       * \param conexion String de conexión a la base de datos
        */
-        PG(const char* conexion);
-        /**
-         * \brief Cierra la conexion a la base de datos
-         */
-        virtual ~PG();
-        ResultadoConsulta* select(const char* query);
-        bool query(const char* query);
-        bool checkStatus();
-        int insert(const char* query);
-        int update(const char* query);
-        int borrar(const char* query);
+      PG(const char* conexion);
+      /**
+       * \brief Cierra la conexión a la base de datos
+       */
+      virtual ~PG();
+      /**
+       * Envia una consulta SQL para realizar un DELETE
+       * @param query consulta SQL
+       * @return La cantidad de registros eliminados
+       */
+      int borrar(const char* query);
+      /**
+       * Verifica el estado de la conexión
+       * @return True si se puede conectar al servidor de base de datos,
+       * False en caso contrario
+       */
+      bool checkStatus();
+      /**
+       * Envia una consulta SQL para realizar un INSERT
+       * @param query consulta SQL
+       * @return La cantidad de registros insertados correctamente
+       */
+      int insert(const char* query);
+      /**
+       * Envia una consulta SQL, no retorna ningún reporte de la operación
+       * @param query consulta SQL
+       */
+      void query(const char* query);
+      /**
+       * @param query consulta SQL
+       * return
+       */
+      ResultadoConsulta* select(const char* query);
+      /**
+       * Envia una consulta SQL para realizar un UPDATE
+       * @param query consulta SQL
+       * @return La cantidad de registros actualizados
+       */
+      int update(const char* query);
     private:
-        PGconn  *conn;
+      PGconn  *conn;
+      int operacion(const char* query);
 };
 
 #endif // POSTGRESQL_H

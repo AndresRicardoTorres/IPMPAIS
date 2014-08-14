@@ -18,22 +18,20 @@
     - Es un Fenotipo.
     .
 */
-
-
 #ifndef FENOTIPOIPMPAIS_H
 #define FENOTIPOIPMPAIS_H
 
-#include "admisionesunivalle.h"
-#include "algoritmogenetico/fenotipo.h"
-#include <string.h>
 #include <map>
+#include <string.h>
 #include <vector>
 
+#include "algoritmogenetico/fenotipo.h"
+#include "ipmpais/admisionesunivalle.h"
 /**
  * @brief Ordena los estudiantes por código para buscarlos posteriormente
- * de forma mas rápida. 
+ * de forma mas rápida.
  */
-struct ordenarPorCodigo
+struct OrdenarPorCodigo
 {
   bool operator()(const char* s1, const char* s2) const
   {
@@ -41,7 +39,7 @@ struct ordenarPorCodigo
   }
 };
 
-typedef std::map<const char*, double, ordenarPorCodigo>
+typedef std::map<const char*, double, OrdenarPorCodigo>
         HashEstudiantesYPuntajes;
 typedef std::vector<const char*> VectorEstudiantes;
 
@@ -54,10 +52,14 @@ class FenotipoIPMPAIS : virtual public Fenotipo
       @param puntajeMinimo_maximo
       @param ponderacion_minimo
       @param ponderacion_maximo
-      @param admisionesUnivalle Este es el objeto que calcula la selección y ordenación de estudiantes que van a ingresar a Univalle en función de sus puntajes de ICFES.
-      @param listaEgresadosOrdenada Debe ir ordenada según los puntajes de egresado (ECAES, promedio de carrera, o algo similar) de mayor a menor.
+      @param admisionesUnivalle Este es el objeto que calcula la selección y
+      ordenación de estudiantes que van a ingresar a Univalle en función de sus
+      puntajes de ICFES.
+      @param listaEgresadosOrdenada Debe ir ordenada según los puntajes de
+      egresado (ECAES, promedio de carrera, o algo similar) de mayor a menor.
       @param cuantosEgresados La longitud de la lista anterior.
-      @param soloCalcularPonderaciones Si es false, calcula valores mínimos y ponderaciones. Si es true (por defecto), calcula sólo ponderaciones.
+      @param soloCalcularPonderaciones Si es false, calcula valores mínimos
+      y ponderaciones. Si es true (por defecto), calcula sólo ponderaciones.
     */
     FenotipoIPMPAIS(int cuantosComponentesExamenIngreso, double puntajeMinimo_minimo, double puntajeMinimo_maximo, double ponderacion_minimo, double ponderacion_maximo, AdmisionesUnivalle &admisionesUnivalle, const char *listaEgresadosOrdenada[], int cuantosEgresados, bool soloCalcularPonderaciones=true);
     /** Destructor. No hace nada.

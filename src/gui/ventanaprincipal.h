@@ -28,7 +28,7 @@
 #include "ipmpais/calificacion.h"
 #include "ipmpais/calificaciondao.h"
 #include "ipmpais/equivalenciadao.h"
-#include "ipmpais/estudiante.h"
+#include "ipmpais/estudiantedao.h"
 #include "ipmpais/fenotipoipmpais.h"
 
 /**
@@ -43,58 +43,54 @@
 class VentanaPrincipal: public GUIFrame
 {
     public:
-        VentanaPrincipal(wxFrame *frame);
-        ~VentanaPrincipal();
+      VentanaPrincipal(wxFrame *frame);
+      ~VentanaPrincipal();
+
+   protected:
+      virtual void OnClose(wxCloseEvent& event);
+      virtual void OnQuit(wxCommandEvent& event);
+      virtual void OnBDConfig(wxCommandEvent &event);
+      virtual void OnRadioBoxComparar( wxCommandEvent& event );
+      virtual void cargarInformacionAdmisiones( wxCommandEvent& event );
+      virtual void CagarPuntajesICFES( wxCommandEvent& event );
+      virtual void cargarInformacionEquivalencias( wxCommandEvent& event );
+      virtual void cargarInformacionRegistroAcademico( wxCommandEvent& event );
+      virtual void cargarInformacionECAES( wxCommandEvent& event );
+      virtual void BotonBuscar( wxCommandEvent& event );
+      virtual void BotonGuardarResultados( wxCommandEvent& event );
+      virtual void GuardarDatosCSV( wxCommandEvent& event );
+      const char* getInformacionConexion();
+      virtual void mostar_puntajes_minimos( wxCommandEvent& event );
+
+      bool checkDB();
+      void informar(const char* mensaje);
+      bool comprobarConexionBD();
+      void actualizarCantidadMuestra();
+
+      virtual void actualizarFiltroFechaInicio( wxCommandEvent& event );
+      virtual void actualizarFiltroFechaFin( wxCommandEvent& event );
+      virtual void actualizarFiltroAsignaturas( wxCommandEvent& event );
+
+
+      virtual void seleccionarComponentesYCompetencias( wxCommandEvent& event );
     private:
-
-        ConfBDDialog* dialogo_configuracion_base_datos;
-        DialogoEcaes* dialogo_ecaes;
-
-        char filename[1024];
-        int un_numero_aleatorio;
-        int filtro_completitud_datos;
-        int filtro_fecha_inicio;
-        int filtro_fecha_final;
-        int cantidad_estudiantes_filtrados;
-        std::string listadoAsignaturas;
-        std::string opcionesEcaes;
-        int cuantosComponentesExamenIngreso;
-        double puntajeMinimo_minimo;
-        double puntajeMinimo_maximo; //El maximo que he visto es 116.95
-        double ponderacion_minimo;
-        double ponderacion_maximo;
-
-        bool cargarArchivo();
-        string limpiarString(string str);
-
-        virtual void OnRadioBoxComparar( wxCommandEvent& event );
-        virtual void OnClose(wxCloseEvent& event);
-        virtual void OnQuit(wxCommandEvent& event);
-        virtual void OnAbout(wxCommandEvent& event);
-        virtual void OnBDConfig( wxCommandEvent& event );
-        virtual void cargarInformacionAdmisiones( wxCommandEvent& event );
-        virtual void CagarPuntajesICFES( wxCommandEvent& event );
-        virtual void cargarInformacionEquivalencias( wxCommandEvent& event );
-        virtual void cargarInformacionRegistroAcademico( wxCommandEvent& event );
-        virtual void cargarInformacionECAES( wxCommandEvent& event );
-        virtual void BotonBuscar( wxCommandEvent& event );
-        virtual void BotonGuardarResultados( wxCommandEvent& event );
-        virtual void GuardarDatosCSV( wxCommandEvent& event );
-        const char* getInformacionConexion();
-        virtual void mostar_puntajes_minimos( wxCommandEvent& event );
-
-        bool checkDB();
-        void informar(const char* mensaje);
-        bool comprobarConexionBD();
-        void actualizarCantidadMuestra();
-
-        virtual void actualizarFiltroFechaInicio( wxCommandEvent& event );
-        virtual void actualizarFiltroFechaFin( wxCommandEvent& event );
-        virtual void actualizarFiltroAsignaturas( wxCommandEvent& event );
-        void actualizarInterfaz();
-
-        virtual void seleccionarComponentesYCompetencias( wxCommandEvent& event );
-
+      bool cargarArchivo();
+      void actualizarInterfaz();
+      ConfBDDialog* dialogo_configuracion_base_datos;
+      DialogoEcaes* dialogo_ecaes;
+      char filename[1024];
+      int un_numero_aleatorio;
+      int filtro_completitud_datos;
+      int filtro_fecha_inicio;
+      int filtro_fecha_final;
+      int cantidad_estudiantes_filtrados;
+      std::string listadoAsignaturas;
+      std::string opcionesEcaes;
+      int cuantosComponentesExamenIngreso;
+      double puntajeMinimo_minimo;
+      double puntajeMinimo_maximo; //El maximo que he visto es 116.95
+      double ponderacion_minimo;
+      double ponderacion_maximo;
 };
 
 #endif // SRC_GUI_VENTANAPRINCIPAL_H_

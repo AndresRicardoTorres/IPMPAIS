@@ -27,8 +27,10 @@ class Calificacion
         void setAnno(unsigned int val) { anno = val; }
         const char* getCodigoEstudiante() { return codigoEstudiante; }
         void setCodigoEstudiante(const char* val) { codigoEstudiante = val; }
-        const char* getCodigoOriginalAsignatura() { return codigoOriginalAsignatura; }
-        void setCodigoOriginalAsignatura(const char* val) { codigoOriginalAsignatura = val; }
+        const char* getCodigoOriginalAsignatura() 
+	  { return codigoOriginalAsignatura; }
+        void setCodigoOriginalAsignatura(const char* val) 
+	  { codigoOriginalAsignatura = val; }
         const char* getCodigoAsignatura() { return codigoAsignatura; }
         void setCodigoAsignatura(const char* val) { codigoAsignatura = val; }
         const char* getTipoCursado() { return tipoCursado; }
