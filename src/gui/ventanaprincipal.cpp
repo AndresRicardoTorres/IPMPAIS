@@ -56,13 +56,12 @@ bool VentanaPrincipal::checkDB(){
 
     bool hayBD = objPg->checkStatus();
 
-#if wxUSE_STATUSBAR
+
     statusBar->SetStatusText(_("Bienvenido!"), 0);
     if(hayBD)
     statusBar->SetStatusText(_("Conectado a la base de datos !"), 1);
     else
     statusBar->SetStatusText(_("No conectado con la base de datos !"), 1);
-#endif
 
     if(hayBD){
         actualizarCantidadMuestra();
@@ -117,12 +116,6 @@ void VentanaPrincipal::OnClose(wxCloseEvent &event)
 void VentanaPrincipal::OnQuit(wxCommandEvent &event)
 {
     Destroy();
-}
-
-void VentanaPrincipal::OnAbout(wxCommandEvent &event)
-{
-//    wxString msg = wxbuildinfo(long_f);
-//
 }
 
 void VentanaPrincipal::OnBDConfig(wxCommandEvent &event)
@@ -185,10 +178,8 @@ void VentanaPrincipal::cargarInformacionEquivalencias( wxCommandEvent& event )
 
 void VentanaPrincipal::informar(const char* mensaje)
 {
-    std::cout<<mensaje<<std::endl;
     wxString wxMensaje = wxString(mensaje,wxConvUTF8);
     statusBar->SetStatusText(wxMensaje, 0);
-    //wxMessageBox(wxMensaje, _("Resultado"));
 }
 
 void VentanaPrincipal::cargarInformacionRegistroAcademico( wxCommandEvent& event )
@@ -363,17 +354,16 @@ void VentanaPrincipal::actualizarInterfaz(){
         case 0:
             filtro_asignaturas->Show(true);
             filtro_ecaes->Show(false);
-            //grilla_valores->Show(true);
         break;
         default:
             filtro_asignaturas->Show(false);
             filtro_ecaes->Show(true);
-            //grilla_valores->Show(false);
         break;
     }
 
     bool soloCalcularPonderaciones = check_mostrar_puntajes_minimos->IsChecked();
-    if(opcion != 0) soloCalcularPonderaciones=false;
+    if(opcion != 0)
+      soloCalcularPonderaciones = false;
     ///Se actualizan inputs de la grilla de asignaturas
     input_puntaje->Show(soloCalcularPonderaciones);
     input_d_puntaje->Show(soloCalcularPonderaciones);
@@ -394,17 +384,14 @@ void VentanaPrincipal::actualizarInterfaz(){
     inputPonderacionFisica->Show(soloCalcularPonderaciones);
     inputDPonderacionFisica->Show(soloCalcularPonderaciones);
 
-
     soloCalcularPonderaciones = check_mostrar_puntajes_minimos->IsChecked();
-    if(opcion == 0) soloCalcularPonderaciones=false;
+    if(opcion == 0)
+      soloCalcularPonderaciones=false;
     ///Se actualizan inputs de la grilla del ECAES
-
-
 
     grilla_valores->RecalcSizes();
     box_resultados->RecalcSizes();
  }
-
 
  void VentanaPrincipal::mostar_puntajes_minimos( wxCommandEvent& event ){
     actualizarInterfaz();
@@ -429,7 +416,7 @@ void VentanaPrincipal::GuardarDatosCSV( wxCommandEvent& event ){
 
     std::stringstream contenido;
 
-    contenido << objEstudiantes->obtenerNombreColumnas()<<std::endl;
+    contenido << objEstudiantes->obtenerNombreColumnas() << std::endl;
 
     unsigned int cantidad_estudiante_guardados = 0;
     for(unsigned int i=0;i<resultado->size();i++)
@@ -578,7 +565,7 @@ void VentanaPrincipal::BotonBuscar( wxCommandEvent& event ){
 
     ///objeto AdmisionesUnivalle que controla en que puesto quedan los estudiantes
     std::cout<<"AdmisionesUnivalle"<<std::endl;
-    AdmisionesUnivalle admisionesUnivalle(ECAESoRegistro,getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final);
+    AdmisionesUnivalle admisionesUnivalle(getInformacionConexion(),filtro_fecha_inicio,filtro_fecha_final);
 
     ///
     std::cout<<"objEstudiantes"<<std::endl;
