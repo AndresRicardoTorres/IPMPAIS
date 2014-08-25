@@ -1,9 +1,9 @@
 #include "calificaciondao.h"
 
-CalificacionDAO::CalificacionDAO(const char* conn)
+CalificacionDAO::CalificacionDAO(const char* conexion)
 {
     //ctor
-    conexion = conn;
+    conexion = conexion;
 }
 
 CalificacionDAO::~CalificacionDAO()
@@ -11,10 +11,15 @@ CalificacionDAO::~CalificacionDAO()
     //dtor
 }
 
-const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalencias)
+const char* CalificacionDAO::aplicarEquivalencias
+  (VectorEquivalencias *equivalencias)
 {
     PG *objPg = new PG(conexion.c_str());
-    int afectadas = 0,totales = 0,errores=0,cantidadAntiguas = 0,cantidadNuevas = 0;
+    int afectadas        = 0
+      , totales          = 0
+      , errores          = 0
+      , cantidadAntiguas = 0
+      , cantidadNuevas   = 0;
     std::string antigua,nueva,sql;
     std::stringstream sstm;
 
@@ -25,31 +30,31 @@ const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalen
         antigua = unaEquivalencia->getAntigua();
         nueva = unaEquivalencia->getNueva();
 
-        std::cout<<"Aplicando equivalencia "<<antigua<<" => "<<nueva<<std::endl;
-
-        cantidadAntiguas=1;
+	cantidadAntiguas=1;
         cantidadNuevas=1;
 
-        if(antigua.find(";")!=std::string::npos)
+        if(antigua.find(";") != std::string::npos)
             cantidadAntiguas=2;
 
-        if(nueva.find(";")!=std::string::npos)
+        if(nueva.find(";") != std::string::npos)
             cantidadNuevas=2;
 
 
-        ///Equivalencia uno a uno
+        // <!-- Equivalencia uno a uno -->
         if(cantidadAntiguas==1 && cantidadNuevas == 1)
         {
-            sql = "UPDATE calificacion SET codigo_asignatura  = '"+nueva+"' WHERE codigo_asignatura = '"+antigua+"';";
+            sql = "UPDATE calificacion SET codigo_asignatura  = '" + nueva +
+	      "' WHERE codigo_asignatura = '" + antigua + "';";
             afectadas = objPg->update(sql.c_str());
             totales += afectadas;
-            /*
+
             if(0==afectadas){
-                std::cout<<" EQuivalencia no afecto "<<i<<" "<<sql.c_str()<<std::endl;
+                std::cout << " EQuivalencia no afecto " << i << " " <<
+		  sql.c_str() << std::endl;
             }
-            */
+
         }
-        ///Equivalencia uno a dos
+        // <!-- Equivalencia uno a dos -->
         else if(cantidadAntiguas==1 && cantidadNuevas == 2)
         {
 
@@ -98,7 +103,7 @@ const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalen
 
 
         }
-        ///Equivalencia dos a uno
+        // <!-- Equivalencia dos a uno -->
         else if(cantidadAntiguas==2 && cantidadNuevas == 1)
         {
             VectorCalificaciones *calificaciones =  getCalificacionesPorAsignatura(antigua);
@@ -137,7 +142,7 @@ const char* CalificacionDAO::aplicarEquivalencias(VectorEquivalencias *equivalen
 
             }
         }
-        ///Equivalencia 2 a 2
+        // <!-- Equivalencia dos a dos -->
         else if(cantidadAntiguas==2 && cantidadNuevas == 2)
         {
             VectorCalificaciones *calificaciones =  getCalificacionesPorAsignatura(antigua);
@@ -234,37 +239,26 @@ bool CalificacionDAO::borrar(Calificacion *obj)
     PG *objPG = new PG(conexion.c_str());
     std::stringstream sstm;
     std::string sql;
-//    unsigned int anno = obj->getAnno();
+
     const char* codigoEstudiante = obj->getCodigoEstudiante();
-//    const char* codigoOriginalAsignatura = obj->getCodigoOriginalAsignatura();
     const char* codigoAsignatura = obj->getCodigoAsignatura();
- //   const char* nombreAsignatura = obj->getNombreAsignatura();
-  //  const char* tipoCursado = obj->getTipoCursado();
-   // int tipoNumericoCursado = obj->getTipoNumericoCursado();
-    //unsigned int creditos = obj->getCreditos();
-    //const char* calificacion = obj->getCalificacion();
     const char* periodo = obj->getPeriodo();
-    //double calificacionReal = obj->getCalificacionReal();
 
-
-    sstm << "DELETE FROM calificacion WHERE periodo = '" <<  periodo << "' AND codigo_asignatura ='"<<codigoAsignatura << "' AND codigo_estudiante = '" << codigoEstudiante << "';";
+    sstm << "DELETE FROM calificacion WHERE periodo = '" <<  periodo <<
+    "' AND codigo_asignatura ='" << codigoAsignatura <<
+    "' AND codigo_estudiante = '" << codigoEstudiante << "';";
 
     sql = sstm.str();
-    //std::cout<<"CalificacionDAO borrar() "<<sql<<std::endl;
     int x = objPG->borrar(sql.c_str());
 
     delete objPG;
 
-    if(x!=1)
-    {
-        std::cout<<"DELETE ERROR >>>"<<sql<<std::endl;
-    }
     return 0 < x;
 }
 
 vectorCSV CalificacionDAO::separarComas(std::string asignatura)
 {
-//std::cout<<"separarComas() "<<asignatura<<std::endl;
+
     vectorCSV results;
 
     size_t found;
@@ -286,13 +280,11 @@ vectorCSV CalificacionDAO::separarComas(std::string asignatura)
     {
          std::cout<<" "<<results.at(i);
     }
- //std::cout<<"END separarComas() "<<std::endl;
     return results;
 }
 
 vectorCSV CalificacionDAO::separarPuntoComas(std::string asignatura)
 {
-//std::cout<<"separarPuntoComas() "<<asignatura<<std::endl;
     vectorCSV results;
 
     size_t found;
@@ -314,7 +306,6 @@ vectorCSV CalificacionDAO::separarPuntoComas(std::string asignatura)
     {
          std::cout<<" "<<results.at(i);
     }
- //std::cout<<"END separarPuntoComas() "<<std::endl;
     return results;
 }
 
@@ -336,13 +327,12 @@ std::string CalificacionDAO::formatearComas(std::string asignatura)
 
 VectorCalificaciones* CalificacionDAO::getCalificacionesPorAsignatura(std::string asignatura)
 {
-    //std::cout<<"getCalificacionesPorAsignatura()"<<std::endl;
     VectorCalificaciones *califaciones = new VectorCalificaciones();
     PG *objPG = new PG(conexion.c_str());
-    std::string sql ="SELECT año ,periodo,codigo_estudiante   ,codigo_asignatura_original  ,codigo_asignatura  ,nombre_asignatura  ,tipo  ,tipo_numerico ,calificacion  ,creditos ,calificacion_numerica  FROM calificacion WHERE codigo_asignatura = "+formatearComas(asignatura)+" ORDER BY codigo_estudiante";
+    std::string sql = "SELECT año ,periodo,codigo_estudiante   ,codigo_asignatura_original  ,codigo_asignatura  ,nombre_asignatura  ,tipo  ,tipo_numerico ,calificacion  ,creditos ,calificacion_numerica  FROM calificacion WHERE codigo_asignatura = "
+    + formatearComas(asignatura) + " ORDER BY codigo_estudiante";
     ResultadoConsulta *resultado = objPG->select(sql.c_str());
-    //std::cout<<"SQL "<< sql <<std::endl;
-    //std::cout<<"CANTIDAD CALIFICACIONES "<<resultado->size()<<std::endl;
+
     for(unsigned int i=0;i<resultado->size();i++)
     {
         ResultadoFila unaFila= resultado->at(i);
@@ -401,56 +391,102 @@ void CalificacionDAO::crearTablas()
     objPg->query("CREATE TABLE calificacion(año integer,periodo character varying,codigo_estudiante character varying,codigo_asignatura_original character varying,codigo_asignatura character varying,nombre_asignatura character varying,tipo character varying,tipo_numerico integer,calificacion character varying,creditos integer,calificacion_numerica real,CONSTRAINT calificacion_pkey PRIMARY KEY (periodo,codigo_asignatura,codigo_estudiante));");
 }
 
-const char* CalificacionDAO::insertar(encabezadoCSV encabezados,datosCSV datosIn,wxGauge *barraProgreso)
+const char* CalificacionDAO::insertar( encabezadoCSV encabezados
+				     , datosCSV datosIn
+				     , wxGauge *barraProgreso
+				     )
 {
     PG *objPg = new PG(conexion.c_str());
-    int columna_periodo=-1,columna_estudiante = -1,columna_codigo = -1,columna_asignatura = -1,columna_tipo = -1,columna_creditos = -1,columna_calificacion = -1,columna_habilitacion = -1,i = 0,j=0,ntipo=0,afectadas = 0,correctas = 0,incorrectas = 0;
-    std::string anno,estudiante,codigo,asignatura,tipo,creditos,habilitacion,cal,calificacion,periodo,sql;
+    int columna_periodo      = -1
+      , columna_estudiante   = -1
+      , columna_codigo       = -1
+      , columna_asignatura   = -1
+      , columna_tipo         = -1
+      , columna_creditos     = -1
+      , columna_calificacion = -1
+      , columna_habilitacion = -1
+      , i                    = 0
+      , j                    = 0
+      , ntipo                = 0
+      , afectadas            = 0
+      , correctas            = 0
+      , incorrectas          = 0;
+
+    std::string anno
+              , estudiante
+              , codigo,asignatura
+              , tipo,creditos
+              , habilitacion
+              , cal
+              , calificacion
+              , periodo
+              , sql;
     float calificacionNumerica;
     std::stringstream sstm;
-
 
     barraProgreso->SetRange(datosIn.size());
 
     for (encabezadoCSV::iterator it = encabezados.begin(); it != encabezados.end(); it++,i++){
         std::string stringIt =  *it;
         stringIt = limpiarString(stringIt);
-        if(stringIt.find("estudiante")==0)columna_estudiante=i;
-        if(stringIt.find("periodo")==0)columna_periodo=i;
-        if(stringIt.find("codigo")==0)columna_codigo=i;
-        if(stringIt.find("asignatura")==0)columna_asignatura=i;
-        if(stringIt.find("tipo")==0)columna_tipo=i;
-        if(stringIt.find("crd")==0)columna_creditos=i;
-        if(stringIt.find("calificacion")==0)columna_calificacion=i;
-        if(stringIt.find("calif")==0)columna_calificacion=i;
-        if(stringIt.find("hab")==0)columna_habilitacion=i;
+        if(stringIt.find("estudiante") == 0)   columna_estudiante   = i;
+        if(stringIt.find("periodo") == 0)      columna_periodo      = i;
+        if(stringIt.find("codigo") == 0)       columna_codigo       = i;
+        if(stringIt.find("asignatura") == 0)   columna_asignatura   = i;
+        if(stringIt.find("tipo") == 0)         columna_tipo         = i;
+        if(stringIt.find("crd") == 0)          columna_creditos     = i;
+        if(stringIt.find("calificacion") == 0) columna_calificacion = i;
+        if(stringIt.find("calif") == 0)        columna_calificacion = i;
+        if(stringIt.find("hab") == 0)          columna_habilitacion = i;
     }
 
     i=1;
 
-    for (datosCSV::iterator it = datosIn.begin(); it != datosIn.end(); it++,i++){
+    for (datosCSV::iterator it = datosIn.begin();
+	 it != datosIn.end();
+         it++,i++){
         j=0;
         barraProgreso->SetValue(i);
-        anno.clear();estudiante.clear();codigo.clear();asignatura.clear();tipo.clear();calificacion.clear();creditos.clear();habilitacion.clear();cal.clear();periodo.clear();
-        for (listaCSV::iterator it2 = it->begin(); it2 != it->end(); it2++,j++){
-            if(j ==  columna_estudiante) estudiante = *it2;
-            if(j ==  columna_codigo) codigo = *it2;
-            if(j ==  columna_asignatura) asignatura = *it2;
-            if(j ==  columna_tipo) tipo = *it2;
-            if(j ==  columna_calificacion) calificacion =*it2;
-            if(j ==  columna_creditos) creditos = *it2;
-            if(j ==  columna_habilitacion) habilitacion = *it2;
-            if(j == columna_periodo) periodo = *it2;
+        anno.clear();
+	estudiante.clear();
+	codigo.clear();
+	asignatura.clear();
+	tipo.clear();
+	calificacion.clear();
+	creditos.clear();
+	habilitacion.clear();
+	cal.clear();
+	periodo.clear();
+
+        for (listaCSV::iterator it2 = it->begin();
+	     it2 != it->end();
+	     it2++,j++){
+            if(j == columna_estudiante)   estudiante   = *it2;
+            if(j == columna_codigo)       codigo       = *it2;
+            if(j == columna_asignatura)   asignatura   = *it2;
+            if(j == columna_tipo)         tipo         = *it2;
+            if(j == columna_calificacion) calificacion = *it2;
+            if(j == columna_creditos)     creditos     = *it2;
+            if(j == columna_habilitacion) habilitacion = *it2;
+            if(j == columna_periodo)      periodo      = *it2;
         }
 
-        if(0 == creditos.size())creditos = "NULL";
-        if(0 == tipo.compare("VALIDACION")) ntipo =(0 == habilitacion.size())? 1 : 2;
-        if(0 == tipo.compare("EXIMIDO EXAMEN CLASF"))ntipo = (0 == habilitacion.size())? 3 : 4;
-        if(0 == tipo.compare("EQUIVALENCIA"))ntipo = (0 == habilitacion.size())? 5 : 6;
-        if(0 == tipo.compare("PROFIC. EN IDIOMA EXTRANJERO"))ntipo = (0 == habilitacion.size())? 7 : 8;
-        if(0 == tipo.compare("NORMAL"))ntipo = (0 == habilitacion.size())? 9 : 10;
-        if(0 == tipo.compare("REPETICION")) ntipo = (0 == habilitacion.size())? 11 : 12;
-        if(0 == tipo.compare("SEGUNDA REPETICION")) ntipo = (0 == habilitacion.size())? 13 : 14;
+        if(0 == creditos.size()) creditos = "NULL";
+
+        if(0 == tipo.compare("VALIDACION"))
+	  ntipo =(0 == habilitacion.size())? 1 : 2;
+        if(0 == tipo.compare("EXIMIDO EXAMEN CLASF"))
+	  ntipo = (0 == habilitacion.size())? 3 : 4;
+        if(0 == tipo.compare("EQUIVALENCIA"))
+	  ntipo = (0 == habilitacion.size())? 5 : 6;
+        if(0 == tipo.compare("PROFIC. EN IDIOMA EXTRANJERO"))
+	  ntipo = (0 == habilitacion.size())? 7 : 8;
+        if(0 == tipo.compare("NORMAL"))
+	  ntipo = (0 == habilitacion.size())? 9 : 10;
+        if(0 == tipo.compare("REPETICION"))
+	  ntipo = (0 == habilitacion.size())? 11 : 12;
+        if(0 == tipo.compare("SEGUNDA REPETICION"))
+	  ntipo = (0 == habilitacion.size())? 13 : 14;
 
         if(ntipo % 2 == 0){
             tipo = "HABILITACION "+tipo;
@@ -462,15 +498,13 @@ const char* CalificacionDAO::insertar(encabezadoCSV encabezados,datosCSV datosIn
         if(calificacion.size() > 0){
             calificacionNumerica = atof(calificacion.c_str());
             anno=estudiante.substr(0,4);
-            sstm << "INSERT INTO calificacion(año,periodo,codigo_estudiante, codigo_asignatura,codigo_asignatura_original, nombre_asignatura, tipo, calificacion,tipo_numerico,creditos,calificacion_numerica) VALUES ("<<anno<<",'"<<periodo<<"','"<<encriptar(estudiante)<<"','"<<codigo<<"','"<<codigo<<"','"<<asignatura<<"','"<<tipo<<"','"<<calificacion<<"',"<<ntipo<<","<<creditos<<","<<calificacionNumerica<<");";
+            sstm << "INSERT INTO calificacion(año,periodo,codigo_estudiante, codigo_asignatura,codigo_asignatura_original, nombre_asignatura, tipo, calificacion,tipo_numerico,creditos,calificacion_numerica) VALUES ("<<anno<<",'"<<periodo<<"','"<< estudiante <<"','"<<codigo<<"','"<<codigo<<"','"<<asignatura<<"','"<<tipo<<"','"<<calificacion<<"',"<<ntipo<<","<<creditos<<","<<calificacionNumerica<<");";
             sql = sstm.str();
             sstm.str(std::string());
 
             afectadas = objPg->insert(sql.c_str());
 
-
             if(0==afectadas){
-                std::cout<<i<<" "<<sql.c_str()<<std::endl;
                 incorrectas++;
             }else{
                 correctas++;
@@ -489,8 +523,6 @@ listaCSV* CalificacionDAO::getListadoAsignaturas()
 {
     PG *objPg = new PG(conexion.c_str());
     ResultadoConsulta *resultado =  objPg->select("SELECT DISTINCT codigo_asignatura FROM calificacion ORDER BY codigo_asignatura DESC;");
-    ///Creo que el order by no es necesario, EDIT si es necesario para el orden de las columnas de la tabla estudiante
-    /// DESC por que guardo en una lista al reves, mejor vector?
     listaCSV *listado = new listaCSV();
     for(unsigned int i=0;i<resultado->size();i++)
     {
@@ -510,12 +542,13 @@ PromediosDeEstudiantes* CalificacionDAO::getPromediosDeEstudiantes()
     for(unsigned int i=0;i<resultado->size();i++)
     {
         ResultadoFila unaFila= resultado->at(i);
-        listado->insert(std::pair<const char*,const char*>(unaFila.at(0),unaFila.at(1)));
+        listado->insert(std::pair<const char*,const char*>
+	  (unaFila.at(0), unaFila.at(1)));
     }
+
     delete objPg;
     delete resultado;
     return listado;
-
 }
 
 

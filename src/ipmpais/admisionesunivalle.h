@@ -12,50 +12,49 @@
 
 /**
   @class AdmisionesUnivalle
-    donde admisionesUnivalle es un objeto de clase AdmisionesUnivalle, que
-    tú debes escribir. A ese objeto yo le envío un array de doubles con
-    los puntajesMinimos y otro con las ponderaciones. Tu usas esos arrays
-    para ordenar los estudiantes de mayor a menor puntaje total. Y me
-    retornas un vector ordenado de estudiantes, concretamente conteniendo
-    los sha1 (que son strings de tipo const char*) del código del
-    estudiante ordenados por orden de puntaje (primero los que aparecerían
-    en ADMISIONES de UNIVALLE con mayor puntaje).
+  @brief Logica del ordenamiento de candidatos para la admision en Univalle.
 */
 
 #ifndef ADMISIONESUNIVALLE_H
 #define ADMISIONESUNIVALLE_H
 
-#include <vector>
-#include <queue>
-#include "estudiante.h"
-
-#include <iostream>
 #include <cstdio>
+#include <iostream>
+#include <queue>
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 
-class miComparador
+#include "ipmpais/estudiantedao.h"
+/**
+ * @brief Ordena pares compuestos por código y puntaje, por el código de
+ * estudiante
+ */
+class OrdenarParesPorCodigo
 {
 public:
-  miComparador(){}
+  OrdenarParesPorCodigo(){}
 
-  bool operator() (const std::pair<const char*,double>& lhs,const std::pair<const char*,double>& rhs) const
+ bool operator() ( const std::pair<const char*,double>& lhs
+                 , const std::pair<const char*,double>& rhs) const
   {
     return lhs.second<rhs.second;
   }
 };
 
-// 2012-10-21: Modificado por Angel
-class miComparador2
+/**
+ * @brief Ordena pares compuestos por posición y puntaje, por posición
+ */
+class OrdenarPorPosicion
 {
 public:
-  miComparador2(){}
+  OrdenarPorPosicion(){}
 
-  bool operator() (const std::pair<unsigned int,double>& lhs,const std::pair<unsigned int,double>& rhs) const
+  bool operator() ( const std::pair<unsigned int,double>& lhs
+                  , const std::pair<unsigned int,double>& rhs) const
   {
-    return lhs.second<rhs.second;
-  }
-};
+    return lhs.second < rhs.second;
+ }};
 
 
 typedef std::vector<const char*> VectorEstudiantes;
@@ -64,11 +63,37 @@ typedef std::vector<std::vector <const char*> > puntajesICFES;
 class AdmisionesUnivalle
 {
   public:
-    AdmisionesUnivalle(bool ECAESoRegistro,const char* conn,int filtro_anno_inicio,int filtro_anno_final);
+    /** Se construye el objeto admisionesUnivalle con una la información
+     * para conectarse a la base de datos y los filtros para tener en
+     * cuenta solo los estudiantes en los años de interses.
+     *
+     * @param conexion String de conexion para la base de datos
+     * @param filtro_anno_inicio Filtro con el año inicial a tomar en
+     * cuenta para el analisis, por ejemplo 2000
+     * @param filtro_anno_final  Filtro con el año final a tomar en cuenta
+     * para el analisis, por ejemplo 2010
+     */
+    AdmisionesUnivalle( const char* conexion
+                      , int filtro_anno_inicio
+                      , int filtro_anno_final
+		      );
     ~AdmisionesUnivalle();
+
+    /**
+     * A esta clase se le envia un array de doubles con los puntajes minimos
+     * y otro con las ponderaciones. Se usan esos arrays para ordenar los
+     * estudiantes de mayor a menor puntaje total. Y se retorna un vector
+     * ordenado de estudiantes ordenados por orden de puntaje (primero los que
+     * aparecerían en ADMISIONES de UNIVALLE con mayor puntaje) conteniendo el
+     * código del estudiante.
+     *
+     * @param puntajesMinimos Los puntajes minimos a tener en cuenta para el
+     * ordenamiento
+     * @param ponderaciones Las ponderaciones de cada elemento del ICFES a
+     * tener en cuenta para el ordenamiento
+     */
     const VectorEstudiantes *ordenarEstudiantesAdmisionesSegunPuntajesMinimosYPonderaciones(double puntajesMinimos[], double ponderaciones[]);
     private:
-        std::string conexion;
         puntajesICFES *resultadosICFES;
 };
 

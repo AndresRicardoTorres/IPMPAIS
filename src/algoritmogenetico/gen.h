@@ -11,6 +11,7 @@
 
 /**
   @class Gen
+  @brief Es un gen de un algoritmo evolutivo.
   Es un gen de un algoritmo evolutivo.
   El gen tiene un valor flotante (double) que puede mutar dentro de un valor mínimo y uno máximo.
   La mutación se logra sumando ruido gaussiano con una desviacionTipica especificada en el constructor.
@@ -40,13 +41,13 @@ class Gen
     /** Constructor.
         Construye un gen con un intervalo de valores double válidos valorMinimo y valorMaximo.
         Asigna al gen un valor al azar en ese intervalo.
-        @param valorMinimo. Por defecto, 0.
-        @param valorMaximo. Por defecto, 1.
+        @param valorMinimo Por defecto, 0.
+        @param valorMaximo Por defecto, 1.
     */
     Gen(double valorMinimo=0, double valorMaximo=100);
     /** Constructor de copia.
         Construye un gen a partir de otro.
-        @param otroGen.
+        @param otroGen
     */
     Gen(const Gen &otroGen);
     /** Destructor.
@@ -63,20 +64,20 @@ class Gen
     void mutacionUniforme();
     /** Produce una mutación, es decir un cambio al azar en el valor del intervalo.
         El cambio se logra sumando a ese valor un ruido gaussiano, de desviacionTipica dada.
-        @param desviacionTipicaDeLaMutacion. Por defecto, 1.
+        @param desviacionTipicaDeLaMutacion Por defecto, 1.
     */
     void mutacionGaussiana(double desviacionTipicaDeLaMutacion=1);
     /** Produce un cruce uniforme con otroGen.
         El cruce consiste en elegir al azar uno cualquiera de los genes y retornarlo, sacando una copia profunda y
         cediendo propiedad.
-        @param otroGen.
+        @param otroGen
         @return el gen hijo.
     */
     Gen *cruceUniforme(const Gen *otroGen) const;
     /** Produce un cruce promedio con otroGen.
         El cruce consiste en una combinación lineal entre los valores de los genes padre y retornarlo, sacando
         una copia profunda y cediendo propiedad.
-        @param otroGen.
+        @param otroGen
         @return el gen hijo.
     */
     Gen *crucePromedio(const Gen *otroGen) const;

@@ -1,17 +1,14 @@
-IPMPAIS
-=======
+# IPMPAIS
 Optimización de los pesos de los puntajes de admisión a una carrera
 universitaria
 
-Introducción
----
+## Introducción
 IPMPAIS (Identificando Puntajes Mínimos para el Plan Académico de Ingeniería
 de Sistemas), es una herramienta que permite hacer una estimación de los
 puntajes mínimos y sus ponderaciones para la inscripción a los programas
 académicos de pregrado en la Universidad del Valle.
 
-Archivos
----
+## Archivos
 
     .
     ├── codeblocks
@@ -37,33 +34,33 @@ Archivos
                       grafica)
 
 
-Requerimientos
----
+## Requerimientos
 
-Nombre          | Version | Opcional
+Nombre          | Versión | Opcional
 :--             | :--:    | --:
 [codeblocks]    | 13.12   | Si
 [doxygen]       | 1.8     | Si
-[graphviz]      | 2.36    | No (*)
+[graphviz]      | 2.36    | No (\*)
 [libpq]         | 9.3     | No
-[wxformbuilder] | 9.3     | Si (**)
+[wxformbuilder] | 9.3     | Si (\*\*)
 [wxwidgets]     | 2.8     | No
 
-(*) Para los graficos en la documentación
-(**) Para editar la interfaz grafica
+(\*) Para los graficos en la documentación
+(\*\*) Para editar la interfaz grafica
 
 
-Compilacion
----
+## Compilacion
 
 ``g++ -c -Wall `wx-config --cxxflags` -O2 -I./src -I/usr/include/postgresql src/algoritmogenetico/*.cpp src/datos/*.cpp src/gui/*.cpp src/ipmpais/*.cpp``
 
 ``g++ -o puntajesMinimos *.o  -s -lpq `wx-config --libs` ``
 
 
-Generar documentación
----
+## Generar documentación
 `doxygen doc/Doxyfile`
+
+## Base de datos
+Descripción de la base de datos en [database.md](database.md).
 
 [codeblocks]:http://www.codeblocks.org/
 [doxygen]:http://www.stack.nl/~dimitri/doxygen/

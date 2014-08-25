@@ -12,6 +12,7 @@
 
 /**
   @class Fenotipo
+  @brief Abstracción general del algoritmo genetico
   En cualquier algoritmo genético hay un algoritmo abstracto y unas funciones que dependen del problema concreto de que se trate.
   Estas funciones (como se crea y como se evalúa el Cromosoma) se agrupan en el Fenotipo.
 

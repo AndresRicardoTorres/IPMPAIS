@@ -12,6 +12,8 @@
 
 /**
   @class Cromosoma
+  @brief Representación con un array lineal de genes.
+
   El cromosoma consiste en un array lineal de genes y cada gen es un número flotante de doble precisión.
   Se usará en un algoritmo genético. Se le puede pedir mutar() y cruzar() con
   otro Cromosoma. Tiene una Aptitud que se puede escribir como resultado de una evaluación; y también
@@ -34,7 +36,7 @@ class Cromosoma
   public:
     /** Constructor.
         Construye un Cromosoma vacío, que podrá albergar cuantosGenes.
-        @param cuantosGenes.
+        @param cuantosGenes
     */
     Cromosoma(int cuantosGenes);
     /** Añade un Gen al final del Cromosoma, tomando propiedad de ello
@@ -50,12 +52,12 @@ class Cromosoma
     */
     void mutacionGaussiana(double desviacionTipicaDeLaMutacion);
     /** Se cruza con otroCromosoma. El cruce es de tipo uniforme, eligiendo al azar entre cada par de genes homólogos.
-        @param otroCromosoma.
+        @param otroCromosoma
         @return el hijo que salió del cruce, cediendo su propiedad.
     */
     Cromosoma *cruceUniforme(const Cromosoma *otroCromosoma) const;
     /** Se cruza con otroCromosoma. El cruce es de tipo promedio, promediando los valores de cada par de genes homólogos.
-        @param otroCromosoma.
+        @param otroCromosoma
         @return el hijo que salió del cruce, cediendo su propiedad.
     */
     Cromosoma *crucePromedio(const Cromosoma *otroCromosoma) const;
@@ -64,7 +66,7 @@ class Cromosoma
     */
     Cromosoma *clone() const;
     /** Asigna la Aptitud que se merece este Cromosoma.
-        @param aptitud.
+        @param valor
     */
     void setAptitud(double valor);
     /** Averigua la Aptitud de este Cromosoma.
@@ -76,7 +78,7 @@ class Cromosoma
     */
     bool yaEvaluado() const;
     /** Retorna el Gen que está en la posición indice.
-        @param indice.
+        @param indice
         @return el gen que está en la posición indice.
     */
     Gen *operator [] (int indice) const;

@@ -11,7 +11,9 @@
 
 
 /**
-  @class Matematicas
+  \class Matematicas
+  \brief Funciones matemáticas que no están en las librerías estándar de C ni C++
+
   Ofrece unas cuentas funciones matemáticas que no están en las librerías estándar de C ni C++.
   El algoritmo que genera secuencias de números aleatorios es el Mersenne Twister tomado de internet
   y adaptado a C++, convirtiéndolo en una clase SINGLETON.
@@ -41,7 +43,7 @@ class Matematicas
   public:
     /** Con esta funcion se crea el objeto singleton, o se retorna si ya estaba creado.
         @param semilla para inicializar el generador de números seudoaleatorios. Por defecto vale 0, que significa que se toma como semilla inicial un número generado a partir de la fecha y hora actual.
-        @param errorFlotante. Por defecto 1e-12. Si al comparar dos doubles sale menor a esto, se concluye que son iguales.
+        @param errorFlotante Por defecto 1e-12. Si al comparar dos doubles sale menor a esto, se concluye que son iguales.
         @return el objeto singleton Matematicas.
     */
     static Matematicas *crear(uint32 semilla=0, double errorFlotante=1e-12);
@@ -62,7 +64,7 @@ class Matematicas
           - log2(7)=2;
           - log2(8)=3; etc.
           .
-        @param x. El número entero del cual queremos averiguar su logaritmo en base 2.
+        @param x El número entero del cual queremos averiguar su logaritmo en base 2.
         @return el logaritmo en base 2 del número dado.
     */
     static int log2(int x);
@@ -80,7 +82,7 @@ class Matematicas
           - log2ceil(7)=3;
           - log2ceil(8)=3; etc.
           .
-        @param x. El número entero del cual queremos averiguar su logaritmo en base 2 redondeado hacia arriba.
+        @param x El número entero del cual queremos averiguar su logaritmo en base 2 redondeado hacia arriba.
         @return el logaritmo en base 2 redondeado hacia arriba del número dado.
     */
     static int log2ceil(int x);
@@ -101,20 +103,20 @@ class Matematicas
     */
     static int bits(int x);
     /** Calcula el menor de dos números enteros.
-        @param a. Un número entero.
-        @param b. El otro número entero.
+        @param a Un número entero.
+        @param b El otro número entero.
         @return el menor de los dos números enteros.
     */
     static int minimo(int a, int b);
     /** Calcula el mayor de dos números enteros.
-        @param a. Un número entero.
-        @param b. El otro número entero.
+        @param a Un número entero.
+        @param b El otro número entero.
         @return el mayor de los dos números enteros.
     */
     static int maximo(int a, int b);
     /** Da un valor inicial al generador de secuencias seudoaleatorias de números.
         CAVILACIONES: Por un lado, nadie debería llamar a esta función, dado que se llama automáticamente en el constructor de Matematicas (y sólo debe ser llamada una vez, para garantizar no repeticiones y no correlaciones). Pero por otro lado, a veces conviene inicializar el generador a un valor determinado, con el objetivo de poder repetir resultados, para depurar. Quizás convenga poner dos generadores independientes (quién sabe como lograr la independencia): uno del sistema (que inicializa la semilla aleatoria únicamente en el constructor) y otro del usuario-programador (con la función srand accesible).
-        @param semilla. El valor inicial. Por defecto es 0, que significa que la semilla se genera
+        @param semilla El valor inicial. Por defecto es 0, que significa que la semilla se genera
         aleatoriamente (a partir de la fecha y hora actuales).
     */
     void srand(uint32 semilla = 0);
@@ -136,19 +138,19 @@ class Matematicas
     /** Genera el siguiente número entero positivo entre valorMinimo (incluido si abiertoALaIzquierda
         es true) y valorMaximo (incluido si abiertoALaDerecha es true), de una secuencia seudoaleatoria.
         El rango por defecto es [valorMinimo, valorMaximo). La distribución es uniforme.
-        @param valorMinimo.
-        @param valorMaximo.
-        @param abiertoALaIzquierda. Por defecto, false.
-        @param abiertoALaDerecha. Por defecto, true.
+        @param valorMinimo
+        @param valorMaximo
+        @param abiertoALaIzquierda Por defecto, false.
+        @param abiertoALaDerecha Por defecto, true.
         @return el siguiente número de la secuencia seudoaleatoria.
     */
     int randInt(int valorMinimo, int valorMaximo, bool abiertoALaIzquierda=false, bool abiertoALaDerecha=true);
     /** Genera el siguiente número entero positivo entre 0 (incluido si abiertoALaIzquierda
         es false) y valorMaximo (incluido si abiertoALaDerecha es false), de una secuencia seudoaleatoria.
         El rango por defecto es [0, valorMaximo). La distribución es uniforme.
-        @param valorMaximo.
-        @param abiertoALaIzquierda. Por defecto, false.
-        @param abiertoALaDerecha. Por defecto, true.
+        @param valorMaximo
+        @param abiertoALaIzquierda Por defecto, false.
+        @param abiertoALaDerecha Por defecto, true.
         @return el siguiente número de la secuencia seudoaleatoria.
     */
     int randInt(int valorMaximo, bool abiertoALaIzquierda=false, bool abiertoALaDerecha=true);
@@ -159,10 +161,10 @@ class Matematicas
     /** Genera el siguiente número flotante positivo entre valorMinimo (incluido si abiertoALaIzquierda
         es false) y valorMaximo (incluido si abiertoALaDerecha es false), de una secuencia seudoaleatoria.
         El rango por defecto es [valorMinimo, valorMaximo). La distribución es uniforme.
-        @param valorMinimo.
-        @param valorMaximo.
-        @param abiertoALaIzquierda. Por defecto, false.
-        @param abiertoALaDerecha. Por defecto, true.
+        @param valorMinimo
+        @param valorMaximo
+        @param abiertoALaIzquierda Por defecto, false.
+        @param abiertoALaDerecha Por defecto, true.
         @return el siguiente número de la secuencia seudoaleatoria.
     */
     double randDouble(double valorMinimo, double valorMaximo, bool abiertoALaIzquierda=false, bool abiertoALaDerecha=true);
@@ -174,12 +176,12 @@ class Matematicas
         Se emplea el método polar descrito en el libro de [Ross 1988]. Hay un pequeñísimo sesgo (el
         valorMedio sale con una probabilidad ligerísimamente mayor a la teórica, para evitar un potencial
         bucle infinito en el algoritmo).
-        @param valorMedio.
-        @param valorMinimo.
-        @param valorMaximo.
-        @param abiertoALaIzquierda. Por defecto, false.
-        @param abiertoALaDerecha. Por defecto, true.
-        @param desviacionTipica. Por defecto, 1.
+        @param valorMedio
+        @param valorMinimo
+        @param valorMaximo
+        @param abiertoALaIzquierda Por defecto, false.
+        @param abiertoALaDerecha Por defecto, true.
+        @param desviacionTipica Por defecto, 1.
         @return el siguiente número de la secuencia seudoaleatoria.
     */
     double randGaussiano(double valorMedio, double valorMinimo, double valorMaximo, bool abiertoALaIzquierda=false, bool abiertoALaDerecha=true, double desviacionTipica=1);

@@ -1,3 +1,19 @@
+/***************************************************************
+ * Name:      calificacion.h
+ * Purpose:   Representa una nota especifica y toda su información. Tiene los
+ *            mismos atributos que la tabla en la base de datos. 
+ * Author:    Andrés Ricardo Torres Martínez (aritoma@gmail.com)
+ * Created:   2012-02-12
+ * Copyright: Andrés Ricardo Torres Martínez ()
+ * License:
+ **************************************************************/
+
+/**
+ * @class Calificacion
+ * @brief Representa una nota especifica y toda su información. Tiene los
+ *        mismos atributos que la tabla en la base de datos.
+ */         
+
 #ifndef CALIFICACION_H
 #define CALIFICACION_H
 
@@ -11,8 +27,10 @@ class Calificacion
         void setAnno(unsigned int val) { anno = val; }
         const char* getCodigoEstudiante() { return codigoEstudiante; }
         void setCodigoEstudiante(const char* val) { codigoEstudiante = val; }
-        const char* getCodigoOriginalAsignatura() { return codigoOriginalAsignatura; }
-        void setCodigoOriginalAsignatura(const char* val) { codigoOriginalAsignatura = val; }
+        const char* getCodigoOriginalAsignatura() 
+	  { return codigoOriginalAsignatura; }
+        void setCodigoOriginalAsignatura(const char* val) 
+	  { codigoOriginalAsignatura = val; }
         const char* getCodigoAsignatura() { return codigoAsignatura; }
         void setCodigoAsignatura(const char* val) { codigoAsignatura = val; }
         const char* getTipoCursado() { return tipoCursado; }

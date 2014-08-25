@@ -1,28 +1,32 @@
 /***************************************************************
  * Name:      adminsionesunivalle.cpp
  * Purpose:   Code for Application Frame
- * Author:    Andrés Ricardo Torres Martínez (ricardo.torres@correounivalle.edu.co) y Angel García Baños (angel.garcia@correounivalle.edu.co)
+ * Author:    Andrés Ricardo Torres Martínez
+ * (ricardo.torres@correounivalle.edu.co) y Angel García Baños
+ * (angel.garcia@correounivalle.edu.co)
  * Created:   2012-03-23
- * Copyright: Andrés Ricardo Torres Martínez y Angel García Baños ()
+ * Copyright: Andrés Ricardo Torres Martínez y Angel García Baños
  * License: GPL
  * Fecha ultima modificacion:  10 de marzo de 2012
  **************************************************************/
 
 #include "admisionesunivalle.h"
 
-AdmisionesUnivalle::AdmisionesUnivalle(bool ECAESoRegistro,const char* conn,int filtro_anno_inicio,int filtro_anno_final)
+AdmisionesUnivalle::AdmisionesUnivalle(const char* conexion,int filtro_anno_inicio,int filtro_anno_final)
 {
-    ///Cantidad de resultados del ICFES
+    // <!-- Cantidad de asignaturas del ICFES -->
     unsigned int limite = 7;
 
-    EstudianteDAO *objEstudiantes = new EstudianteDAO(conn);
-    ///El filtro de asignaturas SRA o componentes de ECAES, no afecta por que con ese filtro no se quitan estudiantes.
-    resultadosICFES = objEstudiantes->getPuntajesICFES(filtro_anno_inicio,filtro_anno_final,"");
+    EstudianteDAO *objEstudiantes = new EstudianteDAO(conexion);
+    resultadosICFES = objEstudiantes->getPuntajesICFES( filtro_anno_inicio
+                                                      , filtro_anno_final
+						      );
     delete objEstudiantes;
 
+    std::vector<std::pair<unsigned int,double> > vectorTemporal;
 
-    std::vector<std::pair<unsigned int,double> > vectorTemporal;  // indiceEnResultadosICFES, puntajeDeUnaComponenteICFES
-    setlocale(LC_ALL,"C"); ///Para el separador decimal
+    // <!-- Para el separador decimal -->
+    setlocale(LC_ALL,"C");
 
     for(unsigned int j=0;j<limite;j++)
     {
@@ -31,7 +35,11 @@ AdmisionesUnivalle::AdmisionesUnivalle(bool ECAESoRegistro,const char* conn,int 
             std::pair<unsigned int,double> unPar(i, atof(resultadosICFES->at(i).at(j+1)));
             vectorTemporal.push_back(unPar);
         }
-        std::priority_queue<std::pair<unsigned int,double>,std::vector<std::pair<unsigned int,double> >,miComparador2> miColaDePrioridad(vectorTemporal.begin(),vectorTemporal.end(),miComparador2());
+        std::priority_queue <std::pair<unsigned int,double>,
+                             std::vector<std::pair<unsigned int,double> >,
+                             OrdenarPorPosicion>
+        miColaDePrioridad(vectorTemporal.begin(), vectorTemporal.end(),
+                          OrdenarPorPosicion());
 
         for(unsigned int i=0; i<resultadosICFES->size(); i++)
         {
@@ -61,13 +69,21 @@ const VectorEstudiantes* AdmisionesUnivalle::ordenarEstudiantesAdmisionesSegunPu
         double puntajeTotal = 0;
         for(unsigned int j=0;j<7;j++)
         {
-            puntajeTotal+= ponderaciones[j] * atoi(resultadosICFES->at(i).at(j+1));
+            puntajeTotal+= ponderaciones[j] *
+			   atoi(resultadosICFES->at(i).at(j+1));
         }
-        std::pair<const char*,double> unPar(resultadosICFES->at(i).at(0) , puntajeTotal);
+        std::pair<const char*,double> unPar( resultadosICFES->at(i).at(0)
+	                                   , puntajeTotal
+					   );
         vectorTemporal.push_back(unPar);
     }
 
-    std::priority_queue<std::pair<const char*,double>,std::vector<std::pair<const char*,double> >,miComparador> miColaDePrioridad(vectorTemporal.begin(),vectorTemporal.end(),miComparador());
+    std::priority_queue<std::pair<const char*,double>
+                       ,std::vector<std::pair<const char*,double> >
+                       ,OrdenarParesPorCodigo>
+     miColaDePrioridad( vectorTemporal.begin()
+                      , vectorTemporal.end()
+                      , OrdenarParesPorCodigo());
 
 
     for(unsigned int i=0;i<vectorTemporal.size();i++)

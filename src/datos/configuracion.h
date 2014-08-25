@@ -1,3 +1,35 @@
+/***************************************************************
+ * Name:      configuracion.h
+ * Purpose:   Utilidad para leer archivos de configuracion
+ *            generados por la aplicacion
+ * Author:    Andrés Ricardo Torres Martínez (aritoma@gmail.com)
+ * Created:   2012-02-12
+ * Copyright: Andrés Ricardo Torres Martínez ()
+ * License:
+ **************************************************************/
+
+/**
+ * @class LeerConfiguracion
+ * @brief Utilidad para leer archivos de configuracion generados por la
+ * aplicacion
+ *
+ * Permite leer archivos con la siguiente sintaxis :
+ *
+ *     host=<string>
+ *     puerto=<integer>
+ *     nombrebd=<string>
+ *     usuario=<string>
+ *     clave=<string>
+ *
+ *
+ * El archivo debe tener exactamente esas etiquetas y no tener espacios.
+ *
+ * El archivo debe estar en la misma carpeta del ejecutable y llamarse
+ * "determinador.conf".
+ *
+ * El orden de las lineas no importa
+ */
+
 #ifndef LEERCONFIGURACION_H
 #define LEERCONFIGURACION_H
 
@@ -13,7 +45,9 @@ using namespace std;
 class LeerConfiguracion
 {
     public:
-        /** Default constructor */
+        /** Default constructor
+         * Los valores por defecto son "" o 0.
+         * */
         LeerConfiguracion();
         /** Default destructor */
         virtual ~LeerConfiguracion();
@@ -21,39 +55,28 @@ class LeerConfiguracion
          * \return The current value of m_host
          */
         string Gethost() { return m_host; }
-        /** Set m_host
-         * \param val New value to set
-         */
-        void Sethost(string val) { m_host = val; }
         /** Access m_puerto
          * \return The current value of m_puerto
          */
         int Getpuerto() { return m_puerto; }
-        /** Set m_puerto
-         * \param val New value to set
-         */
-        void Setpuerto(int val) { m_puerto = val; }
-        /** Access m_usuario
+       /** Access m_usuario
          * \return The current value of m_usuario
          */
         string Getusuario() { return m_usuario; }
-        /** Set m_usuario
-         * \param val New value to set
-         */
-        void Setusuario(string val) { m_usuario = val; }
         /** Access m_clave
          * \return The current value of m_clave
          */
         string Getclave() { return m_clave; }
-        /** Set m_clave
-         * \param val New value to set
-         */
-        void Setclave(string val) { m_clave = val; }
         string Getnombrebd() { return m_nombrebd; }
-        /** Set m_clave
-         * \param val New value to set
+        /**
+         * @brief Lee el archivo en la ubicacion predeterminada
+         *
+         * Si no se encuentra el valor en el archivo se tendran en cuenta los
+         * valores por defecto.
+         *
+         * @return Retorna FALSE si el archivo no se encuentra en la ubicacion
+         * predeterminada, caso contrario retorna TRUE
          */
-        void Setnombrebd(string val) { m_nombrebd = val; }
         bool LeerDatos();
     protected:
     private:
@@ -63,6 +86,26 @@ class LeerConfiguracion
         string m_usuario; //!< Member variable "m_usuario"
         string m_clave; //!< Member variable "m_clave"
         string m_nombrebd; //!< Member variable "m_nombrebd"
+        /** Set m_host
+         * \param val New value to set
+         */
+        void Sethost(string val) { m_host = val; }
+         /** Set m_puerto
+         * \param val New value to set
+         */
+        void Setpuerto(int val) { m_puerto = val; }
+        /** Set m_usuario
+         * \param val New value to set
+         */
+        void Setusuario(string val) { m_usuario = val; }
+        /** Set m_clave
+         * \param val New value to set
+         */
+        void Setclave(string val) { m_clave = val; }
+        /** Set m_clave
+         * \param val New value to set
+         */
+        void Setnombrebd(string val) { m_nombrebd = val; }
 };
 
 #endif // LEERCONFIGURACION_H

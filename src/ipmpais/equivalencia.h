@@ -1,3 +1,19 @@
+/***************************************************************
+ * Name:      equivalencia.h
+ * Purpose:   Entidad que representa una equivalencia entre dos
+ *            o varias asignaturas
+ * Author:    Andrés Ricardo Torres Martínez (aritoma@gmail.com)
+ * Created:   2012-02-12
+ * Copyright: Andrés Ricardo Torres Martínez ()
+ * License:
+ **************************************************************/
+
+/**
+ * @class Equivalencia
+ * @brief Entidad que representa una equivalencia entre dos
+ *            o varias asignaturas
+ */
+
 #ifndef EQUIVALENCIA_H
 #define EQUIVALENCIA_H
 
