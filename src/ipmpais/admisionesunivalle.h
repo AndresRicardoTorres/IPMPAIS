@@ -77,6 +77,7 @@ class AdmisionesUnivalle
                       , int filtro_anno_inicio
                       , int filtro_anno_final
 		      );
+	AdmisionesUnivalle(){};
     ~AdmisionesUnivalle();
 
     /**

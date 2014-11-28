@@ -11,27 +11,21 @@ académicos de pregrado en la Universidad del Valle.
 ## Archivos
 
     .
-    ├── codeblocks
-    │   └── PuntajesMinimos.cbp (Configuración de compilacion del proyecto para
-    │                            IDE codeblocks)
+    ├── bin (la aplicación ejecutable)
     ├── doc
-    │   ├── Doxyfile (Configuración para generar documentación basada en el
-    │   │             código fuente)
-    │   └── user_manual (Manual de usuario)
-    │       ├── images (Imagenes usadas para el manual de usuario)
-    │       ├── manual_de_usuario.odt
-    │       └── manual_de_usuario.pdf
-    ├── README.md
+    │   ├── html (documentación, API, diagrama de clases)
+    │   │    └──  index.html  (es el punto de entrada de la documentación)
+    │   ├─ 2013-05-02_IPMPAIS_Informe_Final.pdf    (informe final del proyecto de investigación)
+    │   └─ 2013-05-03_IPMPAIS_manual_de_usuario.pdf   (manual de usuario)
     ├── src (Código fuente)
-    │   ├── algoritmogenetico (Libreria general de algoritmos geneticos)
-    │   ├── datos (Clases para el acceso a datos en diferentes formatos o
-    │   │          base de datos)
-    │   ├── gui (Clases con la interfaz grafica y sus eventos, los archivos
-    │   │        que inician con "wx_" son generados por wxformbuilder)
-    │   └── ipmpais (Clases especificas de la aplicación)
-    ├── test (Pruebas)
-    └── wxformbuilder (Proyectos para generar las clases de la interfaz
-                      grafica)
+    │   ├── *.h, *.cpp (clases en C++ de este proyecto)
+    │   ├── *.fbp (interfase gráfica de este proyecto)
+    │   ├── test_* (Las clases de test unitario para el componente principal del proyecto, que es el algoritmo genético)
+    │   └── PuntajesMinimos.cbp (Configuración de compilacion del proyecto para IDE codeblocks
+    ├── Doxyfile (Configuración para generar la documentación)
+    ├── github.txt (URL de donde bajar todo el proyecto)
+    ├── database.md (documentación de la base de datos)
+    └── README.md (este archivo)
 
 
 ## Requerimientos
@@ -40,6 +34,7 @@ Nombre          | Versión | Opcional
 :--             | :--:    | --:
 [codeblocks]    | 13.12   | Si
 [doxygen]       | 1.8     | Si
+[g++]           | 4.8.2   | No
 [graphviz]      | 2.36    | No (\*)
 [libpq]         | 9.3     | No
 [wxformbuilder] | 9.3     | Si (\*\*)
@@ -51,19 +46,20 @@ Nombre          | Versión | Opcional
 
 ## Compilacion
 
-``g++ -c -Wall `wx-config --cxxflags` -O2 -I./src -I/usr/include/postgresql src/algoritmogenetico/*.cpp src/datos/*.cpp src/gui/*.cpp src/ipmpais/*.cpp``
+``g++ -c -Wall `wx-config --cxxflags` -O2 -I./src -I/usr/include/postgresql src/*.cpp``
 
 ``g++ -o puntajesMinimos *.o  -s -lpq `wx-config --libs` ``
 
 
 ## Generar documentación
-`doxygen doc/Doxyfile`
+`doxygen Doxyfile`
 
 ## Base de datos
 Descripción de la base de datos en [database.md](database.md).
 
 [codeblocks]:http://www.codeblocks.org/
 [doxygen]:http://www.stack.nl/~dimitri/doxygen/
+[g++]:https://www.gnu.org/software/gcc/releases.html
 [libpq]:http://www.postgresql.org/docs/9.3/static/libpq.html
 [wxformbuilder]:http://sourceforge.net/projects/wxformbuilder/
 [wxwidgets]:http://www.wxwidgets.org/

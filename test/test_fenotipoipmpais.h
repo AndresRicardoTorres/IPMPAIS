@@ -24,9 +24,9 @@
 #define TEST_FENOTIPOIPMPAIS_H
 
 
-#include "matematicas.h"
-#include "fenotipoipmpais.h"
-#include "cromosoma.h"
+#include "algoritmogenetico/matematicas.h"
+#include "ipmpais/fenotipoipmpais.h"
+#include "algoritmogenetico/cromosoma.h"
 #include <iostream>
 
 

@@ -9,7 +9,9 @@
 
 #include "ipmpais/puntajesminimos.h"
 
-IMPLEMENT_APP(PuntajesMinimos);
+//IMPLEMENT_APP(PuntajesMinimos);
+IMPLEMENT_APP_NO_MAIN(PuntajesMinimos);
+IMPLEMENT_WX_THEME_SUPPORT;
 
 bool PuntajesMinimos::OnInit() {
     // 2012-10-21: Angel

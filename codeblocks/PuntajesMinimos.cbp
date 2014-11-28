@@ -27,6 +27,7 @@
 			<Add option="-Wall" />
 			<Add option="`wx-config-2.8 --cflags`" />
 			<Add directory="../src" />
+			<Add directory="../test" />
 		</Compiler>
 		<Linker>
 			<Add option="`wx-config-2.8 --libs`" />
@@ -47,20 +48,14 @@
 		<Unit filename="../src/datos/csv.h" />
 		<Unit filename="../src/datos/postgresql.cpp" />
 		<Unit filename="../src/datos/postgresql.h" />
-		<Unit filename="../src/gui/confbdmain.cpp" />
-		<Unit filename="../src/gui/confbdmain.h" />
-		<Unit filename="../src/gui/dialogoasignaturas.cpp" />
-		<Unit filename="../src/gui/dialogoasignaturas.h" />
-		<Unit filename="../src/gui/dialogoasignaturasmain.cpp" />
-		<Unit filename="../src/gui/dialogoasignaturasmain.h" />
+		<Unit filename="../src/gui/dialogoconfiguracion.cpp" />
+		<Unit filename="../src/gui/dialogoconfiguracion.h" />
 		<Unit filename="../src/gui/dialogoecaes.cpp" />
 		<Unit filename="../src/gui/dialogoecaes.h" />
-		<Unit filename="../src/gui/guidalogoasignaturas.cpp" />
-		<Unit filename="../src/gui/guidialog.cpp" />
-		<Unit filename="../src/gui/guidialog.h" />
-		<Unit filename="../src/gui/guidialogoasignaturas.h" />
 		<Unit filename="../src/gui/ventanaprincipal.cpp" />
 		<Unit filename="../src/gui/ventanaprincipal.h" />
+		<Unit filename="../src/gui/wx_dialogoconfiguracion.cpp" />
+		<Unit filename="../src/gui/wx_dialogoconfiguracion.h" />
 		<Unit filename="../src/gui/wx_dialogoecaes.cpp" />
 		<Unit filename="../src/gui/wx_dialogoecaes.h" />
 		<Unit filename="../src/gui/wx_ventanaprincipal.cpp" />
@@ -77,12 +72,23 @@
 		<Unit filename="../src/ipmpais/equivalencia.h" />
 		<Unit filename="../src/ipmpais/equivalenciadao.cpp" />
 		<Unit filename="../src/ipmpais/equivalenciadao.h" />
-		<Unit filename="../src/ipmpais/estudiante.cpp" />
-		<Unit filename="../src/ipmpais/estudiante.h" />
+		<Unit filename="../src/ipmpais/estudiantedao.cpp" />
+		<Unit filename="../src/ipmpais/estudiantedao.h" />
 		<Unit filename="../src/ipmpais/fenotipoipmpais.cpp" />
 		<Unit filename="../src/ipmpais/fenotipoipmpais.h" />
 		<Unit filename="../src/ipmpais/puntajesminimos.cpp" />
 		<Unit filename="../src/ipmpais/puntajesminimos.h" />
+		<Unit filename="../src/main.cpp" />
+		<Unit filename="../test/test_algoritmogenetico.cpp" />
+		<Unit filename="../test/test_algoritmogenetico.h" />
+		<Unit filename="../test/test_cromosoma.cpp" />
+		<Unit filename="../test/test_cromosoma.h" />
+		<Unit filename="../test/test_fenotipoipmpais.cpp" />
+		<Unit filename="../test/test_fenotipoipmpais.h" />
+		<Unit filename="../test/test_gen.cpp" />
+		<Unit filename="../test/test_gen.h" />
+		<Unit filename="../test/test_matematicas.cpp" />
+		<Unit filename="../test/test_matematicas.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

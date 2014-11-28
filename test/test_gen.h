@@ -21,8 +21,8 @@
 #ifndef TEST_GEN_H
 #define TEST_GEN_H
 
-#include "matematicas.h"
-#include "gen.h"
+#include "algoritmogenetico/matematicas.h"
+#include "algoritmogenetico/gen.h"
 #include <iostream>
 
 

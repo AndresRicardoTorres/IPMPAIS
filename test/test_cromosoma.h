@@ -22,8 +22,8 @@
 #define TEST_CROMOSOMA_H
 
 
-#include "matematicas.h"
-#include "cromosoma.h"
+#include "algoritmogenetico/matematicas.h"
+#include "algoritmogenetico/cromosoma.h"
 #include <iostream>
 
 

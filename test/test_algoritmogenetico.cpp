@@ -111,7 +111,8 @@ bool Test_AlgoritmoGenetico::ejecutar(int veces)
       algoritmoGenetico[r1]->setAptitud(algoritmoGenetico[r2]->getAptitud());
       algoritmoGenetico[r2]->setAptitud(aux);
     }
-    if(not matematicas->iguales(algoritmoGenetico.elMejor()->getAptitud(), numeroDeCromosomas-1))
+    double aptitudMayor = 0;
+    if(not matematicas->iguales(algoritmoGenetico.elMejor(aptitudMayor)->getAptitud(), numeroDeCromosomas-1))
     {  std::cout << "Error7 en AlgoritmoGenetico";  hayErrores = true; }
   }
 

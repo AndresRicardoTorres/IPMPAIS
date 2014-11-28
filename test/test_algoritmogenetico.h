@@ -23,10 +23,10 @@
 #define TEST_ALGORITMOGENETICO_H
 
 
-#include "matematicas.h"
-#include "fenotipoipmpais.h"
-#include "admisionesunivalle.h"
-#include "algoritmogenetico.h"
+#include "algoritmogenetico/matematicas.h"
+#include "ipmpais/fenotipoipmpais.h"
+#include "ipmpais/admisionesunivalle.h"
+#include "algoritmogenetico/algoritmogenetico.h"
 #include <iostream>
 
 
@@ -48,9 +48,9 @@ class Wrapp_AlgoritmoGenetico : public AlgoritmoGenetico
     {
       AlgoritmoGenetico::sustitucion(hijo);
     }
-    const Cromosoma *elMejor() const
+    const Cromosoma *elMejor(double &aptitudMayor) const
     {
-      return AlgoritmoGenetico::elMejor();
+      return AlgoritmoGenetico::elMejor(aptitudMayor);
     }
     Cromosoma *operator [](int indice)
     {
