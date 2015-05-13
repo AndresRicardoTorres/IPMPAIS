@@ -1,6 +1,6 @@
 #include "equivalenciadao.h"
 
-EquivalenciaDAO::EquivalenciaDAO(const char* conn)
+EquivalenciaDAO::EquivalenciaDAO(std::string conn)
 {
     //ctor
     conexion = conn;

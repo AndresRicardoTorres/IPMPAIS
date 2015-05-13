@@ -1,6 +1,6 @@
 #include "calificaciondao.h"
 
-CalificacionDAO::CalificacionDAO(const char* conexion)
+CalificacionDAO::CalificacionDAO(std::string conexion)
 {
     //ctor
     conexion = conexion;

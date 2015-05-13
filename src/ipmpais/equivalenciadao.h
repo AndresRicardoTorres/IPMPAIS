@@ -23,7 +23,7 @@ class EquivalenciaDAO: protected DAO
       /*
        * @conn String con la información de la conexión a la base de datos
        */
-      EquivalenciaDAO(const char* conn);
+      EquivalenciaDAO(std::string conn);
       virtual ~EquivalenciaDAO();
       /**
        * Crea la tabla equivalencia

@@ -73,7 +73,7 @@ class AdmisionesUnivalle
      * @param filtro_anno_final  Filtro con el año final a tomar en cuenta
      * para el analisis, por ejemplo 2010
      */
-    AdmisionesUnivalle( const char* conexion
+    AdmisionesUnivalle( std::string conexion
                       , int filtro_anno_inicio
                       , int filtro_anno_final
 		      );
