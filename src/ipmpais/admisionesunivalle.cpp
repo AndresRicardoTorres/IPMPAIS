@@ -12,7 +12,7 @@
 
 #include "admisionesunivalle.h"
 
-AdmisionesUnivalle::AdmisionesUnivalle(const char* conexion,int filtro_anno_inicio,int filtro_anno_final)
+AdmisionesUnivalle::AdmisionesUnivalle(std::string conexion,int filtro_anno_inicio,int filtro_anno_final)
 {
     // <!-- Cantidad de asignaturas del ICFES -->
     unsigned int limite = 7;

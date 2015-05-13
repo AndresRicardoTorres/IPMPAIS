@@ -35,7 +35,7 @@ typedef std::vector<std::vector <const char*> > puntajesICFES;
 class EstudianteDAO: protected DAO
 {
     public:
-      EstudianteDAO(const char* conn);
+      EstudianteDAO(std::string conn);
       virtual ~EstudianteDAO();
       /**
        * Dada una calificación actualiza las tablas estudiante_creditos y

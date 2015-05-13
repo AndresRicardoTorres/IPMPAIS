@@ -20,6 +20,7 @@
 #include <cstring>
 #include <iostream>
 #include <libpq-fe.h>
+#include <string>
 #include <vector>
 
 /** ResultadoFila Representa un registro de la base de datos */
@@ -40,7 +41,7 @@ class PG
        *
        * \param conexion String de conexión a la base de datos
        */
-      PG(const char* conexion);
+      PG(std::string conexion);
       /**
        * \brief Cierra la conexión a la base de datos
        */

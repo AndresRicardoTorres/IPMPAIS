@@ -70,7 +70,7 @@ string ConfBDDialog::getInformacion()
     info << "user=" << std::string(usuario.mb_str()) << " password="<<std::string(clave.mb_str()) <<" dbname="<<std::string(nombrebd.mb_str()) <<
     " hostaddr="<<std::string(host.mb_str()) <<" port="<<std::string(puerto.mb_str()) ;
 
-    std::cout << "INFO=> " <<info.str().c_str() << std::endl;
+    // std::cout << "INFO=> " <<info.str().c_str() << std::endl;
     return info.str();
 }
 

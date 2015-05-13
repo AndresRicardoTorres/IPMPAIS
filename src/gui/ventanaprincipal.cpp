@@ -44,13 +44,12 @@ VentanaPrincipal::VentanaPrincipal(wxFrame *frame)
     OnRadioBoxComparar(CE);
 }
 
-const char* VentanaPrincipal::getInformacionConexion(){
-    string conexion = dialogo_configuracion_base_datos->getInformacion();
-    return conexion.c_str();
+std::string VentanaPrincipal::getInformacionConexion(){
+    return dialogo_configuracion_base_datos->getInformacion();
 }
 
 bool VentanaPrincipal::checkDB(){
-    const char* BORAR = getInformacionConexion();
+    std::string BORAR = getInformacionConexion();
 
     PG *objPg = new PG(BORAR);
 

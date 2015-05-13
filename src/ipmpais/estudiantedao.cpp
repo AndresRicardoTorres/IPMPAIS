@@ -1,6 +1,6 @@
 #include "estudiantedao.h"
 
-EstudianteDAO::EstudianteDAO(const char* conn)
+EstudianteDAO::EstudianteDAO(std::string conn)
 {
     //ctor
     conexion = conn;

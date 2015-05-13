@@ -37,7 +37,7 @@ class CalificacionDAO: protected DAO
        * @param conexion String con la información de conexion a la base de
        * datos
        */
-      CalificacionDAO(const char* conexion);
+      CalificacionDAO(std::string conexion);
       virtual ~CalificacionDAO();
       /**
        * Estan soportados equivalencias entre :

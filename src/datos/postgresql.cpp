@@ -1,10 +1,9 @@
 #include "postgresql.h"
 
-PG::PG(const char* conexion)
+PG::PG(std::string conexion)
 {
     //ctor
-    std::string copia = conexion;
-    conn = PQconnectdb(copia.c_str());
+    conn = PQconnectdb(conexion.c_str());
 
     if(checkStatus() == false)
     {

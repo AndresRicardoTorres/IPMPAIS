@@ -59,7 +59,7 @@ class VentanaPrincipal: public GUIFrame
       virtual void BotonBuscar( wxCommandEvent& event );
       virtual void BotonGuardarResultados( wxCommandEvent& event );
       virtual void GuardarDatosCSV( wxCommandEvent& event );
-      const char* getInformacionConexion();
+      std::string getInformacionConexion();
       virtual void mostar_puntajes_minimos( wxCommandEvent& event );
 
       bool checkDB();
